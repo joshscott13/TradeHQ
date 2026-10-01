@@ -16,7 +16,7 @@ No sessions, invitations, observations, recordings, private records or productio
 
 ## Reproduce green
 
-Actually run from `C:/Users/joshs/Code/TradeHQ`:
+Actually run from the repository root:
 
 ```text
 python tools/verify.py

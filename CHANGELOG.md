@@ -18,3 +18,5 @@ Changes are recorded at merge time using Keep a Changelog conventions.
 - Sourced Tradeify Select Flex funded $50k income planner with explicit purchase cohort, conservative live-review model pause and count-specific scaling, merged in PR #6 at `bb04134`.
 
 - Per-account selected-period costs with exact derived portfolio totals and count-specific scaling across all planners, merged in PR #7 at `8c41ca0`.
+
+- Stateless Docker self-hosting with non-root runtime, loopback-default Compose configuration, health checks, setup documentation and real container CI smoke checks, merged in PR #8 at `1d10f83`.

@@ -2,13 +2,13 @@
 
 Status reviewed: 2026-10-01 (America/Chicago).
 
-M0 bootstrap and the MIT-licensed generic income planner are published on main. M1-06 merged a sourced LucidFlex funded $50k payout scenario under accepted ADR 0006. M1-09 merged a local canonical CSV preview with synthetic Tradovate/Rithmic examples. Journal contracts, native export adapters, user validation and pricing remain open.
+M0 bootstrap and the MIT-licensed generic income planner are published on main. M1-06 merged a sourced LucidFlex funded $50k payout scenario under accepted ADR 0006. M1-09 merged a local canonical CSV preview with synthetic Tradovate/Rithmic examples. M1-10/M1-11 added Tradeify Select Flex and per-account selected-period costs; M1-12 added stateless Docker self-hosting. Journal contracts, native export adapters, user validation and pricing remain open.
 
 ## Next actions
 
 | Order | Action | Completion evidence |
 | --- | --- | --- |
-| 1 | Package prototype for Docker self-hosting | M1-12 accepted ADR 0010, real image health/non-root/routes smoke check and instructions |
+| 1 | Sweep public documentation for hygiene and implementation drift | M1-13 independent privacy/claims review, portable references, docs and board checks |
 | 2 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
 | 3 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
 | 4 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
@@ -23,12 +23,12 @@ M0 research/bootstrap → M1 decisions, samples and prototype validation → M2 
 
 | Decision | Needed by | Notes |
 | --- | --- | --- |
-| Authentication provider, database access layer and deployment | M2/M4 | Core stack and PostgreSQL direction selected in ADR 0001 |
-| Production journal/import accounting and broader scenario rules | M1/M2 | ADR 0002/0003 remain proposed; generic prototype ADR 0005 and scoped LucidFlex planner ADR 0006 accepted |
+| Authentication provider, database access layer and hosted deployment | M2/M4 | Core stack and PostgreSQL direction selected in ADR 0001 |
+| Production journal/import accounting and broader scenario rules | M1/M2 | ADR 0002/0003 remain proposed; scoped prototype ADRs 0005–0010 accepted |
 | Remaining account products, existing lifecycle state and export platforms | M1/M2 | Josh selected Lucid/Tradeify $50k variants excluding direct funded; Apex deferred. Tradovate/Rithmic example platforms selected; purchase cohorts and actual native export records remain required |
 | Live-stage planning and loss-day scenarios | Follow-up calculator task | First LucidFlex model stops after five funded payouts and assumes equal positive daily performance |
 | Personal-first versus paid SaaS | M1 | Public MIT repository selected; hosted service/pricing still undecided |
 
 ## Main reconciliation
 
-Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; M1-10 merged in PR #6 at `bb04134`; M1-11 merged in PR #7 at `8c41ca0`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.
+Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; M1-10 merged in PR #6 at `bb04134`; M1-11 merged in PR #7 at `8c41ca0`; M1-12 merged in PR #8 at `1d10f83`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.

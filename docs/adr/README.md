@@ -11,6 +11,6 @@
 | [0007 Example import preview](0007-example-import-preview.md) | accepted | Synthetic local CSV preview merged in PR #4 at 220b530 |
 | [0008 Tradeify Select Flex](0008-tradeify-select-flex-planner.md) | accepted | Scoped dated funded $50k scenario merged in PR #6 at bb04134 |
 | [0009 Per-account costs](0009-per-account-planning-costs.md) | accepted | Per-account cost change merged in PR #7 at 8c41ca0 |
-| [0010 Docker self-hosting](0010-docker-self-hosting.md) | accepted | Stateless production container in review under M1-12 |
+| [0010 Docker self-hosting](0010-docker-self-hosting.md) | accepted | Stateless production container merged in PR #8 at 1d10f83; actual local container smoke and independent review recorded |
 
 Use [the MADR template](0000-template.md). Record Josh's answers before setting accepted. An accepted design is not a shipped feature.

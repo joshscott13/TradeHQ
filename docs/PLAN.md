@@ -1,14 +1,14 @@
 # TradeHQ plan
 
-Updated: 2026-09-30. Stage: M1 prototype and discovery. The generic USD calculator merged in PR #1 at `bc04e4b` under [ADR 0005](adr/0005-calculator-prototype.md); the LucidFlex funded $50k extension merged in PR #2 under [ADR 0006](adr/0006-lucidflex-planner.md). Both have implementation/lab review; actual target-user validation remains pending. The remaining application milestones are planned. The [PRD](PRD.md) describes proposed broader scope, and [research](research/market-research.md) separates evidence from hypotheses.
+Updated: 2026-10-01 against `main` at `1d10f83` (PR #8). Stage: M1 prototype and discovery. Generic USD planning, LucidFlex funded $50k planning, hypothetical Tradeify Select Flex funded $50k planning, local synthetic CSV preview, per-account planning costs and stateless Docker packaging are merged. [ADR index](adr/README.md) identifies their contracts and merge evidence. Implementation/lab reviews do not complete target-user validation or real statement reconciliation. The remaining application milestones are planned. The [PRD](PRD.md) describes proposed broader scope, and [research](research/market-research.md) separates evidence from hypotheses.
 
 ## Product direction
 
 Build a premium journal for a multi-prop-firm day trader that explains trading performance and actual cash outcome. Earn trust through reconciled records and visible calculation scope. Do not start by matching competitor feature breadth.
 
-Josh narrowed initial discovery to Lucid and Tradeify $50k programs, all variants except direct funded; Apex is deferred. Josh selected Tradovate and Rithmic as example platforms without statements. Actual native export fields and purchase cohorts remain unconfirmed. The current planner supports generic planning and LucidFlex funded $50k, not the broader variant set.
+Josh narrowed initial discovery to Lucid and Tradeify $50k programs, all variants except direct funded; Apex is deferred. Josh selected Tradovate and Rithmic as example platforms without statements. Actual native export fields and the maintainer's purchase cohorts remain unconfirmed. The current planners support generic planning, fresh funded LucidFlex $50k and a hypothetical Tradeify Select Flex $50k cohort strictly after September 1, 2026, not the broader variant set or actual account eligibility.
 
-M1-09 develops a local synthetic CSV preview under accepted [ADR 0007](adr/0007-example-import-preview.md). Both platform examples use an explicitly TradeHQ-owned schema; platform metadata does not imply a native adapter. This prototype has no saved ledger or actual statement reconciliation. Production import contracts remain proposed under ADR 0002, and M1-04 still requires real upstream evidence.
+M1-09 merged a local synthetic CSV preview under accepted [ADR 0007](adr/0007-example-import-preview.md). Both platform examples use an explicitly TradeHQ-owned schema; platform metadata does not imply a native adapter. This prototype has no saved ledger or actual statement reconciliation. Production import contracts remain proposed under ADR 0002, and M1-04 still requires real upstream evidence. [Docker self-hosting](self-hosting.md) serves this stateless prototype without adding persistence or sign-in.
 
 ## Milestones
 
@@ -22,15 +22,15 @@ M1-09 develops a local synthetic CSV preview under accepted [ADR 0007](adr/0007-
 
 Counts above are proposed validation targets, not evidence already collected. A mock does not close an integration milestone. M0 completion does not approve the stack or financial model. If real exports/users are unavailable, keep the affected milestone open and label any exploratory work as a spike.
 
-M1-08 prepares [the planner usability kit](research/usability-test-kit.md) and [session record template](research/usability-session-template.md) for M1-05. These provide runnable tasks for the existing planner and separate interview questions for the planned journal/import workflow. Preparation does not count as completed participant sessions or close M1-05.
+M1-08 merged [the planner usability kit](research/usability-test-kit.md) and [session record template](research/usability-session-template.md) in preparation for M1-05. These provide runnable tasks for the generic/LucidFlex planners and separate interview questions for the planned journal/import workflow. Preparation does not count as completed participant sessions or close M1-05; the kit does not cover the subsequently added Tradeify planner or synthetic CSV preview.
 
 ## Dependency sequence
 
 M0 repository bootstrap → M1 maintainer decisions and real evidence → M2 reconciled domain and import behavior → M3 product flows and visual polish → M4 private release. Design exploration can run alongside M1; production interfaces wait for accepted ADRs. The scoped LucidFlex scenario uses ADR 0006; a broader rule engine, automatic connectors, commercial pricing and AI assistance require separate milestones after evidence justifies them.
 
-## Bootstrap assumptions
+## Current implementation boundaries
 
-The maintainer authorized selecting a modern stack. ADR 0001 records the orchestrator's TypeScript/React/Next.js App Router/Tailwind and PostgreSQL direction; no application exists at bootstrap. Manual/CSV entry and private-first remain proposed scope. Financial/schema/calculator rules require accepted ADRs before production interfaces. The proposed MVP prioritizes closed trades, cash bookkeeping and dynamic income scenarios; live rule enforcement is deferred. The supplied colors are inspiration for an accessible token system, not a mandate to use every color as text.
+The maintainer authorized selecting a modern stack. ADR 0001 records the implemented TypeScript/React/Next.js App Router/Tailwind stack and planned PostgreSQL direction. ADRs 0005–0010 accept only their scoped calculator/import/cost/packaging changes; broader financial and scenario contracts remain proposed under ADRs 0002/0003. Persistent manual/CSV capture, journal and cash ledger remain planned. The proposed MVP prioritizes closed trades, cash bookkeeping and dynamic income scenarios; live rule enforcement is deferred. The supplied colors are inspiration for an accessible token system, not a mandate to use every color as text.
 
 ## Completion principles
 

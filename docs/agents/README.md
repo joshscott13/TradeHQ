@@ -5,15 +5,15 @@ Profiles are reference documents for Codex collaboration assignments. Use availa
 | Role | Owned paths | Receives review from |
 | --- | --- | --- |
 | [orchestrator](orchestrator.md) | ROADMAP.md, CHANGELOG.md, docs/milestones/, docs/agents/ | docs-writer |
-| [frontend-dev](frontend-dev.md) | future apps/web/, docs/design/ | design-guardian and typescript-reviewer |
-| [domain-dev](domain-dev.md) | future packages/domain/ | domain-reviewer and typescript-reviewer |
-| [import-dev](import-dev.md) | future packages/imports/ | security-reviewer and test-engineer |
-| [typescript-reviewer](typescript-reviewer.md) | future TypeScript diffs | orchestrator |
-| [domain-reviewer](domain-reviewer.md) | docs/PRD.md, docs/glossary.md, future domain diffs | orchestrator |
+| [frontend-dev](frontend-dev.md) | apps/web/, docs/design/ | design-guardian and typescript-reviewer |
+| [domain-dev](domain-dev.md) | packages/domain/ | domain-reviewer and typescript-reviewer |
+| [import-dev](import-dev.md) | packages/imports/ | security-reviewer and test-engineer |
+| [typescript-reviewer](typescript-reviewer.md) | TypeScript diffs | orchestrator |
+| [domain-reviewer](domain-reviewer.md) | docs/PRD.md, docs/glossary.md, domain diffs | orchestrator |
 | [security-reviewer](security-reviewer.md) | auth, imports, persistence and private attachments | orchestrator |
 | [test-engineer](test-engineer.md) | tools/, docs/testing/, .github/workflows/ | tooling-reviewer |
 | [tooling-reviewer](tooling-reviewer.md) | tools/ and CI diffs | orchestrator |
 | [docs-writer](docs-writer.md) | docs/ product specifications and handoffs | domain-reviewer |
-| [release-engineer](release-engineer.md) | future release artifacts | test-engineer |
-| [design-guardian](design-guardian.md) | docs/design/, future apps/web/ | orchestrator |
+| [release-engineer](release-engineer.md) | Docker packaging, self-hosting docs and future release artifacts | test-engineer |
+| [design-guardian](design-guardian.md) | docs/design/, apps/web/ | orchestrator |
 | [scout](scout.md) | docs/research/ | domain-reviewer |

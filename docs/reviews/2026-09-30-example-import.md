@@ -1,5 +1,7 @@
 # Synthetic import preview independent review
 
+Historical artifact note: named temporary scripts and screenshots were local-only, uncommitted review aids and are not publicly reproducible from this checkout. Original dates, test counts, actor attribution and dispositions are preserved; artifact basenames below are identifiers, not repository links.
+
 Date: 2026-09-30. Scope: M1-09 under accepted ADR 0007, local TradeHQ-format CSV preview with synthetic Tradovate/Lucid and Rithmic/Tradeify examples. Reviewer: independent Codex security, domain, TypeScript and design reviewer.
 
 ## Trust boundary and calculation review
@@ -18,7 +20,7 @@ The two examples use the same visibly labeled TradeHQ schema; platform labels do
 
 ## Independent numerical and parser evidence
 
-Reviewer ran all eight import test cases successfully and `npm run typecheck --workspace=@tradehq/imports` successfully. A separate temporary reference script at `C:/Users/joshs/AppData/Local/Temp/tradehq-import-independent.mjs`, run with `node --import tsx`, passed 97 checks. These cover invalid dates/offsets, signed and bounded amounts, formula/control metadata, malformed quotes, headers/widths, BOM/CRLF/escaped quotes, duplicates/conflicts/account scopes, UTF-8 byte and row limits, and 100 generated signed rows reconciled using independent integer-cent sums.
+Reviewer ran all eight import test cases successfully and `npm run typecheck --workspace=@tradehq/imports` successfully. A separate temporary reference script at `tradehq-import-independent.mjs`, run with `node --import tsx`, passed 97 checks. These cover invalid dates/offsets, signed and bounded amounts, formula/control metadata, malformed quotes, headers/widths, BOM/CRLF/escaped quotes, duplicates/conflicts/account scopes, UTF-8 byte and row limits, and 100 generated signed rows reconciled using independent integer-cent sums.
 
 Manual sample reconciliation:
 
@@ -33,7 +35,7 @@ Tradeify account A reconciles to $186.00 and account B to $92.25. Exact calculat
 
 Root-executed Codex browser evidence: both sample totals and Tradeify account totals matched the manual values above. Editing cleared old total headings; an exact repeated row raised skipped count to one without changing totals. A conflicting identity showed row 5 errors and no totals. Impossible February 30 and unclosed quotes produced row errors; selecting an example and previewing recovered. A valid local CSV gave $339.75 with its file-source label. Invalid UTF-8 and a file one byte over 250 KiB showed file errors without totals. An empty file left Preview disabled and no totals, without an error section. Keyboard Enter activated Preview with visible focus. Income planner/Imports navigation worked. Root observed no document overflow at a mobile viewport.
 
-Reviewer independently inspected root-captured full-page screenshots `C:/Users/joshs/.codex/visualizations/2026/10/01/01a0f4e1-6db8-7243-bb61-5631aab44480/tradehq-import-preview.png` and `tradehq-import-mobile.png`. Desktop preserves the account/underlying-record hierarchy and synthetic source disclosure; mobile uses a clear single-column flow and deliberate horizontally scrollable tables. The visible $278.25 summary and $186.00/$92.25 account results agree with independent arithmetic. Preview focus is visible. Source review and parser checks are reviewer-executed; browser interactions are root-executed and independently assessed. This is not a complete accessibility audit or target-user validation.
+Reviewer independently inspected root-captured full-page screenshots `tradehq-import-preview.png` and `tradehq-import-mobile.png`. Desktop preserves the account/underlying-record hierarchy and synthetic source disclosure; mobile uses a clear single-column flow and deliberate horizontally scrollable tables. The visible $278.25 summary and $186.00/$92.25 account results agree with independent arithmetic. Preview focus is visible. Source review and parser checks are reviewer-executed; browser interactions are root-executed and independently assessed. This is not a complete accessibility audit or target-user validation.
 
 The asynchronous race was source-reviewed: changing input, example, clear or file selection invalidates the revision; only the current completion may set content/errors/loading. No forced pending-read race was executed in a browser. This limited browser evidence does not claim a runtime concurrency test.
 

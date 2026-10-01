@@ -1,5 +1,7 @@
 # 2026-09-30: reviewer → orchestrator · M1-09
 
+Historical artifact note: named temporary scripts and screenshots were local-only, uncommitted review aids and are not publicly reproducible from this checkout. Original dates, test counts, actor attribution and dispositions are preserved; artifact basenames below are identifiers, not repository links.
+
 ## Done
 
 Approve scoped synthetic CSV preview under accepted ADR 0007. [Independent review](../reviews/2026-09-30-example-import.md) records trust-boundary inspection, manually reconciled samples, 97 separate reference checks and root browser evidence independently assessed. Updated IMP-01/IMP-02 and small PLAN/PRD scope amendments.
@@ -14,7 +16,7 @@ Native schemas/adapters, actual statements and real reconciliation, persistence 
 
 ## Reproduce green
 
-Reviewer observed `npm run test --workspace=@tradehq/imports` (8 passed), `npm run typecheck --workspace=@tradehq/imports`, `node --import tsx C:/Users/joshs/AppData/Local/Temp/tradehq-import-independent.mjs` (97 passed), `python tools/verify.py` and `git diff --check` passing. Root owns full app/build/status and CI verification.
+Reviewer observed `npm run test --workspace=@tradehq/imports` (8 passed), `npm run typecheck --workspace=@tradehq/imports`, `node --import tsx <external-artifact-directory>/tradehq-import-independent.mjs` (97 passed), `python tools/verify.py` and `git diff --check` passing. Root owns full app/build/status and CI verification.
 
 ## Decisions made without an ADR
 

@@ -1,5 +1,7 @@
 # 2026-09-30: reviewer → orchestrator · M1-11
 
+Historical artifact note: named temporary scripts and screenshots were local-only, uncommitted review aids and are not publicly reproducible from this checkout. Original dates, test counts, actor attribution and dispositions are preserved; artifact basenames below are identifiers, not repository links.
+
 ## Done
 
 Approve scoped per-account planning costs under accepted ADR 0009. [Independent review](../reviews/2026-09-30-per-account-costs.md) records all three domain/UI diffs, eight new tests, 1,895 independent checks and parent-executed browser evidence independently assessed. Updated COST-01/02, current accounting examples and usability U2/U4/U5 for the new field. Historical reviews/handoffs are preserved.
@@ -14,7 +16,7 @@ Actual invoices, heterogeneous/shared expenses, real statements/eligibility/rece
 
 ## Reproduce green
 
-Reviewer executed `node --import tsx C:/Users/joshs/AppData/Local/Temp/tradehq-cost-independent.mjs` (1,895 checks passed), `python tools/verify.py`, `python tools/status/render.py --check` and `git diff --check`. The temporary independent oracle uses BigInt firm arithmetic and exhaustive daily-cent enumeration; committed tests preserve representative regressions. Root reports clean install, 50 domain/import tests, workspace typechecks and build passing. Browser interactions belong to root; source and screenshot assessment belong to reviewer. Root owns final board/generated-file/CI checks.
+Reviewer executed `node --import tsx <external-artifact-directory>/tradehq-cost-independent.mjs` (1,895 checks passed), `python tools/verify.py`, `python tools/status/render.py --check` and `git diff --check`. The temporary independent oracle uses BigInt firm arithmetic and exhaustive daily-cent enumeration; committed tests preserve representative regressions. Root reports clean install, 50 domain/import tests, workspace typechecks and build passing. Browser interactions belong to root; source and screenshot assessment belong to reviewer. Root owns final board/generated-file/CI checks.
 
 ## Decisions made without an ADR
 

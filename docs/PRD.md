@@ -1,12 +1,12 @@
 # TradeHQ product requirements
 
-Status: broader product scope proposed; generic USD calculator merged in PR #1 at `bc04e4b` under [ADR 0005](adr/0005-calculator-prototype.md), and LucidFlex funded $50k planner merged in PR #2 under [ADR 0006](adr/0006-lucidflex-planner.md). [ADR 0007](adr/0007-example-import-preview.md) accepts a local synthetic CSV preview prototype. Production journal/import and broader program contracts remain proposed. Updated: 2026-09-30. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
+Status: broader product scope proposed. Current `main` at `1d10f83` includes generic USD planning, fresh funded LucidFlex $50k and hypothetical Tradeify Select Flex $50k planning, synthetic local CSV preview, per-account planning costs and Docker self-hosting under [ADRs 0005–0010](adr/README.md). Production journal/import, saved records and broader program contracts remain proposed. Updated: 2026-10-01. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
 
 ## Product outcome
 
 Help a day trader review decisions across multiple prop-firm accounts and explain both trading performance and actual cash outcome. A displayed total must be traceable to its records, date basis, included accounts and currencies.
 
-The intended users are financially and technically savvy traders aged roughly 25–50. The age range and visual direction are supplied by the maintainer; user research remains planned. Initial discovery focuses on Lucid and Tradeify $50k programs, all variants except direct funded; Josh deferred Apex. Josh selected Tradovate and Rithmic as example platforms without statements. Actual native schemas and purchase cohorts remain unconfirmed. Generic planning and LucidFlex funded $50k are implemented; M1-09 develops an explicitly synthetic canonical CSV preview, without native adapter or received-cash claims. The maintainer authorized choosing a modern stack; the orchestrator records the TypeScript/React/Next.js App Router/Tailwind and PostgreSQL direction in ADR 0001. Deployment, authentication and commercial boundaries remain open decisions.
+The intended users are financially and technically savvy traders aged roughly 25–50. The age range and visual direction are supplied by the maintainer; user research remains planned. Initial discovery focuses on Lucid and Tradeify $50k programs, all variants except direct funded; Josh deferred Apex. Josh selected Tradovate and Rithmic as example platforms without statements. Actual native schemas and the maintainer's purchase cohorts remain unconfirmed. The implemented CSV preview uses a synthetic TradeHQ schema, without native adapter, persistent import or received-cash claims. The TypeScript/React/Next.js App Router/Tailwind stack is implemented; PostgreSQL remains a direction under ADR 0001. Stateless Docker self-hosting is implemented under ADR 0010; hosted persistence, authentication and commercial boundaries remain open decisions.
 
 ## Core jobs
 
@@ -62,7 +62,7 @@ Monetary formulas and grouping semantics must be documented beside metric defini
 
 Private by default. No production trade data, screenshots, access tokens or credentials in Git. Before a hosted multi-user release, enforce access control across all records, attachments and exports; test tenant isolation, restoration and deletion. An uploaded file is untrusted input. Product retention, backup and deletion policies await hosting decisions.
 
-The interface should support keyboard use, zoom, meaningful chart descriptions and contrast-tested text. Red/green color alone must not communicate P&L. [Design brief](design/design-brief.md) defines review criteria; actual WCAG conformance is not claimed at bootstrap.
+The interface should support keyboard use, zoom, meaningful chart descriptions and contrast-tested text. Red/green color alone must not communicate P&L. [Design brief](design/design-brief.md) defines review criteria; scoped desktop/mobile and keyboard lab evidence does not establish full WCAG conformance or target-user usability.
 
 ## Product validation targets
 
@@ -70,7 +70,7 @@ Planned discovery: 5–8 target-user interviews, including traders who copy acro
 
 The implemented planner can be tested now using [the usability kit](research/usability-test-kit.md) and [session template](research/usability-session-template.md), prepared under M1-08. Three planned planner sessions assess goals, active days, scaling, cash interpretation and funded-phase limits. They do not establish completed journal/import journeys, actual cash receipt, market demand or full accessibility conformance; M1-05 remains open until real evidence is collected.
 
-## Decisions before implementation
+## Decisions before broader implementation
 
 Confirm exact Lucid/Tradeify $50k variants, cohorts and actual platforms within the selected scope; approve gross/net and cash definitions; confirm persistence/hosting details; determine personal-only vs multi-user product; approve matching, cost allocation, currency and calculator policies; decide what data can be retained for testing. Apex and direct-funded discovery are deferred. Record accepted decisions in ADRs before creating production interfaces.
 
