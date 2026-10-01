@@ -1,6 +1,6 @@
 # TradeHQ agent instructions
 
-TradeHQ is a planned trade journal and multi-prop-firm financial overview for technically and financially savvy traders aged 25–50. M1 implements a generic USD calculator prototype and scoped LucidFlex funded $50k scenario under ADR 0006. ADR 0007 adds a local canonical CSV import preview with synthetic Tradovate/Rithmic examples. Production journal/imports, actual firm eligibility approval, user accounts and hosted services remain planned. Do not invent passing application or integration tests.
+TradeHQ is a planned trade journal and multi-prop-firm financial overview for technically and financially savvy traders aged 25–50. M1 implements a generic USD calculator prototype and scoped LucidFlex funded $50k scenario under ADR 0006. ADR 0007 adds a local canonical CSV import preview with synthetic Tradovate/Rithmic examples. ADR 0008 adds the explicitly dated Tradeify Select Flex funded $50k scenario with a conservative live-review pause. Production journal/imports, actual firm eligibility approval, user accounts and hosted services remain planned. Do not invent passing application or integration tests.
 
 ## Read order
 
@@ -36,7 +36,7 @@ Interfaces, dependencies and vocabulary changes require an accepted ADR before i
 
 ## Don't
 
-- The core web stack is selected in ADR 0001. ADR 0005 accepts generic calculator defaults/dependencies; ADR 0006 accepts the scoped LucidFlex scenario; ADR 0007 accepts only the synthetic local import preview. Do not implement production journal/import or firm-rule interfaces under proposed ADR 0002/0003.
+- The core web stack is selected in ADR 0001. ADR 0005 accepts generic calculator defaults/dependencies; ADR 0006 accepts the scoped LucidFlex scenario; ADR 0007 accepts only the synthetic local import preview. ADR 0008 accepts the scoped Tradeify Select Flex scenario. Do not implement production journal/import or other firm-rule interfaces under proposed ADR 0002/0003.
 - Do not invent broker integrations, API access, validation interviews, competitor gaps, or market-size figures.
 - Do not merge, release, publish, or create a GitHub repository without authorization.
 - Do not edit generated STATUS.md directly or replace existing user work.

@@ -1,6 +1,6 @@
 # TradeHQ architecture
 
-The generic income planner is implemented in TypeScript, React, Next.js App Router and Tailwind CSS under ADR 0001/0005. The domain package uses decimal arithmetic. ADR 0006 accepts a scoped LucidFlex funded-account payout scenario; ADR 0007 scopes a canonical synthetic CSV preview. Persistence, journal and native export adapters remain planned.
+The generic income planner is implemented in TypeScript, React, Next.js App Router and Tailwind CSS under ADR 0001/0005. The domain package uses decimal arithmetic. ADR 0006 accepts a scoped LucidFlex funded-account payout scenario; ADR 0007 scopes a canonical synthetic CSV preview. ADR 0008 scopes a separate Tradeify Select Flex funded $50k scenario. Persistence, journal and native export adapters remain planned.
 
 ## Recommended shape
 
