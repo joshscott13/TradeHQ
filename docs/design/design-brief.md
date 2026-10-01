@@ -1,8 +1,8 @@
 # TradeHQ design brief
 
-Status: broader design direction proposed. Updated: 2026-10-01 against `main` at `1673799`. Generic, LucidFlex and hypothetical Tradeify Select Flex funded $50k planners, per-account costs and the synthetic local import preview are implemented with scoped lab reviews. Actual target-user validation, full accessibility conformance and persistent journal/import flows remain planned.
+Status: broader design direction proposed. Updated: 2026-10-01 against `main` at `650b980`. Generic, LucidFlex and hypothetical Tradeify Select Flex funded $50k planners, per-account costs and the synthetic local import preview are implemented with scoped lab reviews. Actual target-user validation, full accessibility conformance and persistent journal/import flows remain planned.
 
-M1-15 merged the fourth hypothetical Tradeify Select Daily $50k planner in PR #11 under [ADR 0011](../adr/0011-tradeify-select-daily-planner.md). Current M1-16 presentation follows accepted [ADR 0012](../adr/0012-plain-language-planner.md), with review and merge pending. The cohort and exact-buffer model convention are prominent. Its ledger table separates cycle profit before approval, gross deduction, trader request cash and retained profit after deduction. Daily eligibility never implies daily receipt; responsive controls, reset, invalid clearing and keyboard focus follow the existing experience.
+M1-15 merged the fourth hypothetical Tradeify Select Daily $50k planner in PR #11 under [ADR 0011](../adr/0011-tradeify-select-daily-planner.md). M1-16 presentation follows accepted [ADR 0012](../adr/0012-plain-language-planner.md), merged in PR #12 at `650b980` after independent review. The cohort and exact-buffer model convention are prominent. Its ledger table separates cycle profit before approval, gross deduction, trader request cash and retained profit after deduction. Daily eligibility never implies daily receipt; responsive controls, reset, invalid clearing and keyboard focus follow the existing experience.
 
 ## Experience contract
 

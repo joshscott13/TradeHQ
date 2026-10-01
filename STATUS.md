@@ -41,7 +41,7 @@ Current milestone: **M1**
 | M1-13 | Sweep public documentation for hygiene and implementation drift | docs-writer / orchestrator | security-reviewer, domain-reviewer | merged | M1-12 | DOC-01 |
 | M1-14 | Verify remaining Lucid and Tradeify 50k planner policies | scout | domain-reviewer, security-reviewer | merged | M1-13 | RES-03 |
 | M1-15 | Add scoped Tradeify Select Daily funded 50k planning | orchestrator / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-14 | CALC-08, CALC-09 |
-| M1-16 | Simplify income planner language | frontend-dev / orchestrator | design-guardian, domain-reviewer, typescript-reviewer, test-engineer | in review | M1-15 | UX-01 |
+| M1-16 | Simplify income planner language | frontend-dev / orchestrator | design-guardian, domain-reviewer, typescript-reviewer, test-engineer | merged | M1-15 | UX-01 |
 
 ## Task details
 
@@ -171,4 +171,4 @@ Current milestone: **M1**
 - ADR: docs/adr/0012-plain-language-planner.md
 - Spec: docs/adr/0012-plain-language-planner.md
 - Docs: docs/design/design-brief.md, docs/glossary.md
-- Notes: Plain-language labels and accessible detail disclosures implemented across all four planners under ADR 0012. Independent source/UX/domain review supports approval; root 63 application tests, ten tooling tests, workspace typechecks/build and desktop/mobile/keyboard checks passed. Formulas, defaults, limits and profiles unchanged. Final-head CI required; merge pending.
+- Notes: Merged in PR #12 at origin/main 650b980; independent source/UX/domain review, 63 application tests, ten tooling tests, workspace typechecks/build, local browser evidence and corrected final-head verify CI including Docker runtime passed. Financial calculations/profiles unchanged. Real account/export/user gates remain open.

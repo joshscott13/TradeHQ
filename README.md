@@ -4,9 +4,9 @@ A planned trading journal and financial overview for traders operating across mu
 
 Know how you traded, what each account earned, and what actually reached your pocket. The design direction is a polished, modern fintech workspace for savvy traders aged 25–50.
 
-**Stage:** M1 income/scaling calculator prototype with generic planning, sourced LucidFlex and hypothetical Tradeify Select Flex/Select Daily funded $50k scenarios, per-account planning costs, local TradeHQ-format CSV preview and stateless Docker self-hosting. Journal, saved records, native export adapters, broader firm profiles and a hosted multi-user service remain planned. Current scope is documented against merged PR #11 at `1673799`.
+**Stage:** M1 income/scaling calculator prototype with generic planning, sourced LucidFlex and hypothetical Tradeify Select Flex/Select Daily funded $50k scenarios, per-account planning costs, local TradeHQ-format CSV preview and stateless Docker self-hosting. Journal, saved records, native export adapters, broader firm profiles and a hosted multi-user service remain planned. Current scope is documented against merged PR #12 at `650b980`.
 
-Select Daily merged in PR #11 at `1673799` under [ADR 0011](docs/adr/0011-tradeify-select-daily-planner.md). The current M1-16 change simplifies all four planners under [ADR 0012](docs/adr/0012-plain-language-planner.md); copy review and merge are pending. Calculations, defaults and policy assumptions are unchanged.
+Select Daily merged in PR #11 at `1673799` under [ADR 0011](docs/adr/0011-tradeify-select-daily-planner.md). M1-16 simplified all four planners under [ADR 0012](docs/adr/0012-plain-language-planner.md), merged in PR #12 at `650b980` after independent review. Calculations, defaults and policy assumptions are unchanged.
 
 - [Product requirements](docs/PRD.md)
 - [Research](docs/research/market-research.md)
