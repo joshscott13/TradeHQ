@@ -21,6 +21,8 @@ Changes are recorded at merge time using Keep a Changelog conventions.
 
 - Stateless Docker self-hosting with non-root runtime, loopback-default Compose configuration, health checks, setup documentation and real container CI smoke checks, merged in PR #8 at `1d10f83`.
 
+- Remaining Lucid/Tradeify $50k policy-readiness research, cohort conflicts and synthetic reference calculations, merged in PR #10 at `0d4ce75`.
+
 ### Changed
 
 - Public documentation reconciled to implemented scope, contributor instructions corrected and workstation references removed from forward docs while preserving historical evidence, merged in PR #9 at `8baaa33`.

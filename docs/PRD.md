@@ -1,6 +1,8 @@
 # TradeHQ product requirements
 
-Status: broader product scope proposed. Current `main` at `1d10f83` includes generic USD planning, fresh funded LucidFlex $50k and hypothetical Tradeify Select Flex $50k planning, synthetic local CSV preview, per-account planning costs and Docker self-hosting under [ADRs 0005–0010](adr/README.md). Production journal/import, saved records and broader program contracts remain proposed. Updated: 2026-10-01. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
+Status: broader product scope proposed. Current `main` at `0d4ce75` includes generic USD planning, fresh funded LucidFlex $50k and hypothetical Tradeify Select Flex $50k planning, synthetic local CSV preview, per-account planning costs and Docker self-hosting under [ADRs 0005–0010](adr/README.md). Production journal/import, saved records and broader program contracts remain proposed. Updated: 2026-10-01. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
+
+Current M1-15 implementation, independent review recorded, merge pending: a fourth hypothetical Tradeify Select Daily funded $50k planner under [ADR 0011](adr/0011-tradeify-select-daily-planner.md). Its daily request eligibility is distinct from daily cash receipt. Goals, selected-period per-account costs, inverse targets, retained/cycle ledger, synchronized review pause and per-count scaling are explicit; actual approvals and continued funded/live income remain excluded.
 
 ## Product outcome
 
