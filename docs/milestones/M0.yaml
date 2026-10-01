@@ -1,0 +1,160 @@
+{
+  "milestone": "M0",
+  "title": "Research and bootstrap",
+  "exit_criteria": [
+    "Repository documentation and board gates pass with independent review",
+    "Research claims linked to current primary sources; demand hypotheses remain explicit",
+    "Maintainer input recorded; remaining scenario/accounting decisions and real export evidence explicitly assigned to M1"
+  ],
+  "validates_against": [
+    "Josh product brief dated 2026-09-30",
+    "Named competitor and firm primary sources",
+    "Python repository tooling checks"
+  ],
+  "blockers": [
+    "M1 detailed financial/scenario contracts and real redacted exports remain open; these do not block documentation bootstrap"
+  ],
+  "tasks": [
+    {
+      "id": "M0-01",
+      "title": "Bootstrap Codex repository workflow and verification",
+      "package": "tools/ and workflow docs",
+      "owner": "test-engineer",
+      "reviewers": [
+        "tooling-reviewer",
+        "docs-writer"
+      ],
+      "state": "validated",
+      "blocked_by": [],
+      "adr": "docs/adr/0004-bootstrap-tooling.md",
+      "matrix": [
+        "BOOT-01",
+        "BOOT-02"
+      ],
+      "spec": [
+        "AGENTS.md",
+        "docs/PLAN.md"
+      ],
+      "docs": [
+        "CONTRIBUTING.md",
+        "docs/workflows/README.md"
+      ],
+      "notes": "Repository tooling validated by test-engineer: verify.py, render.py --check and ten regression checks passed; independent approval recorded in docs/reviews/2026-09-30-bootstrap.md. Local evidence only; no origin/main, merged state or remote CI execution claimed."
+    },
+    {
+      "id": "M0-02",
+      "title": "Research competitors and prop-firm export constraints",
+      "package": "docs/research/",
+      "owner": "scout",
+      "reviewers": [
+        "domain-reviewer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": null,
+      "matrix": [
+        "RES-01"
+      ],
+      "spec": [
+        "docs/PRD.md"
+      ],
+      "docs": [
+        "docs/research/market-research.md"
+      ],
+      "notes": "Primary-source desk research; user interviews and export samples remain open."
+    },
+    {
+      "id": "M0-03",
+      "title": "Define proposed metrics and demonstrate accounting examples",
+      "package": "docs/adr/ and docs/research/",
+      "owner": "domain-dev",
+      "reviewers": [
+        "domain-reviewer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": "docs/adr/0002-financial-contract.md",
+      "matrix": [
+        "FIN-01"
+      ],
+      "spec": [
+        "ARCHITECTURE.md"
+      ],
+      "docs": [
+        "docs/research/accounting-examples.md",
+        "docs/glossary.md"
+      ],
+      "notes": "Specification only. Financial contract proposed, not accepted or implemented."
+    },
+    {
+      "id": "M0-04",
+      "title": "Record high-end fintech design direction",
+      "package": "docs/design/",
+      "owner": "frontend-dev",
+      "reviewers": [
+        "design-guardian"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": null,
+      "matrix": [
+        "DES-01"
+      ],
+      "spec": [
+        "docs/PRD.md"
+      ],
+      "docs": [
+        "docs/design/design-brief.md"
+      ],
+      "notes": "Uses Josh supplied audience/palette. No interactive UI exists yet."
+    },
+    {
+      "id": "M0-05",
+      "title": "Record delegated stack selection and remaining product decisions",
+      "package": "docs/adr/",
+      "owner": "orchestrator",
+      "reviewers": [
+        "domain-reviewer",
+        "security-reviewer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": "docs/adr/0001-platform.md",
+      "matrix": [
+        "BOOT-01"
+      ],
+      "spec": [
+        "ARCHITECTURE.md",
+        "docs/adr/0002-financial-contract.md"
+      ],
+      "docs": [
+        "docs/adr/README.md",
+        "ROADMAP.md"
+      ],
+      "notes": "Josh delegated modern stack choice; core stack accepted in ADR 0001. Financial/scenario rules and paid model remain open for M1."
+    },
+    {
+      "id": "M0-06",
+      "title": "Record first firms and remaining export discovery",
+      "package": "docs/research/",
+      "owner": "scout",
+      "reviewers": [
+        "test-engineer",
+        "security-reviewer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": null,
+      "matrix": [
+        "RES-01"
+      ],
+      "spec": [
+        "docs/PRD.md"
+      ],
+      "docs": [
+        "docs/research/market-research.md"
+      ],
+      "notes": "Josh named Lucid, Apex and Tradeify. Actual account products and redacted platform exports are planned for M1; no integration validated."
+    }
+  ]
+}

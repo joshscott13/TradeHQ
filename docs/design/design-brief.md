@@ -1,0 +1,64 @@
+# TradeHQ design brief
+
+Status: proposed design direction. Updated: 2026-09-30. No app UI or validated prototype exists yet.
+
+## Experience contract
+
+TradeHQ should feel like a carefully made financial workspace: calm, exact and fast. Users should see what happened, trust how it was calculated and reach the underlying records in one action. The target audience is financially and technically savvy, roughly ages 25–50, as specified by the maintainer. Do not infer visual preference from age alone.
+
+The distinguishing interaction is the bridge between trading results and cash received, paired with one journal review for linked copied decisions. The [research](../research/market-research.md) supports these as hypotheses to test; it does not prove a competitive gap.
+
+## Palette direction
+
+| Supplied color | Proposed role | Constraint |
+| --- | --- | --- |
+| `#0f172a` | Deep ink, navigation or dark foundation | Pair with sufficiently light text and clear separators |
+| `#1e40af` | Primary action and selected state in light surfaces | Reserve saturation for useful actions; verify all text combinations |
+| `#0ea5e9` | Focus, chart secondary series and restrained accent | Do not assume white small text on this shade is accessible |
+| `#22c55e` | Positive result accent, paired with sign and label | Use darker/lightened contextual variants for text; never use color alone |
+| `#64748b` | Muted labels and neutral comparisons | Test against actual surfaces, especially dark mode and disabled states |
+
+Add a separate loss/warning/error semantic family rather than turning blue into a loss signal. Derive accessible variants; supplied colors are inspiration, not immutable foreground tokens. Prefer one primary surface mode first; the choice of dark-first versus light-first is pending prototype review. Do not spend time implementing two themes before the core flows work.
+
+## Layout and hierarchy
+
+Desktop: stable narrow navigation, compact workspace header, account/date/currency scope above metrics. Main navigation: Overview, Journal, Accounts, Cash ledger, Calculator, Imports. Settings belongs in the utility area. A predictable layout is more useful than movable dashboard tiles in MVP.
+
+Overview leads with two clearly distinct figures: Net trading P&L and Cash outcome. Show currency, period and data completeness beside them. A restrained trend chart follows, then accounts with status and net results, then recent decisions requiring review. Avoid a wall of equal-sized KPI cards. Cash outcome opens its gross-to-net and fee ledger; trading results open included account trades.
+
+Journal uses a compact, readable table with date, instrument, direction, account/linked-copy count, net result, setup and review state. A detail panel keeps the table context while showing executions, costs, notes and screenshots. Separate a decision-level view from an account-trade view with explicit labels and counts.
+
+Cash ledger puts received, pending and paid amounts in distinct columns/views. Never style an approved payout as received. Accounts show firm + platform + phase; avatars/logos are secondary to exact names. Imports preview accepted rows, invalid rows and candidate duplicates, with actionable corrections before commit.
+
+Mobile: single-column overview, visible filter scope, cards preserving numeric hierarchy, readable trade detail. Tables can use horizontal scroll or deliberate row summaries; do not shrink text to fit. Core actions remain reachable without hover.
+
+## Dynamic calculator experience
+
+Make the calculator feel like an instrument the user can work with: goal and week/month/year selector beside an editable active-day calendar, account-count stepper and program selectors for Lucid, Apex and Tradeify. Show one `$50k` program account versus the selected number of accounts side by side, with the same assumptions visible. Account labels must not imply personal cash equity.
+
+Update per-account daily target, aggregate daily target and modeled period result as inputs change. Give every slider a precise numeric input and keyboard controls. Keep currency and goal basis visible. Show fees and splits as a compact cash bridge; caps and qualifying-day restrictions have a separate effect, not an invisible haircut. Distinguish a simple trading-result scenario from a rule-constrained cash scenario. Unknown policy inputs show unresolved output, not invented precise cash.
+
+Support explicit conservative/base/optimistic comparisons without assigning fake probabilities. Include fewer active accounts, losing days and skipped days as editable assumptions. A small chart can show the effect of account count or daily result; its title says scenario, and its underlying table remains available. Provide an assumption summary users can save/export. Respect reduced motion, avoid animated money counters and retain focus during recalculation.
+
+## Typography, density and motion
+
+Use a licensed/system sans serif with strong numerals. Prefer tabular figures for currency and aligned decimal columns. Display metrics can be 28–40 px, body text 14–16 px; essential financial data should remain readable at zoom. Use a deliberate spacing rhythm and thin, visible dividers. Flat surfaces with selective elevation create hierarchy; pervasive glass, glow and gradients undermine numerical clarity.
+
+Motion should explain a drawer, selection or committed import. Keep it brief, respect reduced motion and avoid animated counters for financial totals. Charts use truthful scales, labeled axes, series legend and keyboard-accessible data. A cumulative result chart is labeled as realized trading P&L, not account equity if open positions are absent.
+
+## Required states and copy
+
+Design empty, loading, error, partial import, missing cost, stale data, pending payout, closed account and no matching filter states. Show “Costs missing for 4 account trades” beside the affected result. Show “No trades in this period” instead of `$0` when there are no records. Use “Imported through 2026-09-30” rather than a live badge for a file-based workflow. Use “Request recorded” and “Received” as distinct payout states.
+
+Any sample dataset must have a persistent sample label. Do not fabricate success rates, social proof, account protection or profitability claims in onboarding. A user should never need to understand an implementation framework to complete a flow.
+
+## Design review exit criteria
+
+- Users correctly distinguish account trades, trading decisions, trading results and cash outcome in task-based testing.
+- Every metric shows scope, date basis and currency, exposes its underlying records and communicates incomplete data.
+- Keyboard navigation, focus visibility, zoom, reduced motion and contrast are tested on the actual build; charts provide an accessible alternative.
+- Profit/loss uses signs and text as well as color; pending/unknown is visibly different from zero/received.
+- Import review is understandable, duplicates require appropriate review and corrections have an undo/trace path.
+- A reviewed desktop and mobile core journey shows consistent spacing, typography, hierarchy and all required states.
+
+These are planned acceptance criteria, not a claim that an accessibility or usability audit has passed.
