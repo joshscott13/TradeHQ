@@ -38,7 +38,7 @@
         "README.md",
         "ROADMAP.md"
       ],
-      "notes": "Josh explicitly chose MIT and approved USD/trading-day/P&L/simplified-cash defaults. Branch feat/mit-and-calculator-foundation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending."
+      "notes": "Josh explicitly chose MIT and approved USD/trading-day/P&L/simplified-cash defaults. Branch feat/mit-and-calculator-foundation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge."
     },
     {
       "id": "M1-02",
@@ -62,7 +62,7 @@
       "docs": [
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Accepted generic prototype only, co-reviewed with UI in one PR. No firm eligibility or import logic. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending."
+      "notes": "Accepted generic prototype only, co-reviewed with UI in one PR. No firm eligibility or import logic. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge."
     },
     {
       "id": "M1-03",
@@ -88,7 +88,7 @@
         "README.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Integrate domain API and independently review browser flows; not market/user validation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending."
+      "notes": "Integrate domain API and independently review browser flows; not market/user validation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge."
     },
     {
       "id": "M1-04",

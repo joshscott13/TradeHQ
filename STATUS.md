@@ -40,7 +40,7 @@ Current milestone: **M1**
 - ADR: docs/adr/0005-calculator-prototype.md
 - Spec: docs/adr/0005-calculator-prototype.md
 - Docs: README.md, ROADMAP.md
-- Notes: Josh explicitly chose MIT and approved USD/trading-day/P&L/simplified-cash defaults. Branch feat/mit-and-calculator-foundation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending.
+- Notes: Josh explicitly chose MIT and approved USD/trading-day/P&L/simplified-cash defaults. Branch feat/mit-and-calculator-foundation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge.
 
 ### M1-02
 
@@ -48,7 +48,7 @@ Current milestone: **M1**
 - ADR: docs/adr/0005-calculator-prototype.md
 - Spec: docs/adr/0005-calculator-prototype.md, docs/research/accounting-examples.md
 - Docs: docs/testing/test-matrix.md
-- Notes: Accepted generic prototype only, co-reviewed with UI in one PR. No firm eligibility or import logic. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending.
+- Notes: Accepted generic prototype only, co-reviewed with UI in one PR. No firm eligibility or import logic. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge.
 
 ### M1-03
 
@@ -56,7 +56,7 @@ Current milestone: **M1**
 - ADR: docs/adr/0005-calculator-prototype.md
 - Spec: docs/adr/0005-calculator-prototype.md, docs/design/design-brief.md
 - Docs: README.md, docs/testing/test-matrix.md
-- Notes: Integrate domain API and independently review browser flows; not market/user validation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending.
+- Notes: Integrate domain API and independently review browser flows; not market/user validation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge.
 
 ### M1-04
 
