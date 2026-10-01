@@ -13,8 +13,8 @@
     "Real export/user evidence pending"
   ],
   "blockers": [
-    "Exact account programs/cohorts and real export samples pending",
-    "Actual user validation remains planned"
+    "Actual platform/export samples and exact policy purchase cohorts pending",
+    "Actual target-user sessions pending"
   ],
   "tasks": [
     {
@@ -92,7 +92,7 @@
     },
     {
       "id": "M1-04",
-      "title": "Identify exact prop programs and obtain redacted real export samples",
+      "title": "Confirm Lucid/Tradeify 50k cohorts and obtain redacted real export samples",
       "package": "docs/research/",
       "owner": "scout",
       "reviewers": [
@@ -111,7 +111,7 @@
       "docs": [
         "docs/research/market-research.md"
       ],
-      "notes": "Requires Josh exact Lucid/Apex/Tradeify program cohorts/platforms and real redacted files. Do not invent records or claim import support."
+      "notes": "Josh selected Lucid and Tradeify 50k variants excluding direct funded, with Apex deferred. M1-07 documents official candidate policies/export workflows; actual platform, purchase cohorts and redacted records still required. No import support claimed."
     },
     {
       "id": "M1-05",
@@ -121,7 +121,7 @@
       "reviewers": [
         "design-guardian"
       ],
-      "state": "open",
+      "state": "blocked",
       "blocked_by": [],
       "adr": null,
       "matrix": [
@@ -134,7 +134,7 @@
       "docs": [
         "docs/research/market-research.md"
       ],
-      "notes": "Planned actual user sessions; current implementation/review does not satisfy user testing. No external invitations authorized."
+      "notes": "Actual target-user sessions required. No participants or external invitations authorized. M1-08 prepares a runnable test kit; it does not replace user evidence."
     },
     {
       "id": "M1-06",
@@ -147,7 +147,7 @@
         "design-guardian",
         "test-engineer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [
         "M1-02",
         "M1-03"
@@ -164,7 +164,57 @@
         "README.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Implemented on feat/lucidflex-income-model. Independent review approved: docs/reviews/2026-09-30-lucidflex.md. 21 domain tests, 10 tooling tests, typecheck, production build and root desktop/mobile browser flows passed. Reviewer independently checked official sources, screenshots and 129 exact oracle cases. Funded 50k scope only, no live income or actual approval claim. Ready for PR; not merged."
+      "notes": "Merged in PR #2 at origin/main 0ad6c8d. Independent review approved; 21 domain tests, 10 tooling tests, build/typecheck and required verify CI passed. Scoped fresh funded LucidFlex 50k planner only."
+    },
+    {
+      "id": "M1-07",
+      "title": "Prepare sourced program and export evidence inventory",
+      "package": "docs/research/",
+      "owner": "scout",
+      "reviewers": [
+        "domain-reviewer",
+        "design-guardian",
+        "test-engineer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": null,
+      "matrix": [
+        "RES-02"
+      ],
+      "spec": [
+        "docs/PLAN.md",
+        "docs/PRD.md"
+      ],
+      "docs": [
+        "docs/research/program-export-inventory.md"
+      ],
+      "notes": "Preparation artifacts complete on docs/m1-discovery-readiness. Independent review approved in docs/reviews/2026-09-30-discovery-readiness.md; primary-source facts and moderator references checked. Docs/status/whitespace and 10 tooling tests passed. Real export reconciliation and actual user sessions remain outstanding; not merged."
+    },
+    {
+      "id": "M1-08",
+      "title": "Prepare planner usability tasks and session evidence template",
+      "package": "docs/research/",
+      "owner": "scout",
+      "reviewers": [
+        "domain-reviewer",
+        "design-guardian",
+        "test-engineer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": null,
+      "matrix": [
+        "DES-02"
+      ],
+      "spec": [
+        "docs/PLAN.md",
+        "docs/PRD.md"
+      ],
+      "docs": [
+        "docs/research/usability-test-kit.md"
+      ],
+      "notes": "Preparation artifacts complete on docs/m1-discovery-readiness. Independent review approved in docs/reviews/2026-09-30-discovery-readiness.md; primary-source facts and moderator references checked. Docs/status/whitespace and 10 tooling tests passed. Real export reconciliation and actual user sessions remain outstanding; not merged."
     }
   ]
 }

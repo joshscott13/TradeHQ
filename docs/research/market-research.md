@@ -42,6 +42,8 @@ Apex publishes a consistency requirement that depends on results since account i
 
 ## Primary firms and calculator implications
 
+Current discovery scope: Josh subsequently selected Lucid and Tradeify `$50k` evaluation-to-funded variants, excluding direct-funded products, and deferred Apex. The [program and export inventory](program-export-inventory.md) records candidate variants, legacy/cohort distinctions, source ambiguities and the private sample checklist. Only LucidFlex funded `$50k` currently has an implemented named-program planner; this research does not establish other preset or import support.
+
 The following are dated policy observations, not implemented presets. Exact programs, purchase cohorts, platform and account phases still need confirmation from the user. These examples demonstrate why a firm-level universal split or linear account multiplier would be misleading.
 
 | Firm/program observed | Primary-source fact as of 2026-09-30 | Product implication (inference) |

@@ -1,6 +1,6 @@
 # TradeHQ design brief
 
-Status: proposed design direction. Updated: 2026-09-30. No app UI or validated prototype exists yet.
+Status: broader design direction proposed. Updated: 2026-09-30. Generic and LucidFlex funded $50k planners are implemented and lab-reviewed; actual target-user validation and broader journal/import flows remain planned.
 
 ## Experience contract
 
