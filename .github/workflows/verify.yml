@@ -16,6 +16,8 @@ jobs:
       - run: npm test
       - run: npm run typecheck
       - run: npm run build
+      - name: Verify Docker production runtime
+        run: python tools/docker/smoke.py
       - run: python tools/verify.py
       - run: python tools/status/render.py --check
       - run: python -m unittest discover -s tools/tests

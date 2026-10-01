@@ -288,7 +288,7 @@
         "design-guardian",
         "test-engineer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [
         "M1-10"
       ],
@@ -304,7 +304,35 @@
         "README.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Per-account selected-period costs implemented across all three planners. Independent review approved with 1895 reference checks; 50 application tests, 10 tooling tests, clean install/typecheck/build and desktop/mobile/keyboard browser checks passed. User $100 times 3 = $300 example verified; no automatic price/recurrence/conversion assumption."
+      "notes": "Merged in PR #7 at origin/main 8c41ca0; independent review, 50 application tests, 10 tooling tests, typecheck/build and required verify CI passed. Per-account selected-period costs replace fixed portfolio inputs."
+    },
+    {
+      "id": "M1-12",
+      "title": "Package stateless prototype for Docker self-hosting",
+      "package": "Dockerfile, compose.yaml, apps/web config, tools/docker/ and CI",
+      "owner": "release-engineer / test-engineer",
+      "reviewers": [
+        "security-reviewer",
+        "typescript-reviewer",
+        "test-engineer"
+      ],
+      "state": "in review",
+      "blocked_by": [
+        "M1-11"
+      ],
+      "adr": "docs/adr/0010-docker-self-hosting.md",
+      "matrix": [
+        "HOST-01"
+      ],
+      "spec": [
+        "docs/adr/0010-docker-self-hosting.md"
+      ],
+      "docs": [
+        "README.md",
+        "docs/self-hosting.md",
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Standalone Docker/Compose implemented and independent source/local integration review approved. Real isolated Docker build healthy at UID1001; planner/imports and copied CSS served, own project cleaned. Clean npm install, 50 app tests, typecheck/build, 10 tooling tests and docs gates passed. Required verify CI repeats container smoke before merge. Stateless only."
     }
   ]
 }
