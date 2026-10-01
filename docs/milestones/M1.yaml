@@ -373,7 +373,7 @@
         "domain-reviewer",
         "security-reviewer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [
         "M1-13"
       ],
@@ -391,7 +391,7 @@
         "docs/research/tradeify-50k-planner-readiness.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Official-source research for remaining Lucid/Tradeify 50k variants, cohort/phase conflicts and synthetic worked examples recorded. Independent source/arithmetic review required; no new planner or actual-record validation. M1-15 queues a separate scoped Select Daily contract/implementation."
+      "notes": "Merged in PR #10 at origin/main 0d4ce75; independent source review, 11 reference arithmetic checks and required verify CI passed. Research only; real account/export/user gates stay open."
     },
     {
       "id": "M1-15",
@@ -404,23 +404,24 @@
         "design-guardian",
         "test-engineer"
       ],
-      "state": "open",
+      "state": "in review",
       "blocked_by": [
         "M1-14"
       ],
-      "adr": null,
+      "adr": "docs/adr/0011-tradeify-select-daily-planner.md",
       "matrix": [
         "CALC-08",
         "CALC-09"
       ],
       "spec": [
-        "docs/research/tradeify-50k-planner-readiness.md"
+        "docs/research/tradeify-50k-planner-readiness.md",
+        "docs/adr/0011-tradeify-select-daily-planner.md"
       ],
       "docs": [
         "README.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Planned follow-up only. Requires a new accepted ADR before implementation, explicitly selecting hypothetical purchase cohort, fresh-account scope, request/cycle semantics, model timing, per-account costs and conservative live-review boundary. Existing production contracts remain proposed."
+      "notes": "Scoped Select Daily domain/UI implemented under ADR 0011. 63 application tests, workspace typechecks, production build, 10 tooling tests and root desktop/mobile/keyboard flows passed; independent source/domain/UI review and final-head CI recorded in the dated review/handoff. Actual account/export/user gates remain open; merge pending."
     }
   ]
 }

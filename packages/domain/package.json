@@ -6,11 +6,12 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./tradeify-select-flex": "./src/tradeify-select-flex.ts"
+    "./tradeify-select-flex": "./src/tradeify-select-flex.ts",
+    "./tradeify-select-daily": "./src/tradeify-select-daily.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test test/calculator.test.ts test/lucidflex.test.ts test/tradeify-select-flex.test.ts test/account-costs.test.ts"
+    "test": "tsx --test test/calculator.test.ts test/lucidflex.test.ts test/tradeify-select-flex.test.ts test/account-costs.test.ts test/tradeify-select-daily.test.ts"
   },
   "dependencies": {"decimal.js": "10.6.0"},
   "devDependencies": {"tsx": "4.23.15", "typescript": "7.0.2"}

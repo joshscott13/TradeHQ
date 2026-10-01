@@ -12,5 +12,6 @@
 | [0008 Tradeify Select Flex](0008-tradeify-select-flex-planner.md) | accepted | Scoped dated funded $50k scenario merged in PR #6 at bb04134 |
 | [0009 Per-account costs](0009-per-account-planning-costs.md) | accepted | Per-account cost change merged in PR #7 at 8c41ca0 |
 | [0010 Docker self-hosting](0010-docker-self-hosting.md) | accepted | Stateless production container merged in PR #8 at 1d10f83; actual local container smoke and independent review recorded |
+| [0011 Tradeify Select Daily](0011-tradeify-select-daily-planner.md) | accepted | Scoped fresh funded $50k planner in review under M1-15; independent evidence recorded |
 
 Use [the MADR template](0000-template.md). Record Josh's answers before setting accepted. An accepted design is not a shipped feature.

@@ -2,6 +2,8 @@
 
 The generic income planner is implemented in TypeScript, React, Next.js App Router and Tailwind CSS under ADR 0001/0005. The domain package uses decimal arithmetic. ADR 0006 accepts a scoped LucidFlex funded-account payout scenario; ADR 0007 scopes a canonical synthetic CSV preview. ADR 0008 scopes a separate Tradeify Select Flex funded $50k scenario. ADR 0009 derives portfolio costs from per-account selected-period expenses. ADR 0010 adds stateless Docker self-hosting with a non-root Next.js standalone runtime. Persistence, journal and native export adapters remain planned.
 
+M1-15 adds a separate hypothetical Tradeify Select Daily $50k component and domain subpath under [ADR 0011](docs/adr/0011-tradeify-select-daily-planner.md). It is implemented in the current change with independent review recorded; merge pending. The module preserves the buffer and new-cycle ledger, applies exact per-account costs and solves the global minimum cent-valued target across timing partitions. Existing models and imports retain their contracts; no policy engine or dependency is added.
+
 ## Implemented modules and planned extensions
 
 A TypeScript web application using React and Next.js App Router, Tailwind CSS for the visual system, separately testable financial/scenario calculations, import adapters and journal UI. PostgreSQL is the persistence direction for the eventual hosted service. Authentication provider, ORM and deployment vendor remain deferred; choose them through follow-up ADRs before installation. See [ADR 0001](docs/adr/0001-platform.md).

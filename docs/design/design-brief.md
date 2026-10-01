@@ -1,6 +1,8 @@
 # TradeHQ design brief
 
-Status: broader design direction proposed. Updated: 2026-10-01 against `main` at `1d10f83`. Generic, LucidFlex and hypothetical Tradeify Select Flex funded $50k planners, per-account costs and the synthetic local import preview are implemented with scoped lab reviews. Actual target-user validation, full accessibility conformance and persistent journal/import flows remain planned.
+Status: broader design direction proposed. Updated: 2026-10-01 against `main` at `0d4ce75`. Generic, LucidFlex and hypothetical Tradeify Select Flex funded $50k planners, per-account costs and the synthetic local import preview are implemented with scoped lab reviews. Actual target-user validation, full accessibility conformance and persistent journal/import flows remain planned.
+
+M1-15 adds the fourth hypothetical Tradeify Select Daily $50k planner in the current implementation, with independent review recorded and merge pending, under [ADR 0011](../adr/0011-tradeify-select-daily-planner.md). The cohort and exact-buffer model convention are prominent. Its ledger table separates cycle profit before approval, gross deduction, trader request cash and retained profit after deduction. Daily eligibility never implies daily receipt; responsive controls, reset, invalid clearing and keyboard focus follow the existing experience.
 
 ## Experience contract
 

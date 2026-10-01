@@ -8,13 +8,12 @@ M0 bootstrap and the MIT-licensed generic income planner are published on main. 
 
 | Order | Action | Completion evidence |
 | --- | --- | --- |
-| 1 | Verify remaining Lucid/Tradeify 50k planner policies | M1-14 dated primary-source rules, cohort conflicts and model-readiness review |
-| 2 | Add scoped Tradeify Select Daily funded 50k planning | M1-15 new accepted ADR, exact buffer/cycle solver and independent domain/browser evidence |
-| 3 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
-| 4 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
-| 5 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
-| 6 | Build M2 reconciled financial domain and import adapters | Idempotent import and per-account statement totals against actual exports |
-| 7 | Build M3 polished private MVP, then M4 private release | End-to-end journal/import flows, access isolation and user feedback |
+| 1 | Add scoped Tradeify Select Daily funded 50k planning | M1-15 implemented under ADR 0011; independent domain/browser evidence recorded, PR review and merge pending |
+| 2 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
+| 3 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
+| 4 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
+| 5 | Build M2 reconciled financial domain and import adapters | Idempotent import and per-account statement totals against actual exports |
+| 6 | Build M3 polished private MVP, then M4 private release | End-to-end journal/import flows, access isolation and user feedback |
 
 ## Dependency map
 
@@ -25,11 +24,11 @@ M0 research/bootstrap → M1 decisions, samples and prototype validation → M2 
 | Decision | Needed by | Notes |
 | --- | --- | --- |
 | Authentication provider, database access layer and hosted deployment | M2/M4 | Core stack and PostgreSQL direction selected in ADR 0001 |
-| Production journal/import accounting and broader scenario rules | M1/M2 | ADR 0002/0003 remain proposed; scoped prototype ADRs 0005–0010 accepted |
+| Production journal/import accounting and broader scenario rules | M1/M2 | ADR 0002/0003 remain proposed; scoped prototype ADRs 0005–0011 accepted |
 | Remaining account products, existing lifecycle state and export platforms | M1/M2 | Josh selected Lucid/Tradeify $50k variants excluding direct funded; Apex deferred. Tradovate/Rithmic example platforms selected; purchase cohorts and actual native export records remain required |
 | Live-stage planning and loss-day scenarios | Follow-up calculator task | First LucidFlex model stops after five funded payouts and assumes equal positive daily performance |
 | Personal-first versus paid SaaS | M1 | Public MIT repository selected; hosted service/pricing still undecided |
 
 ## Main reconciliation
 
-Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; M1-10 merged in PR #6 at `bb04134`; M1-11 merged in PR #7 at `8c41ca0`; M1-12 merged in PR #8 at `1d10f83`; M1-13 merged in PR #9 at `8baaa33`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.
+Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; M1-10 merged in PR #6 at `bb04134`; M1-11 merged in PR #7 at `8c41ca0`; M1-12 merged in PR #8 at `1d10f83`; M1-13 merged in PR #9 at `8baaa33`; M1-14 merged in PR #10 at `0d4ce75`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.

@@ -39,8 +39,8 @@ Current milestone: **M1**
 | M1-11 | Model account costs per period across planners | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-10 | COST-01, COST-02 |
 | M1-12 | Package stateless prototype for Docker self-hosting | release-engineer / test-engineer | security-reviewer, typescript-reviewer, test-engineer | merged | M1-11 | HOST-01 |
 | M1-13 | Sweep public documentation for hygiene and implementation drift | docs-writer / orchestrator | security-reviewer, domain-reviewer | merged | M1-12 | DOC-01 |
-| M1-14 | Verify remaining Lucid and Tradeify 50k planner policies | scout | domain-reviewer, security-reviewer | in review | M1-13 | RES-03 |
-| M1-15 | Add scoped Tradeify Select Daily funded 50k planning | orchestrator / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | open | M1-14 | CALC-08, CALC-09 |
+| M1-14 | Verify remaining Lucid and Tradeify 50k planner policies | scout | domain-reviewer, security-reviewer | merged | M1-13 | RES-03 |
+| M1-15 | Add scoped Tradeify Select Daily funded 50k planning | orchestrator / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-14 | CALC-08, CALC-09 |
 
 ## Task details
 
@@ -154,12 +154,12 @@ Current milestone: **M1**
 - ADR: None required
 - Spec: docs/PLAN.md, docs/PRD.md, docs/research/program-export-inventory.md
 - Docs: docs/research/lucid-50k-planner-readiness.md, docs/research/tradeify-50k-planner-readiness.md, docs/testing/test-matrix.md
-- Notes: Official-source research for remaining Lucid/Tradeify 50k variants, cohort/phase conflicts and synthetic worked examples recorded. Independent source/arithmetic review required; no new planner or actual-record validation. M1-15 queues a separate scoped Select Daily contract/implementation.
+- Notes: Merged in PR #10 at origin/main 0d4ce75; independent source review, 11 reference arithmetic checks and required verify CI passed. Research only; real account/export/user gates stay open.
 
 ### M1-15
 
 - Package: `docs/adr/, packages/domain/ and apps/web/`
-- ADR: None required
-- Spec: docs/research/tradeify-50k-planner-readiness.md
+- ADR: docs/adr/0011-tradeify-select-daily-planner.md
+- Spec: docs/research/tradeify-50k-planner-readiness.md, docs/adr/0011-tradeify-select-daily-planner.md
 - Docs: README.md, docs/testing/test-matrix.md
-- Notes: Planned follow-up only. Requires a new accepted ADR before implementation, explicitly selecting hypothetical purchase cohort, fresh-account scope, request/cycle semantics, model timing, per-account costs and conservative live-review boundary. Existing production contracts remain proposed.
+- Notes: Scoped Select Daily domain/UI implemented under ADR 0011. 63 application tests, workspace typechecks, production build, 10 tooling tests and root desktop/mobile/keyboard flows passed; independent source/domain/UI review and final-head CI recorded in the dated review/handoff. Actual account/export/user gates remain open; merge pending.
