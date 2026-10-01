@@ -13,7 +13,7 @@
     "Real export/user evidence pending"
   ],
   "blockers": [
-    "Actual platform/export samples and exact policy purchase cohorts pending",
+    "Actual native export fields, reconciliation records and exact policy purchase cohorts pending; synthetic preview authorized",
     "Actual target-user sessions pending"
   ],
   "tasks": [
@@ -111,7 +111,7 @@
       "docs": [
         "docs/research/market-research.md"
       ],
-      "notes": "Josh selected Lucid and Tradeify 50k variants excluding direct funded, with Apex deferred. M1-07 documents official candidate policies/export workflows; actual platform, purchase cohorts and redacted records still required. No import support claimed."
+      "notes": "Josh selected Tradovate and Rithmic as examples and has no statements. Synthetic examples authorized under ADR 0007; actual native schema/statement reconciliation remains pending. Lucid/Tradeify 50k variants excluding direct funded; Apex deferred."
     },
     {
       "id": "M1-05",
@@ -176,7 +176,7 @@
         "design-guardian",
         "test-engineer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": null,
       "matrix": [
@@ -189,7 +189,7 @@
       "docs": [
         "docs/research/program-export-inventory.md"
       ],
-      "notes": "Preparation artifacts complete on docs/m1-discovery-readiness. Independent review approved in docs/reviews/2026-09-30-discovery-readiness.md; primary-source facts and moderator references checked. Docs/status/whitespace and 10 tooling tests passed. Real export reconciliation and actual user sessions remain outstanding; not merged."
+      "notes": "Merged in PR #3 at origin/main 9cacfef; independent preparation review and required verify CI passed. Actual records and sessions remain pending."
     },
     {
       "id": "M1-08",
@@ -201,7 +201,7 @@
         "design-guardian",
         "test-engineer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": null,
       "matrix": [
@@ -214,7 +214,38 @@
       "docs": [
         "docs/research/usability-test-kit.md"
       ],
-      "notes": "Preparation artifacts complete on docs/m1-discovery-readiness. Independent review approved in docs/reviews/2026-09-30-discovery-readiness.md; primary-source facts and moderator references checked. Docs/status/whitespace and 10 tooling tests passed. Real export reconciliation and actual user sessions remain outstanding; not merged."
+      "notes": "Merged in PR #3 at origin/main 9cacfef; independent preparation review and required verify CI passed. Actual records and sessions remain pending."
+    },
+    {
+      "id": "M1-09",
+      "title": "Build local import preview with synthetic Tradovate/Rithmic examples",
+      "package": "packages/imports/ and apps/web/",
+      "owner": "import-dev / frontend-dev",
+      "reviewers": [
+        "security-reviewer",
+        "domain-reviewer",
+        "typescript-reviewer",
+        "design-guardian",
+        "test-engineer"
+      ],
+      "state": "in review",
+      "blocked_by": [
+        "M1-07",
+        "M1-08"
+      ],
+      "adr": "docs/adr/0007-example-import-preview.md",
+      "matrix": [
+        "IMP-01",
+        "IMP-02"
+      ],
+      "spec": [
+        "docs/adr/0007-example-import-preview.md"
+      ],
+      "docs": [
+        "README.md",
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Independent review approved (docs/reviews/2026-09-30-example-import.md). Clean npm ci, 29 application tests, typecheck/build, 10 tooling tests and desktop/mobile browser checks passed. Synthetic canonical CSV preview only; no native adapter or real-record validation claim. PR pending maintainer review."
     }
   ]
 }

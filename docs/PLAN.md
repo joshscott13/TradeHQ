@@ -6,7 +6,9 @@ Updated: 2026-09-30. Stage: M1 prototype and discovery. The generic USD calculat
 
 Build a premium journal for a multi-prop-firm day trader that explains trading performance and actual cash outcome. Earn trust through reconciled records and visible calculation scope. Do not start by matching competitor feature breadth.
 
-Josh narrowed initial discovery to Lucid and Tradeify $50k programs, all variants except direct funded; Apex is deferred. Exact platforms and purchase cohorts remain unconfirmed. The current interface supports only generic planning and LucidFlex funded $50k, not the broader variant set.
+Josh narrowed initial discovery to Lucid and Tradeify $50k programs, all variants except direct funded; Apex is deferred. Josh selected Tradovate and Rithmic as example platforms without statements. Actual native export fields and purchase cohorts remain unconfirmed. The current planner supports generic planning and LucidFlex funded $50k, not the broader variant set.
+
+M1-09 develops a local synthetic CSV preview under accepted [ADR 0007](adr/0007-example-import-preview.md). Both platform examples use an explicitly TradeHQ-owned schema; platform metadata does not imply a native adapter. This prototype has no saved ledger or actual statement reconciliation. Production import contracts remain proposed under ADR 0002, and M1-04 still requires real upstream evidence.
 
 ## Milestones
 
