@@ -20,3 +20,7 @@ Changes are recorded at merge time using Keep a Changelog conventions.
 - Per-account selected-period costs with exact derived portfolio totals and count-specific scaling across all planners, merged in PR #7 at `8c41ca0`.
 
 - Stateless Docker self-hosting with non-root runtime, loopback-default Compose configuration, health checks, setup documentation and real container CI smoke checks, merged in PR #8 at `1d10f83`.
+
+### Changed
+
+- Public documentation reconciled to implemented scope, contributor instructions corrected and workstation references removed from forward docs while preserving historical evidence, merged in PR #9 at `8baaa33`.

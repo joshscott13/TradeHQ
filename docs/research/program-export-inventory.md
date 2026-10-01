@@ -8,6 +8,8 @@ Josh selected Lucid and Tradeify `$50k` evaluation-to-funded variants, excluding
 
 Tradeify Select Flex subsequently gained a separately scoped hypothetical prototype under [ADR 0008](../adr/0008-tradeify-select-flex-planner.md); that does not identify the maintainer's actual cohort or validate a native export. This inventory retains its 2026-09-30 source access date.
 
+The separate 2026-10-01 readiness records cover [remaining Lucid $50k policies](lucid-50k-planner-readiness.md) and [Tradeify Growth/Select Daily $50k policies](tradeify-50k-planner-readiness.md), with an [independent source/arithmetic review](../reviews/2026-10-01-remaining-50k-policies.md). They preserve unresolved source conflicts and propose bounded synthetic follow-up scopes; they do not refresh every historical row below, replace accepted profiles or complete actual-account/export validation.
+
 **Fact** means an observation from the linked official page on the access date. **Inference** means a proposed discovery action. None of the following candidate rows selects a policy for an actual account or approves implementation under proposed ADR 0002/0003.
 
 ## Candidate program inventory

@@ -38,7 +38,9 @@ Current milestone: **M1**
 | M1-10 | Add sourced Tradeify Select Flex funded 50k income planning | scout / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-06 | CALC-06, CALC-07 |
 | M1-11 | Model account costs per period across planners | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-10 | COST-01, COST-02 |
 | M1-12 | Package stateless prototype for Docker self-hosting | release-engineer / test-engineer | security-reviewer, typescript-reviewer, test-engineer | merged | M1-11 | HOST-01 |
-| M1-13 | Sweep public documentation for hygiene and implementation drift | docs-writer / orchestrator | security-reviewer, domain-reviewer | in review | M1-12 | DOC-01 |
+| M1-13 | Sweep public documentation for hygiene and implementation drift | docs-writer / orchestrator | security-reviewer, domain-reviewer | merged | M1-12 | DOC-01 |
+| M1-14 | Verify remaining Lucid and Tradeify 50k planner policies | scout | domain-reviewer, security-reviewer | in review | M1-13 | RES-03 |
+| M1-15 | Add scoped Tradeify Select Daily funded 50k planning | orchestrator / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | open | M1-14 | CALC-08, CALC-09 |
 
 ## Task details
 
@@ -144,4 +146,20 @@ Current milestone: **M1**
 - ADR: None required
 - Spec: docs/PLAN.md, docs/PRD.md, AGENTS.md
 - Docs: README.md, docs/PLAN.md, docs/PRD.md, docs/testing/test-matrix.md
-- Notes: Current product and contribution docs reconciled to merged main 1d10f83; workstation references replaced with local-only artifact names while historical results preserved. Independent review and documentation gates required; no application changes or history rewrite.
+- Notes: Merged in PR #9 at origin/main 8baaa33; independent privacy/claims review, documentation gates, 50 application tests, 10 tooling tests and required CI passed. Forward docs cleanup; no history rewrite.
+
+### M1-14
+
+- Package: `docs/research/`
+- ADR: None required
+- Spec: docs/PLAN.md, docs/PRD.md, docs/research/program-export-inventory.md
+- Docs: docs/research/lucid-50k-planner-readiness.md, docs/research/tradeify-50k-planner-readiness.md, docs/testing/test-matrix.md
+- Notes: Official-source research for remaining Lucid/Tradeify 50k variants, cohort/phase conflicts and synthetic worked examples recorded. Independent source/arithmetic review required; no new planner or actual-record validation. M1-15 queues a separate scoped Select Daily contract/implementation.
+
+### M1-15
+
+- Package: `docs/adr/, packages/domain/ and apps/web/`
+- ADR: None required
+- Spec: docs/research/tradeify-50k-planner-readiness.md
+- Docs: README.md, docs/testing/test-matrix.md
+- Notes: Planned follow-up only. Requires a new accepted ADR before implementation, explicitly selecting hypothetical purchase cohort, fresh-account scope, request/cycle semantics, model timing, per-account costs and conservative live-review boundary. Existing production contracts remain proposed.
