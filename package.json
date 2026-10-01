@@ -1,0 +1,13 @@
+{
+  "name": "tradehq",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev --workspace=@tradehq/web",
+    "build": "npm run build --workspace=@tradehq/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  }
+}

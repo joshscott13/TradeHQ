@@ -1,4 +1,4 @@
-name: Verify bootstrap
+name: Verify TradeHQ
 on: [push, pull_request]
 jobs:
   verify:
@@ -8,6 +8,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run build
       - run: python tools/verify.py
       - run: python tools/status/render.py --check
       - run: python -m unittest discover -s tools/tests

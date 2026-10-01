@@ -1,0 +1,14 @@
+{
+  "name": "@tradehq/domain",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {".": "./src/index.ts"},
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/calculator.test.ts"
+  },
+  "dependencies": {"decimal.js": "10.6.0"},
+  "devDependencies": {"tsx": "4.23.15", "typescript": "7.0.2"}
+}

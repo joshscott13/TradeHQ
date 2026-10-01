@@ -1,0 +1,68 @@
+"use client";
+
+import { useState } from "react";
+import { calculateTargets, projectAnnualIncome, formatUsd } from "@tradehq/domain";
+
+type Period = "week" | "month" | "year";
+type Mode = "trading" | "cash";
+const defaults = { goalAmount: "5000", period: "month" as Period, activeDays: "20", accountCount: "5", mode: "trading" as Mode, payoutSharePercent: "90", cashCosts: "250", dailyPerAccountAverage: "50", annualTradingDays: "240" };
+const periodNames = { week: "week", month: "month", year: "year" };
+const defaultDays = { week: "5", month: "20", year: "240" };
+
+function NumberControl({ label, value, onChange, min = 0, max, step = 1, prefix, suffix, error, hint, id }: { label: string; value: string; onChange: (value: string) => void; min?: number; max: number; step?: number; prefix?: string; suffix?: string; error?: string; hint?: string; id: string }) {
+  const n = Number(value);
+  return <div className="field">
+    <div className="field-top"><label htmlFor={id}>{label}</label><div className={`number-box ${error ? "invalid" : ""}`}><span>{prefix}</span><input id={id} type="number" inputMode="decimal" min={prefix === "$" && min < 0 ? -1000000000000 : min} max={prefix === "$" ? 1000000000000 : max} step={step} value={value} onChange={e => onChange(e.target.value)} aria-invalid={!!error} aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined} /><span>{suffix}</span></div></div>
+    <input className="slider" type="range" aria-label={`${label} slider`} min={min} max={max} step={step} value={Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : min} onChange={e => onChange(e.target.value)} />
+    {error ? <p className="field-error" id={`${id}-error`}>{error}</p> : hint ? <p className="field-hint" id={`${id}-hint`}>{hint}</p> : null}
+  </div>;
+}
+
+export default function CalculatorPage() {
+  const [inputs, setInputs] = useState(defaults);
+  const set = (key: keyof typeof defaults, value: string) => setInputs(old => ({ ...old, [key]: value }));
+  const result = calculateTargets(inputs);
+  const projection = projectAnnualIncome(inputs);
+  const errors = result.ok ? {} : result.errors;
+  const annualErrors = projection.ok ? {} : projection.errors;
+  const maximumDays = inputs.period === "week" ? 7 : inputs.period === "month" ? 31 : 366;
+  const choosePeriod = (period: Period) => setInputs(old => ({ ...old, period, activeDays: defaultDays[period] }));
+  const rows = projection.ok ? projection.value.scaling : [];
+  const chartRows = rows.filter(row => row.accountCount === 1 || row.accountCount === Number(inputs.accountCount) || row.accountCount === Math.ceil(Number(inputs.accountCount) / 2));
+  const chartMax = Math.max(1, ...chartRows.map(row => Math.abs(Number(row.annualTradingPnl))));
+  return <div className="app-shell">
+    <aside className="sidebar" aria-label="Workspace">
+      <a className="brand" href="#main"><span className="brand-mark">T<span>H</span></span>TradeHQ<span className="brand-dot">.</span></a>
+      <div className="workspace-label">TRADING WORKSPACE</div>
+      <div className="nav-current"><span className="nav-glyph" aria-hidden="true">▦</span>Income planner<span className="nav-current-dot" /></div>
+      <div className="future-label">ON THE ROADMAP</div>
+      <div className="future-nav"><span>Trade journal</span><span>Accounts</span><span>Cash ledger</span><span>Imports</span></div>
+      <div className="sidebar-bottom"><span className="prototype-dot" />Calculator prototype<p>Your next move,<br />with the numbers in view.</p><div className="sidebar-meta">USD · GENERIC SCENARIOS</div></div>
+    </aside>
+    <div className="workspace">
+      <header className="topbar"><span>Workspace <span className="breadcrumb-separator">/</span> <strong>Income planner</strong></span><span className="topbar-tag">SCENARIO MODE</span></header>
+      <main id="main">
+        <div className="page-heading"><div><p className="eyebrow">PLAN WITH INTENTION</p><h1>Make your goal tangible<span>.</span></h1><p className="intro">An income goal. A daily target. A clearer picture of scale.</p></div><button className="reset-button" onClick={() => setInputs({ ...defaults })}>Reset assumptions <span aria-hidden="true">↺</span></button></div>
+        <div className="planner-layout">
+          <section className="assumptions-panel" aria-labelledby="assumptions-title">
+            <div className="section-heading"><span className="section-number">01</span><h2 id="assumptions-title">Set your target</h2><span className="currency-tag">USD</span></div>
+            <div className="goal-controls"><label htmlFor="goal">I want to make</label><div className={`goal-input ${errors.goalAmount ? "invalid" : ""}`}><span>$</span><input id="goal" type="number" inputMode="decimal" min="0" max="1000000000000" step="0.01" value={inputs.goalAmount} onChange={e => set("goalAmount", e.target.value)} aria-invalid={!!errors.goalAmount} aria-describedby={errors.goalAmount ? "goal-error" : undefined} /></div>{errors.goalAmount && <p className="field-error" id="goal-error">{errors.goalAmount}</p>}<input className="slider" type="range" aria-label="Goal amount slider" min="0" max="100000" step="100" value={Math.min(100000, Number(inputs.goalAmount) || 0)} onChange={e => set("goalAmount", e.target.value)} /><div className="segmented period-selector" role="group" aria-label="Goal period">{(["week", "month", "year"] as Period[]).map(period => <button key={period} aria-pressed={inputs.period === period} onClick={() => choosePeriod(period)}>Per {period}</button>)}</div></div>
+            <div className="basis-label">GOAL BASIS</div><div className="basis-selector" role="group" aria-label="Goal basis"><button aria-pressed={inputs.mode === "trading"} onClick={() => set("mode", "trading")}><span>Net trading P&amp;L</span><small>After trading costs</small></button><button aria-pressed={inputs.mode === "cash"} onClick={() => set("mode", "cash")}><span>Simplified cash goal</span><small>Share &amp; period costs</small></button></div>
+            <div className="fields-group"><NumberControl id="days" label="Active trading days" value={inputs.activeDays} onChange={value => set("activeDays", value)} min={1} max={maximumDays} error={errors.activeDays} hint={`Days you plan to trade in this ${inputs.period}.`} /><NumberControl id="accounts" label="Active accounts" value={inputs.accountCount} onChange={value => set("accountCount", value)} min={1} max={100} error={errors.accountCount} hint="Equal targets across all active accounts." /></div>
+            {inputs.mode === "cash" && <div className="cash-controls"><div className="cash-heading">Cash assumptions <span>SIMPLIFIED</span></div><NumberControl id="share" label="Trader payout share" value={inputs.payoutSharePercent} onChange={value => set("payoutSharePercent", value)} max={100} step={0.1} suffix="%" error={errors.payoutSharePercent} /><NumberControl id="costs" label={`Cash costs / ${inputs.period}`} value={inputs.cashCosts} onChange={value => set("cashCosts", value)} max={10000} step={0.01} prefix="$" error={errors.cashCosts} hint="Total external cash costs for the portfolio, not per account." /><p className="cash-disclosure">Assumes all modeled profit is paid in this period. No caps, buffers, qualifying-day rules or payment delays are applied.</p></div>}
+            <p className="account-note">A $50k program label describes an account program. It is not your invested equity and does not change this calculation.</p>
+          </section>
+          <div className="results-column">
+            <section className={`target-panel ${!result.ok ? "target-invalid" : ""}`} aria-labelledby="target-title">
+              <div className="target-heading"><p className="eyebrow">YOUR DAILY BENCHMARK</p><span className="result-tag">{inputs.mode === "trading" ? "NET TRADING P&L" : "CASH-GOAL MODEL"}</span></div>
+              {result.ok ? <><h2 id="target-title">{formatUsd(result.value.dailyPerAccountTarget)}<span>/ account</span></h2><p className="target-subtitle">per active trading day, across {inputs.accountCount} {inputs.accountCount === "1" ? "account" : "accounts"}</p><div className="target-divider" /><div className="target-support"><div><span>Daily portfolio target</span><strong>{formatUsd(result.value.dailyPortfolioTarget)}</strong></div><div><span>Required trading P&amp;L / {periodNames[inputs.period]}</span><strong>{formatUsd(result.value.tradingTarget)}</strong></div></div><div className="target-equation"><span>{inputs.activeDays} active days</span><span aria-hidden="true">×</span><span>{inputs.accountCount} accounts</span><span aria-hidden="true">→</span><span>{formatUsd(inputs.goalAmount)} {inputs.mode === "cash" ? "cash goal" : "net P&L goal"}</span></div></> : <div className="invalid-result" role="status"><h2 id="target-title">Let’s check the inputs.</h2><p>Correct the highlighted assumptions to calculate your daily target.</p><ul>{Object.values(errors).map((error, i) => <li key={i}>{error}</li>)}</ul></div>}
+            </section>
+            <section className="comparison-panel" aria-labelledby="comparison-title"><div className="section-heading"><span className="section-number">02</span><h2 id="comparison-title">Same goal. Different scale.</h2></div><p className="section-description">More accounts divide the daily target. They don’t change the goal.</p>{result.ok ? <div className="comparison-grid"><div className="comparison-single"><span className="comparison-label">ONE ACCOUNT</span><strong>{formatUsd(result.value.scaling[0].dailyPerAccountTarget)}</strong><span>per account / active day</span></div><div className="comparison-selected"><span className="comparison-label">{inputs.accountCount} {inputs.accountCount === "1" ? "ACCOUNT" : "ACCOUNTS"}</span><strong>{formatUsd(result.value.dailyPerAccountTarget)}</strong><span>per account / active day</span></div></div> : <p className="unavailable">Comparison available after correcting target inputs.</p>}<p className="comparison-note">Copied trades share exposure. Scaling also changes costs and account survival; this is an equal-allocation scenario.</p></section>
+          </div>
+        </div>
+        <section className="annual-panel" aria-labelledby="annual-title"><div className="annual-intro"><div className="section-heading"><span className="section-number">03</span><h2 id="annual-title">The annual perspective</h2></div><p className="section-description">Explore a side-income scenario from an independent daily-performance assumption.</p><div className="annual-controls"><NumberControl id="average" label="Average daily net P&L / account" value={inputs.dailyPerAccountAverage} onChange={value => set("dailyPerAccountAverage", value)} min={-1000} max={1000} step={0.01} prefix="$" error={annualErrors.dailyPerAccountAverage} hint="Average across winning and losing active days; skipped days are excluded." /><NumberControl id="annual-days" label="Annual active trading days" value={inputs.annualTradingDays} onChange={value => set("annualTradingDays", value)} min={1} max={366} error={annualErrors.annualTradingDays} /></div></div><div className="annual-results">{projection.ok ? <><span className="annual-result-label">MODELED ANNUAL NET TRADING P&amp;L</span><div className={`annual-amount ${Number(projection.value.annualTradingPnl) < 0 ? "negative" : ""}`}>{formatUsd(projection.value.annualTradingPnl)}</div><p>{inputs.accountCount} accounts · {inputs.annualTradingDays} active days · {formatUsd(inputs.dailyPerAccountAverage)} average / account / day</p><div className="scaling-chart" role="img" aria-label="Annual trading P&L by account count. Exact values appear in the table below.">{chartRows.map(row => <div className="chart-row" key={row.accountCount}><span>{row.accountCount} {row.accountCount === 1 ? "account" : "accounts"}</span><div className="chart-track"><div className={`chart-bar ${Number(row.annualTradingPnl) < 0 ? "loss" : ""}`} style={{ width: `${Math.abs(Number(row.annualTradingPnl)) / chartMax * 100}%` }} /></div><strong>{formatUsd(row.annualTradingPnl)}</strong></div>)}</div><details><summary>View every account-count scenario</summary><div className="table-scroll"><table><caption>Annual scenario with the same average daily P&amp;L and active days</caption><thead><tr><th scope="col">Accounts</th><th scope="col">Annual net trading P&amp;L</th></tr></thead><tbody>{rows.map(row => <tr key={row.accountCount}><th scope="row">{row.accountCount}</th><td>{formatUsd(row.annualTradingPnl)}</td></tr>)}</tbody></table></div></details></> : <div className="annual-error" role="status"><h3>Annual scenario unavailable</h3><ul>{Object.values(annualErrors).map((error, i) => <li key={i}>{error}</li>)}</ul></div>}</div></section>
+        <footer className="calculation-footer"><div><strong>Clear assumptions. Clear numbers.</strong><p>USD only. Decimal arithmetic; amounts rounded to two decimals for display. Targets and modeled results are scenarios, not actual cash received. Annual results use your explicit annual days and daily average, independently of the selected goal period.</p></div><span className="footer-wordmark">TradeHQ<span>.</span></span></footer>
+      </main>
+    </div>
+  </div>;
+}

@@ -1,6 +1,6 @@
 # TradeHQ agent instructions
 
-TradeHQ is a planned trade journal and multi-prop-firm financial overview for technically and financially savvy traders aged 25–50. This repository is currently research and documentation only. Do not invent build commands or passing application tests.
+TradeHQ is a planned trade journal and multi-prop-firm financial overview for technically and financially savvy traders aged 25–50. M1 implements a generic USD calculator prototype. Journal, imports, firm eligibility, user accounts and hosted services remain planned. Do not invent passing application or integration tests.
 
 ## Read order
 
@@ -8,7 +8,7 @@ Read this file, [ARCHITECTURE.md](ARCHITECTURE.md), [PLAN](docs/PLAN.md), [PRD](
 
 ## Verification
 
-Run `python tools/verify.py` before assigning work and after changes. Render the board with `python tools/status/render.py`; check drift with `python tools/status/render.py --check`. `make verify` and `make status` are optional wrappers if make is installed. No application runtime exists yet.
+Run `python tools/verify.py` before assigning work and after changes. Render the board with `python tools/status/render.py`; check drift with `python tools/status/render.py --check`. For M1 application changes also run `npm test`, `npm run typecheck` and `npm run build` after `npm ci`. `npm run dev` starts the browser prototype. `make verify` and `make status` remain docs/tooling wrappers if make is installed.
 
 ## Invariants and vocabulary
 
@@ -36,7 +36,7 @@ Interfaces, dependencies and vocabulary changes require an accepted ADR before i
 
 ## Don't
 
-- The core web stack is selected in ADR 0001. Do not implement financial or scenario interfaces until their contract ADRs are accepted.
+- The core web stack is selected in ADR 0001. ADR 0005 accepts only the generic calculator defaults and prototype dependencies. Do not implement production journal/import or firm-rule interfaces under proposed ADR 0002/0003.
 - Do not invent broker integrations, API access, validation interviews, competitor gaps, or market-size figures.
 - Do not merge, release, publish, or create a GitHub repository without authorization.
 - Do not edit generated STATUS.md directly or replace existing user work.

@@ -67,7 +67,7 @@ def check_target(root: Path, source: Path, target: str) -> str | None:
 def verify(root: Path) -> list[str]:
     errors = []
     for source in sorted(root.rglob("*.md")):
-        if any(part in {".git", "node_modules", ".venv"} for part in source.relative_to(root).parts):
+        if any(part in {".git", "node_modules", ".venv", ".next"} for part in source.relative_to(root).parts):
             continue
         text = without_fences(source.read_text(encoding="utf-8"))
         # Inline destinations may be angle-bracketed or followed by a quoted title.
@@ -108,7 +108,7 @@ def main() -> int:
         print("\n".join(errors))
         return 1
     print("Local Markdown links and anchors, board schema/dependencies/references, and STATUS.md passed")
-    print("External URLs and source claims require the dated human/agent review; no app tests exist yet")
+    print("External URLs, source claims and application checks are verified separately")
     return 0
 
 
