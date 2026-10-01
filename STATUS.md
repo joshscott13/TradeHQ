@@ -34,7 +34,7 @@ Current milestone: **M1**
 | M1-06 | Model LucidFlex funded 50k payout cash and income targets | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-02, M1-03 | CALC-04, CALC-05 |
 | M1-07 | Prepare sourced program and export evidence inventory | scout | domain-reviewer, design-guardian, test-engineer | merged | None | RES-02 |
 | M1-08 | Prepare planner usability tasks and session evidence template | scout | domain-reviewer, design-guardian, test-engineer | merged | None | DES-02 |
-| M1-09 | Build local import preview with synthetic Tradovate/Rithmic examples | import-dev / frontend-dev | security-reviewer, domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-07, M1-08 | IMP-01, IMP-02 |
+| M1-09 | Build local import preview with synthetic Tradovate/Rithmic examples | import-dev / frontend-dev | security-reviewer, domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-07, M1-08 | IMP-01, IMP-02 |
 
 ## Task details
 
@@ -108,4 +108,4 @@ Current milestone: **M1**
 - ADR: docs/adr/0007-example-import-preview.md
 - Spec: docs/adr/0007-example-import-preview.md
 - Docs: README.md, docs/testing/test-matrix.md
-- Notes: Independent review approved (docs/reviews/2026-09-30-example-import.md). Clean npm ci, 29 application tests, typecheck/build, 10 tooling tests and desktop/mobile browser checks passed. Synthetic canonical CSV preview only; no native adapter or real-record validation claim. PR pending maintainer review.
+- Notes: Merged in PR #4 at origin/main 220b530. Independent review approved; clean npm ci, 29 application tests, typecheck/build, 10 tooling tests, desktop/mobile browser checks and required verify CI passed. Synthetic canonical CSV preview only; native adapters and actual-record validation remain pending.
