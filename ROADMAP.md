@@ -8,11 +8,12 @@ M0 bootstrap and the MIT-licensed generic income planner are published on main. 
 
 | Order | Action | Completion evidence |
 | --- | --- | --- |
-| 1 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
-| 2 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
-| 3 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
-| 4 | Build M2 reconciled financial domain and import adapters | Idempotent import and per-account statement totals against actual exports |
-| 5 | Build M3 polished private MVP, then M4 private release | End-to-end journal/import flows, access isolation and user feedback |
+| 1 | Add sourced Tradeify Select Flex $50k scenario | M1-10 accepted scoped ADR, independently reconciled schedules and browser flows |
+| 2 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
+| 3 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
+| 4 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
+| 5 | Build M2 reconciled financial domain and import adapters | Idempotent import and per-account statement totals against actual exports |
+| 6 | Build M3 polished private MVP, then M4 private release | End-to-end journal/import flows, access isolation and user feedback |
 
 ## Dependency map
 
