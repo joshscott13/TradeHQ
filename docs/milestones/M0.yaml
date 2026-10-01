@@ -39,7 +39,7 @@
         "CONTRIBUTING.md",
         "docs/workflows/README.md"
       ],
-      "notes": "Repository tooling validated by test-engineer: verify.py, render.py --check and ten regression checks passed; independent approval recorded in docs/reviews/2026-09-30-bootstrap.md. Local evidence only; no origin/main, merged state or remote CI execution claimed."
+      "notes": "Repository tooling validated by test-engineer: verify.py, render.py --check and ten regression checks passed; independent approval recorded in docs/reviews/2026-09-30-bootstrap.md. Local evidence only; no origin/main, merged state or remote CI execution claimed. Later publication confirmed origin/main and GitHub verify CI success at f168dcef71b6f7241c20c8036a42c1307c24adfc."
     },
     {
       "id": "M0-02",
@@ -49,7 +49,7 @@
       "reviewers": [
         "domain-reviewer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": null,
       "matrix": [
@@ -61,7 +61,7 @@
       "docs": [
         "docs/research/market-research.md"
       ],
-      "notes": "Primary-source desk research; user interviews and export samples remain open."
+      "notes": "Primary-source desk research; user interviews and export samples remain open. Bootstrap documentation is on origin/main at f168dcef71b6f7241c20c8036a42c1307c24adfc, independently reviewed; this does not accept pending financial contracts or validate integrations."
     },
     {
       "id": "M0-03",
@@ -71,7 +71,7 @@
       "reviewers": [
         "domain-reviewer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": "docs/adr/0002-financial-contract.md",
       "matrix": [
@@ -84,7 +84,7 @@
         "docs/research/accounting-examples.md",
         "docs/glossary.md"
       ],
-      "notes": "Specification only. Financial contract proposed, not accepted or implemented."
+      "notes": "Specification only. Financial contract proposed, not accepted or implemented. Bootstrap documentation is on origin/main at f168dcef71b6f7241c20c8036a42c1307c24adfc, independently reviewed; this does not accept pending financial contracts or validate integrations."
     },
     {
       "id": "M0-04",
@@ -94,7 +94,7 @@
       "reviewers": [
         "design-guardian"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": null,
       "matrix": [
@@ -106,7 +106,7 @@
       "docs": [
         "docs/design/design-brief.md"
       ],
-      "notes": "Uses Josh supplied audience/palette. No interactive UI exists yet."
+      "notes": "Uses Josh supplied audience/palette. No interactive UI exists yet. Bootstrap documentation is on origin/main at f168dcef71b6f7241c20c8036a42c1307c24adfc, independently reviewed; this does not accept pending financial contracts or validate integrations."
     },
     {
       "id": "M0-05",
@@ -117,7 +117,7 @@
         "domain-reviewer",
         "security-reviewer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": "docs/adr/0001-platform.md",
       "matrix": [
@@ -131,7 +131,7 @@
         "docs/adr/README.md",
         "ROADMAP.md"
       ],
-      "notes": "Josh delegated modern stack choice; core stack accepted in ADR 0001. Financial/scenario rules and paid model remain open for M1."
+      "notes": "Josh delegated modern stack choice; core stack accepted in ADR 0001. Financial/scenario rules and paid model remain open for M1. Bootstrap documentation is on origin/main at f168dcef71b6f7241c20c8036a42c1307c24adfc, independently reviewed; this does not accept pending financial contracts or validate integrations."
     },
     {
       "id": "M0-06",
@@ -142,7 +142,7 @@
         "test-engineer",
         "security-reviewer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": null,
       "matrix": [
@@ -154,7 +154,7 @@
       "docs": [
         "docs/research/market-research.md"
       ],
-      "notes": "Josh named Lucid, Apex and Tradeify. Actual account products and redacted platform exports are planned for M1; no integration validated."
+      "notes": "Josh named Lucid, Apex and Tradeify. Actual account products and redacted platform exports are planned for M1; no integration validated. Bootstrap documentation is on origin/main at f168dcef71b6f7241c20c8036a42c1307c24adfc, independently reviewed; this does not accept pending financial contracts or validate integrations."
     }
   ]
 }

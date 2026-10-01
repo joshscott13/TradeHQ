@@ -1,0 +1,140 @@
+{
+  "milestone": "M1",
+  "title": "Calculator prototype and discovery",
+  "exit_criteria": [
+    "Generic calculator implements approved defaults with exact arithmetic and meaningful tests",
+    "Polished calculator browser flows reviewed on desktop/mobile",
+    "Exact export and user evidence gathered before import/production contracts accepted"
+  ],
+  "validates_against": [
+    "Josh approved defaults dated 2026-09-30",
+    "Manual CALC examples and domain tests",
+    "Actual running browser prototype for interaction checks",
+    "Real export/user evidence pending"
+  ],
+  "blockers": [
+    "Exact account programs/cohorts and real export samples pending",
+    "Actual user validation remains planned"
+  ],
+  "tasks": [
+    {
+      "id": "M1-01",
+      "title": "Adopt MIT and accept generic calculator prototype scope",
+      "package": "LICENSE and docs/adr/",
+      "owner": "orchestrator",
+      "reviewers": [
+        "docs-writer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": "docs/adr/0005-calculator-prototype.md",
+      "matrix": [
+        "BOOT-01"
+      ],
+      "spec": [
+        "docs/adr/0005-calculator-prototype.md"
+      ],
+      "docs": [
+        "README.md",
+        "ROADMAP.md"
+      ],
+      "notes": "Josh explicitly chose MIT and approved USD/trading-day/P&L/simplified-cash defaults. Branch feat/mit-and-calculator-foundation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending."
+    },
+    {
+      "id": "M1-02",
+      "title": "Implement precise generic income target calculations",
+      "package": "packages/domain/",
+      "owner": "domain-dev",
+      "reviewers": [
+        "domain-reviewer",
+        "typescript-reviewer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": "docs/adr/0005-calculator-prototype.md",
+      "matrix": [
+        "CALC-02"
+      ],
+      "spec": [
+        "docs/adr/0005-calculator-prototype.md",
+        "docs/research/accounting-examples.md"
+      ],
+      "docs": [
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Accepted generic prototype only, co-reviewed with UI in one PR. No firm eligibility or import logic. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending."
+    },
+    {
+      "id": "M1-03",
+      "title": "Build polished responsive dynamic calculator",
+      "package": "apps/web/",
+      "owner": "frontend-dev",
+      "reviewers": [
+        "design-guardian",
+        "typescript-reviewer",
+        "test-engineer"
+      ],
+      "state": "in review",
+      "blocked_by": [],
+      "adr": "docs/adr/0005-calculator-prototype.md",
+      "matrix": [
+        "CALC-03"
+      ],
+      "spec": [
+        "docs/adr/0005-calculator-prototype.md",
+        "docs/design/design-brief.md"
+      ],
+      "docs": [
+        "README.md",
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Integrate domain API and independently review browser flows; not market/user validation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; PR and CI verification pending."
+    },
+    {
+      "id": "M1-04",
+      "title": "Identify exact prop programs and obtain redacted real export samples",
+      "package": "docs/research/",
+      "owner": "scout",
+      "reviewers": [
+        "security-reviewer",
+        "test-engineer"
+      ],
+      "state": "blocked",
+      "blocked_by": [],
+      "adr": null,
+      "matrix": [
+        "FUT-01"
+      ],
+      "spec": [
+        "docs/PRD.md"
+      ],
+      "docs": [
+        "docs/research/market-research.md"
+      ],
+      "notes": "Requires Josh exact Lucid/Apex/Tradeify program cohorts/platforms and real redacted files. Do not invent records or claim import support."
+    },
+    {
+      "id": "M1-05",
+      "title": "Validate calculator and journal workflow with target users",
+      "package": "docs/research/",
+      "owner": "scout",
+      "reviewers": [
+        "design-guardian"
+      ],
+      "state": "open",
+      "blocked_by": [],
+      "adr": null,
+      "matrix": [
+        "DES-01"
+      ],
+      "spec": [
+        "docs/PLAN.md",
+        "docs/PRD.md"
+      ],
+      "docs": [
+        "docs/research/market-research.md"
+      ],
+      "notes": "Planned actual user sessions; current implementation/review does not satisfy user testing. No external invitations authorized."
+    }
+  ]
+}

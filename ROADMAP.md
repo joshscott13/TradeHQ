@@ -2,13 +2,13 @@
 
 Status reviewed: 2026-09-30 (America/Chicago).
 
-The current repository is a documentation and research bootstrap. Implementation is planned. Josh supplied the product audience, journaling/P&L goal and palette; Josh delegated the modern stack choice and named Lucid, Apex and Tradeify. The core web stack is selected; account products/export platforms, pricing and detailed accounting/scenario rules remain open.
+M0 bootstrap is published on the public GitHub repository. M1 now implements the approved generic USD calculator prototype. Josh selected MIT and approved editable active trading days, net trading P&L as the default goal, and a separate simplified cash mode with explicit costs/share. Full firm-specific eligibility, journal contracts, export adapters and pricing remain open.
 
 ## Next actions
 
 | Order | Action | Completion evidence |
 | --- | --- | --- |
-| 1 | Review financial-contract and scenario-contract ADRs | Josh's decisions recorded in ADRs; accepted only when resolved |
+| 1 | Implement and independently review the generic calculator | Accepted ADR 0005, precise domain tests and actual browser-flow evidence |
 | 2 | Select initial prop firms, asset classes and obtain redacted exports | Export inventory with dates, schemas and user permission |
 | 3 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
 | 4 | Complete M1 contract, sample discovery and calculator prototype review | Approved contract, meaningful calculation tests and real-record reconciliation |
@@ -24,11 +24,10 @@ M0 research/bootstrap → M1 decisions, samples and prototype validation → M2 
 | Decision | Needed by | Notes |
 | --- | --- | --- |
 | Authentication provider, database access layer and deployment | M2/M4 | Core TypeScript/React/Next.js/Tailwind and PostgreSQL direction selected; ADR 0001 |
-| Accounting contract, rounding, currencies and trading day | M1 | ADR 0002; payout and trade views must remain separate |
+| Production journal/import accounting and firm-specific scenario rules | M1/M2 | ADR 0002/0003 remain proposed; approved generic USD scope is isolated in ADR 0005 |
 | Initial account products and export platforms | M1/M2 | Firms selected: Lucid, Apex, Tradeify; specific export adapters need actual records |
-| Personal-first versus paid SaaS; open-source boundary | M1 | Private repository is a temporary local assumption, not a license decision |
-| Commit identity and GitHub destination | Remote handoff | No Git identity or remote is currently configured |
+| Personal-first versus paid SaaS | M1 | Public MIT repository selected; hosted service/pricing still undecided |
 
 ## M0 reconciliation
 
-Current task states live in docs/milestones/M0.yaml and are rendered into STATUS.md. This local repository has no origin/main, so completed bootstrap work remains in review rather than marked merged. The next work is M1 scenario/financial contract review and real export discovery. Do not begin M1 automatically at the end of bootstrap.
+Bootstrap commit `f168dcef71b6f7241c20c8036a42c1307c24adfc` is on origin/main and its verify CI passed. Historical M0 tasks retain that evidence. CURRENT is M1 under Josh's explicit instruction to start the board. Work on feat/mit-and-calculator-foundation will be submitted for review; no pending PR is described as merged. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.

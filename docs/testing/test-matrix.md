@@ -26,3 +26,10 @@ git diff --check
 ```
 
 `make verify` is an optional wrapper when Make is installed. External URLs and primary source claims are reviewed separately. The link checker ignores fenced code, verifies Markdown heading anchors and reference definitions, and checks local board document paths. It does not fetch URLs or render HTML.
+
+## M1 prototype cases
+
+| Case | Tier | Status | Validated against | Evidence required |
+| --- | --- | --- | --- | --- |
+| CALC-02 | unit | 8 domain cases passed locally | Accepted ADR 0005 and manually reconciled target examples | Domain tests for exact targets, cash split/costs, invalid inputs and rounding |
+| CALC-03 | end-to-end lab | Desktop/mobile flow checks passed; focus correction under review | Running generic prototype in desktop/mobile browser | Edit controls, switch modes/periods, handle invalid input, compare scaling and reset |
