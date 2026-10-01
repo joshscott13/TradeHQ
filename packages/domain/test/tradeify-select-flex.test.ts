@@ -6,8 +6,8 @@ import {
   type TradeifySelectFlexInput, type TradeifySelectFlexGoalInput,
 } from '../src/tradeify-select-flex.ts';
 
-const base: TradeifySelectFlexInput = { dailyNetProfit: '200', period: 'month', activeDays: '20', accountCount: '1', cashCosts: '0' };
-const goalBase: TradeifySelectFlexGoalInput = { goalAmount: '1000', period: 'month', activeDays: '20', accountCount: '1', cashCosts: '0' };
+const base: TradeifySelectFlexInput = { dailyNetProfit: '200', period: 'month', activeDays: '20', accountCount: '1', accountCost: '0' };
+const goalBase: TradeifySelectFlexGoalInput = { goalAmount: '1000', period: 'month', activeDays: '20', accountCount: '1', accountCost: '0' };
 function forward(values: Partial<TradeifySelectFlexInput> = {}) {
   const actual = simulateTradeifySelectFlex({ ...base, ...values });
   assert.equal(actual.ok, true);
@@ -88,15 +88,17 @@ test('five accounts pause at two synchronized cycles; 1–4 pause after three an
   assert.equal(five.grossRequests, '6250');
 });
 
-test('scaling reruns each review horizon and keeps portfolio costs fixed, including lower five-account cash', () => {
-  const actual = forward({ cashCosts: '300', accountCount: '1' });
+test('scaling reruns each review horizon and scales account costs, including lower five-account cash', () => {
+  const actual = forward({ accountCost: '300', accountCount: '1' });
   assert.deepEqual(actual.scaling.map(row => row.traderPayoutCash), ['1912.5', '3825', '5737.5', '7650', '5625']);
-  assert.deepEqual(actual.scaling.map(row => row.cashAfterCosts), ['1612.5', '3525', '5437.5', '7350', '5325']);
+  assert.deepEqual(actual.scaling.map(row => row.cashAfterCosts), ['1612.5', '3225', '4837.5', '6450', '4125']);
+  assert.deepEqual(actual.scaling.map(row => row.portfolioCosts), ['300', '600', '900', '1200', '1500']);
   assert.deepEqual(actual.scaling.map(row => row.reviewBoundaryDay), [15, 15, 15, 15, 10]);
   assert.deepEqual(actual.scaling.map(row => row.totalPortfolioRequests), [3, 6, 9, 12, 10]);
-  const five = forward({ accountCount: '5', cashCosts: '300' });
-  assert.equal(five.perAccount.cashAfterCosts, '1065');
-  assert.equal(five.cashAfterCosts, '5325');
+  const five = forward({ accountCount: '5', accountCost: '300' });
+  assert.equal(five.perAccount.cashAfterCosts, '825');
+  assert.equal(five.cashAfterCosts, '4125');
+  assert.equal(five.portfolioCosts, '1500');
   assert.equal(five.scaling[4].cashAfterCosts, five.cashAfterCosts);
 });
 
@@ -124,14 +126,14 @@ test('gross requests floor to cents and trader cash preserves exact fractional c
 });
 
 test('zero net performance, zero targets and fee-only targets stay separate', () => {
-  const zero = forward({ dailyNetProfit: '0', cashCosts: '50' });
+  const zero = forward({ dailyNetProfit: '0', accountCost: '50' });
   assert.equal(zero.traderPayoutCash, '0');
   assert.equal(zero.cashAfterCosts, '-50');
   assert.equal(zero.reviewBoundaryDay, null);
-  const solved = solve({ goalAmount: '0', cashCosts: '0', activeDays: '1' });
+  const solved = solve({ goalAmount: '0', accountCost: '0', activeDays: '1' });
   assert.equal(solved.feasible, true);
   if (solved.feasible) assert.equal(solved.minimumDailyProfit, '0');
-  const fee = solve({ goalAmount: '0', cashCosts: '337.5', activeDays: '5' });
+  const fee = solve({ goalAmount: '0', accountCost: '337.5', activeDays: '5' });
   assert.equal(fee.feasible, true);
   if (fee.feasible) {
     assert.equal(fee.minimumDailyProfit, '150');
@@ -143,11 +145,11 @@ test('capacity checks use count-specific modeled review pause and fees, not a fi
   const short = solve({ goalAmount: '0.01', activeDays: '4' });
   assert.equal(short.feasible, false);
   assert.equal(short.maximumTraderCash, '0');
-  const cap = solve({ goalAmount: '22000', cashCosts: '500', accountCount: '5', period: 'year', activeDays: '366' });
+  const cap = solve({ goalAmount: '22000', accountCost: '100', accountCount: '5', period: 'year', activeDays: '366' });
   assert.equal(cap.feasible, true);
   assert.equal(cap.maximumCashAfterCosts, '22000');
   if (cap.feasible) assert.equal(cap.minimumDailyProfit, '1000');
-  const over = solve({ goalAmount: '22000.00000001', cashCosts: '500', accountCount: '5', period: 'year', activeDays: '366' });
+  const over = solve({ goalAmount: '22000.00000001', accountCost: '100', accountCount: '5', period: 'year', activeDays: '366' });
   assert.equal(over.feasible, false);
   if (!over.feasible) assert.match(over.reason, /not establish firm-wide/);
 });
@@ -172,8 +174,8 @@ test('every solved nonzero scenario meets its target and one cent less fails', (
     { goalAmount: '1', activeDays: '5' },
     { goalAmount: '450.009', activeDays: '5' },
     { goalAmount: '1500', activeDays: '10' },
-    { goalAmount: '2000', cashCosts: '250', activeDays: '15' },
-    { goalAmount: '15000', cashCosts: '1000', activeDays: '20', accountCount: '4' },
+    { goalAmount: '2000', accountCost: '250', activeDays: '15' },
+    { goalAmount: '15000', accountCost: '1000', activeDays: '20', accountCount: '4' },
     { goalAmount: '20000', period: 'year' as const, activeDays: '366', accountCount: '5' },
   ]) {
     const actual = solve(values);
@@ -205,10 +207,10 @@ test('smallest daily cents agrees with independent exhaustive integer-cent oracl
         gross += request;
       }
       // Integer milli-dollars avoid binary share arithmetic in the independent oracle.
-      if (gross * 9 * accounts >= (target + costs) * 1000) { minimum = cents; break; }
+      if (gross * 9 * accounts >= (target + costs * accounts) * 1000) { minimum = cents; break; }
     }
     assert.notEqual(minimum, 0);
-    const actual = solve({ period: days > 31 ? 'year' : 'month', activeDays: String(days), goalAmount: String(target), accountCount: String(accounts), cashCosts: String(costs) });
+    const actual = solve({ period: days > 31 ? 'year' : 'month', activeDays: String(days), goalAmount: String(target), accountCount: String(accounts), accountCost: String(costs) });
     assert.equal(actual.feasible, true);
     if (actual.feasible) assert.equal(new Decimal(actual.minimumDailyProfit).times(100).toNumber(), minimum);
   }
@@ -220,13 +222,13 @@ test('validation rejects invalid financial strings, unavailable account counts a
     { dailyNetProfit: '1e3' }, { dailyNetProfit: '1000000000000.01' }, { dailyNetProfit: '1.000000001' },
     { accountCount: '6' }, { accountCount: '0' }, { accountCount: '1.5' },
     { activeDays: '0' }, { period: 'week' as const, activeDays: '8' },
-    { period: 'month' as const, activeDays: '32' }, { cashCosts: '-1' },
+    { period: 'month' as const, activeDays: '32' }, { accountCost: '-1' },
   ]) {
     const actual = simulateTradeifySelectFlex({ ...base, ...values });
     assert.equal(actual.ok, false);
     assert.equal('value' in actual, false);
   }
-  const actual = solveTradeifySelectFlexGoal({ ...goalBase, goalAmount: 'Infinity', accountCount: '6', cashCosts: '-1' });
+  const actual = solveTradeifySelectFlexGoal({ ...goalBase, goalAmount: 'Infinity', accountCount: '6', accountCost: '-1' });
   assert.equal(actual.ok, false);
-  if (!actual.ok) assert.deepEqual(Object.keys(actual.errors).sort(), ['accountCount', 'cashCosts', 'goalAmount']);
+  if (!actual.ok) assert.deepEqual(Object.keys(actual.errors).sort(), ['accountCost', 'accountCount', 'goalAmount']);
 });

@@ -1,6 +1,6 @@
 # TradeHQ agent instructions
 
-TradeHQ is a planned trade journal and multi-prop-firm financial overview for technically and financially savvy traders aged 25–50. M1 implements a generic USD calculator prototype and scoped LucidFlex funded $50k scenario under ADR 0006. ADR 0007 adds a local canonical CSV import preview with synthetic Tradovate/Rithmic examples. ADR 0008 adds the explicitly dated Tradeify Select Flex funded $50k scenario with a conservative live-review pause. Production journal/imports, actual firm eligibility approval, user accounts and hosted services remain planned. Do not invent passing application or integration tests.
+TradeHQ is a planned trade journal and multi-prop-firm financial overview for technically and financially savvy traders aged 25–50. M1 implements a generic USD calculator prototype and scoped LucidFlex funded $50k scenario under ADR 0006. ADR 0007 adds a local canonical CSV import preview with synthetic Tradovate/Rithmic examples. ADR 0008 adds the explicitly dated Tradeify Select Flex funded $50k scenario with a conservative live-review pause. ADR 0009 changes planner cost inputs to costs per account for the selected period. Production journal/imports, actual firm eligibility approval, user accounts and hosted services remain planned. Do not invent passing application or integration tests.
 
 ## Read order
 

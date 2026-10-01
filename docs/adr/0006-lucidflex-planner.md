@@ -39,3 +39,7 @@ Josh explicitly selected LucidFlex $50k as the initial example. The architect ch
 - [LucidFlex payouts](https://support.lucidtrading.com/en/articles/12945796-lucidflex-payouts)
 - [LucidFlex drawdown](https://support.lucidtrading.com/en/articles/12945815-lucidflex-drawdown)
 - [Generic prototype](0005-calculator-prototype.md)
+
+## 2026-09-30 cost amendment
+
+[ADR 0009](0009-per-account-planning-costs.md) supersedes this record's fixed portfolio cost input with a per-account cost for the selected period. Each scaling count derives its own total costs. Original fixed-cost descriptions above document the prior implementation; other payout and lifecycle rules remain unchanged.

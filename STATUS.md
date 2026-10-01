@@ -35,7 +35,8 @@ Current milestone: **M1**
 | M1-07 | Prepare sourced program and export evidence inventory | scout | domain-reviewer, design-guardian, test-engineer | merged | None | RES-02 |
 | M1-08 | Prepare planner usability tasks and session evidence template | scout | domain-reviewer, design-guardian, test-engineer | merged | None | DES-02 |
 | M1-09 | Build local import preview with synthetic Tradovate/Rithmic examples | import-dev / frontend-dev | security-reviewer, domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-07, M1-08 | IMP-01, IMP-02 |
-| M1-10 | Add sourced Tradeify Select Flex funded 50k income planning | scout / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-06 | CALC-06, CALC-07 |
+| M1-10 | Add sourced Tradeify Select Flex funded 50k income planning | scout / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-06 | CALC-06, CALC-07 |
+| M1-11 | Model account costs per period across planners | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-10 | COST-01, COST-02 |
 
 ## Task details
 
@@ -117,4 +118,12 @@ Current milestone: **M1**
 - ADR: docs/adr/0008-tradeify-select-flex-planner.md
 - Spec: docs/adr/0008-tradeify-select-flex-planner.md
 - Docs: README.md, docs/research/tradeify-select-flex-policy.md, docs/testing/test-matrix.md
-- Notes: Scoped ADR0008 implemented. Independent source/code/reference/screenshot review approved; 1525 separate oracle checks, 42 application tests, 10 tooling tests, clean install/typecheck/build and root desktop/mobile/keyboard flows passed. Strict post-Sept1 hypothetical cohort and conservative discretionary-review pause; no real-account/native-export/user validation claim.
+- Notes: Merged in PR #6 at origin/main bb04134; independent review, 42 application tests, 10 tooling tests, build/typecheck and required verify CI passed. Scoped hypothetical Select Flex scenario; real-export and user gates remain pending.
+
+### M1-11
+
+- Package: `packages/domain/ and apps/web/`
+- ADR: docs/adr/0009-per-account-planning-costs.md
+- Spec: docs/adr/0009-per-account-planning-costs.md
+- Docs: README.md, docs/testing/test-matrix.md
+- Notes: Per-account selected-period costs implemented across all three planners. Independent review approved with 1895 reference checks; 50 application tests, 10 tooling tests, clean install/typecheck/build and desktop/mobile/keyboard browser checks passed. User $100 times 3 = $300 example verified; no automatic price/recurrence/conversion assumption.

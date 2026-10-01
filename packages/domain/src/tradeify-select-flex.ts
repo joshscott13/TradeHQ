@@ -48,14 +48,14 @@ export interface TradeifySelectFlexInput {
   period: Period;
   activeDays: string;
   accountCount: string;
-  cashCosts: string;
+  accountCost: string;
 }
 export interface TradeifySelectFlexGoalInput {
   goalAmount: string;
   period: Period;
   activeDays: string;
   accountCount: string;
-  cashCosts: string;
+  accountCost: string;
 }
 export interface TradeifySelectFlexPayout {
   payoutNumber: number;
@@ -70,6 +70,7 @@ export interface TradeifySelectFlexScaling {
   accountCount: number;
   traderPayoutCash: string;
   cashAfterCosts: string;
+  portfolioCosts: string;
   completedPayouts: number;
   totalPortfolioRequests: number;
   reviewBoundaryDay: number | null;
@@ -81,6 +82,7 @@ export interface TradeifySelectFlexResult {
   grossRequests: string;
   traderPayoutCash: string;
   cashAfterCosts: string;
+  portfolioCosts: string;
   perAccount: {
     fundedTradingPnl: string;
     retainedProfit: string;
@@ -103,11 +105,13 @@ export type TradeifySelectFlexGoalResult = {
   minimumDailyProfit: string;
   maximumTraderCash: string;
   maximumCashAfterCosts: string;
+  portfolioCosts: string;
   schedule: TradeifySelectFlexResult;
 } | {
   feasible: false;
   maximumTraderCash: string;
   maximumCashAfterCosts: string;
+  portfolioCosts: string;
   reason: string;
 };
 
@@ -128,10 +132,10 @@ function validateCommon<T extends TradeifySelectFlexInput | TradeifySelectFlexGo
   if (!['week', 'month', 'year'].includes(input.period)) errors.period = 'Select week, month or year.';
   const days = whole(input.activeDays, input.period === 'week' ? 7 : input.period === 'month' ? 31 : 366);
   const accounts = whole(input.accountCount, TRADEIFY_SELECT_FLEX_50K_PROFILE.rules.maximumFundedAccounts);
-  const costs = amount(input.cashCosts);
+  const costs = amount(input.accountCost);
   if (typeof days === 'string') errors.activeDays = days;
   if (typeof accounts === 'string') errors.accountCount = accounts;
-  if (typeof costs === 'string') errors.cashCosts = costs;
+  if (typeof costs === 'string') errors.accountCost = costs;
   return { days, accounts, costs };
 }
 
@@ -177,10 +181,11 @@ function simulateAccountCount(daily: Decimal, days: number, accounts: number, co
   if (reviewBoundaryDay !== null) constraints.push('The model pauses for discretionary Elite Live review; this is not an automatic transition or an official funded payout cap.');
   return {
     fundedTradingPnl: traded.times(accounts).toFixed(), retainedProfit: retained.times(accounts).toFixed(),
-    grossRequests: gross.times(accounts).toFixed(), traderPayoutCash: cash.times(accounts).toFixed(), cashAfterCosts: cash.times(accounts).minus(costs).toFixed(),
+    grossRequests: gross.times(accounts).toFixed(), traderPayoutCash: cash.times(accounts).toFixed(), cashAfterCosts: cash.minus(costs).times(accounts).toFixed(),
+    portfolioCosts: costs.times(accounts).toFixed(),
     perAccount: {
       fundedTradingPnl: traded.toFixed(), retainedProfit: retained.toFixed(), grossRequests: gross.toFixed(),
-      traderPayoutCash: cash.toFixed(), cashAfterCosts: cash.minus(costs.div(accounts)).toFixed(),
+      traderPayoutCash: cash.toFixed(), cashAfterCosts: cash.minus(costs).toFixed(),
     },
     completedPayouts: schedule.length, totalPortfolioRequests: schedule.length * accounts,
     modeledDays, reviewBoundaryDay, reviewBoundaryCycles, schedule, constraints,
@@ -193,7 +198,7 @@ function simulateAccountCount(daily: Decimal, days: number, accounts: number, co
       'Trader payout cash is modeled request cash, not actual cash received. Gross requests round down to cents; the exact 90% share is display-rounded only, with no asserted payment-rounding policy.',
       'The model pauses at the first synchronized cycle reaching three payouts per account or ten portfolio payouts for discretionary Elite Live consideration. This is not an official payout maximum or automatic live transition.',
       'A synchronized cycle can cross ten total requests. Actual approval ordering, continued funded treatment and Elite Live income remain unresolved.',
-      'Each scaling count recomputes its review pause. Selected-period portfolio cash costs remain fixed; per-account cash after costs allocates them equally. Trading costs already included in net daily P&L must not be subtracted again.',
+      'Each scaling count recomputes its review pause and account cost times that count. Entered account costs apply only to the selected period, with no automatic period conversion or assumed recurring subscription. Trading costs already included in net daily P&L must not be subtracted again.',
       'Copied exposure is correlated. Annual views stop at the modeled review pause and never extrapolate live income or account replacements.',
     ],
   };
@@ -206,6 +211,7 @@ function withScaling(daily: Decimal, days: number, accounts: number, costs: Deci
       const scenario = simulateAccountCount(daily, days, count, costs);
       return {
         accountCount: count, traderPayoutCash: scenario.traderPayoutCash, cashAfterCosts: scenario.cashAfterCosts,
+        portfolioCosts: scenario.portfolioCosts,
         completedPayouts: scenario.completedPayouts, totalPortfolioRequests: scenario.totalPortfolioRequests,
         reviewBoundaryDay: scenario.reviewBoundaryDay, modeledDays: scenario.modeledDays,
       };
@@ -230,7 +236,7 @@ export function solveTradeifySelectFlexGoal(input: TradeifySelectFlexGoalInput):
   // $1,000 × five days supplies $5,000 retained profit and a $2,500
   // initial request. Every subsequent modeled cycle also reaches that cap.
   const maximum = simulateAccountCount(new Money(1000), days, accounts, costs);
-  const capacity = { maximumTraderCash: maximum.traderPayoutCash, maximumCashAfterCosts: maximum.cashAfterCosts };
+  const capacity = { maximumTraderCash: maximum.traderPayoutCash, maximumCashAfterCosts: maximum.cashAfterCosts, portfolioCosts: maximum.portfolioCosts };
   if (goal.gt(maximum.cashAfterCosts)) {
     return { ok: true, value: {
       feasible: false, ...capacity,

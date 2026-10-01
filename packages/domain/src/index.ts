@@ -13,7 +13,7 @@ export interface TargetInput {
   accountCount: string;
   mode: GoalMode;
   payoutSharePercent: string;
-  cashCosts: string;
+  accountCost: string;
 }
 export interface AnnualInput {
   dailyPerAccountAverage: string;
@@ -31,7 +31,8 @@ export interface TargetResult {
   tradingTarget: string;
   dailyPortfolioTarget: string;
   dailyPerAccountTarget: string;
-  scaling: Array<{ accountCount: number; dailyPerAccountTarget: string }>;
+  portfolioCosts: string;
+  scaling: Array<{ accountCount: number; dailyPerAccountTarget: string; portfolioCosts: string }>;
   assumptions: string[];
 }
 export interface AnnualResult {
@@ -73,15 +74,16 @@ export function calculateTargets(input: TargetInput): CalculationResult<TargetIn
   if (typeof days === 'string') errors.activeDays = days;
   if (typeof accounts === 'string') errors.accountCount = accounts;
   // Trading mode has no dependency on cash controls, including unfinished fields.
-  const costs = input.mode === 'cash' ? amount(input.cashCosts) : new Money(0);
+  const costs = input.mode === 'cash' ? amount(input.accountCost) : new Money(0);
   const share = input.mode === 'cash' ? amount(input.payoutSharePercent) : new Money(100);
-  if (typeof costs === 'string') errors.cashCosts = costs;
+  if (typeof costs === 'string') errors.accountCost = costs;
   if (typeof share === 'string') errors.payoutSharePercent = share;
   else if (share.gt(100)) errors.payoutSharePercent = 'Trader share must be from 0 to 100%.';
   if (Object.keys(errors).length) return { ok: false, errors };
   // Above validation establishes these types without non-null values or stale results.
   if (typeof goal === 'string' || typeof days === 'string' || typeof accounts === 'string' || typeof costs === 'string' || typeof share === 'string') return { ok: false, errors };
-  const cashRequired = goal.plus(costs);
+  const portfolioCosts = costs.times(accounts);
+  const cashRequired = goal.plus(portfolioCosts);
   if (input.mode === 'cash' && share.isZero() && !cashRequired.isZero()) {
     return { ok: false, errors: { payoutSharePercent: 'A positive cash goal or costs are infeasible with 0% trader share.' } };
   }
@@ -96,14 +98,22 @@ export function calculateTargets(input: TargetInput): CalculationResult<TargetIn
       tradingTarget: tradingTarget.toFixed(),
       dailyPortfolioTarget: daily.toFixed(),
       dailyPerAccountTarget: tradingTarget.div(new Money(days).times(accounts)).toFixed(),
-      scaling: Array.from({ length: accounts }, (_, index) => ({
-        accountCount: index + 1,
-        dailyPerAccountTarget: tradingTarget.div(new Money(days).times(index + 1)).toFixed(),
-      })),
+      portfolioCosts: portfolioCosts.toFixed(),
+      scaling: Array.from({ length: accounts }, (_, index) => {
+        const count = index + 1;
+        const rowCosts = costs.times(count);
+        const rowTarget = input.mode === 'cash'
+          ? goal.plus(rowCosts).isZero() ? new Money(0) : goal.plus(rowCosts).times(100).div(share)
+          : goal;
+        return {
+          accountCount: count, portfolioCosts: rowCosts.toFixed(),
+          dailyPerAccountTarget: rowTarget.div(new Money(days).times(count)).toFixed(),
+        };
+      }),
       assumptions: [
         'Equal allocation across active accounts; account size does not enter the formula.',
         'Active trading days are explicitly selected. Rounding is for display only.',
-        ...(input.mode === 'cash' ? ['All modeled profit is paid in the selected period; no caps, buffers, eligibility restrictions or payment delays are modeled. Costs are for the selected period and are held constant across account comparisons.'] : []),
+        ...(input.mode === 'cash' ? ['All modeled profit is paid in the selected period; no caps, buffers, eligibility restrictions or payment delays are modeled. Each account has the entered selected-period cost, so portfolio costs scale with account count. Costs are not automatically converted across periods or treated as recurring subscriptions.'] : []),
       ],
     },
   };

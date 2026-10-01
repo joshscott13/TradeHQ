@@ -5,7 +5,7 @@ import { LUCID_FLEX_50K_PROFILE, simulateLucidFlex, solveLucidFlexGoal, formatUs
 import { NumberControl } from "./number-control";
 
 type Period = "week" | "month" | "year";
-const defaults = { goalAmount: "5000", period: "month" as Period, activeDays: "20", accountCount: "5", cashCosts: "250", dailyNetProfit: "150" };
+const defaults = { goalAmount: "5000", period: "month" as Period, activeDays: "20", accountCount: "5", accountCost: "50", dailyNetProfit: "150" };
 const defaultDays = { week: "5", month: "20", year: "240" };
 
 export function LucidFlexPlanner() {
@@ -19,6 +19,7 @@ export function LucidFlexPlanner() {
   const choosePeriod = (period: Period) => setInputs(old => ({ ...old, period, activeDays: defaultDays[period] }));
   const maximumDays = inputs.period === "week" ? 7 : inputs.period === "month" ? 31 : 366;
   const value = result.ok ? result.value : null;
+  const portfolioCosts = result.ok ? result.value.portfolioCosts : goal.ok ? goal.value.portfolioCosts : null;
   const oneAccount = value?.scaling[0];
   const selectedScale = value?.scaling.find(row => row.accountCount === Number(inputs.accountCount));
 
@@ -40,7 +41,7 @@ export function LucidFlexPlanner() {
           <NumberControl id="firm-daily" label="Daily net trading P&L / account" value={inputs.dailyNetProfit} onChange={v => set("dailyNetProfit", v)} max={3000} step={0.01} prefix="$" error={errors.dailyNetProfit} hint="Constant, loss-free performance on every active day." />
           <NumberControl id="firm-days" label="Active trading days" value={inputs.activeDays} onChange={v => set("activeDays", v)} min={1} max={maximumDays} error={errors.activeDays || goalErrors.activeDays} hint={`Days available within the selected ${inputs.period}.`} />
           <NumberControl id="firm-accounts" label="Modeled active accounts" value={inputs.accountCount} onChange={v => set("accountCount", v)} min={1} max={100} error={errors.accountCount || goalErrors.accountCount} hint="Scenario count only; Lucid account-count limits are not checked." />
-          <NumberControl id="firm-costs" label={`Portfolio cash costs / ${inputs.period}`} value={inputs.cashCosts} onChange={v => set("cashCosts", v)} max={10000} step={0.01} prefix="$" error={errors.cashCosts || goalErrors.cashCosts} hint="Total cash costs across all accounts; not a per-account fee." />
+          <div><NumberControl id="firm-costs" label={`Account cost / ${inputs.period}`} value={inputs.accountCost} onChange={v => set("accountCost", v)} max={10000} step={0.01} prefix="$" error={errors.accountCost || goalErrors.accountCost} hint="Expected cost per account in this period: purchases, resets, activation or platform fees. Exclude commissions/trading fees already in daily net P&L." />{portfolioCosts !== null && <p className="cost-equation">${inputs.accountCost}/account × {inputs.accountCount} accounts = <strong>{formatUsd(portfolioCosts)}</strong> this {inputs.period}</p>}<p className="cost-period-note">Enter the cost for this period; changing periods does not convert it or make purchases recurring.</p></div>
         </div>
         <p className="account-note">$50k is the nominal program label, not invested equity or withdrawable cash. Profit drives these requests; the $50k starting balance is excluded.</p>
       </section>
@@ -54,7 +55,7 @@ export function LucidFlexPlanner() {
             <div className="target-divider" />
             <div className="target-support firm-target-support">
               <div><span>Trader payout cash · 90% share</span><strong>{formatUsd(value.traderPayoutCash)}</strong></div>
-              <div><span>Portfolio cash costs</span><strong>{formatUsd(inputs.cashCosts)}</strong></div>
+              <div><span>Derived portfolio costs</span><strong>{formatUsd(value.portfolioCosts)}</strong><p className="result-cost-equation">${inputs.accountCost}/account × {inputs.accountCount} accounts</p></div>
               <div><span>Retained trading profit · stays in accounts</span><strong>{formatUsd(value.retainedProfit)}</strong></div>
             </div>
             <div className="firm-status"><span>{value.completedPayouts} / 5 funded payouts per account</span><strong>{value.modeledDays} modeled active days</strong></div>
@@ -97,13 +98,13 @@ export function LucidFlexPlanner() {
     </section>
     <section className="firm-scaling-panel" aria-labelledby="firm-scaling-title">
       <div className="section-heading"><span className="section-number">04</span><h2 id="firm-scaling-title">Scale the same performance</h2></div>
-      <p className="section-description">Same daily net P&amp;L and active days. The selected portfolio cash costs remain fixed in every comparison.</p>
+      <p className="section-description">Same daily net P&amp;L and active days. Account costs multiply by the account count in each comparison.</p>
       {value && oneAccount && selectedScale ? <>
-        <div className="firm-scaling-grid"><div><span>ONE ACCOUNT</span><strong>{formatUsd(oneAccount.cashAfterCosts)}</strong><p>{formatUsd(oneAccount.traderPayoutCash)} trader payout cash<br />after {formatUsd(inputs.cashCosts)} portfolio costs</p></div><div><span>{inputs.accountCount} MODELED ACCOUNTS</span><strong>{formatUsd(selectedScale.cashAfterCosts)}</strong><p>{formatUsd(selectedScale.traderPayoutCash)} trader payout cash<br />after the same portfolio costs</p></div><div><span>RETAINED ACROSS {inputs.accountCount} ACCOUNTS</span><strong>{formatUsd(value.retainedProfit)}</strong><p>Retained trading profit.<br />Not payout cash or personal equity.</p></div></div>
-        <details><summary>View every account-count scenario</summary><div className="table-scroll"><table><caption>Fixed performance with {formatUsd(inputs.cashCosts)} total portfolio costs in every scenario</caption><thead><tr><th scope="col">Accounts</th><th scope="col">Trader payout cash</th><th scope="col">Cash after costs</th></tr></thead><tbody>{value.scaling.map(row => <tr key={row.accountCount}><th scope="row">{row.accountCount}</th><td>{formatUsd(row.traderPayoutCash)}</td><td>{formatUsd(row.cashAfterCosts)}</td></tr>)}</tbody></table></div></details>
+        <div className="firm-scaling-grid"><div><span>ONE ACCOUNT</span><strong>{formatUsd(oneAccount.cashAfterCosts)}</strong><p>{formatUsd(oneAccount.traderPayoutCash)} trader payout cash<br />less {formatUsd(oneAccount.portfolioCosts)} in account costs</p></div><div><span>{inputs.accountCount} MODELED ACCOUNTS</span><strong>{formatUsd(selectedScale.cashAfterCosts)}</strong><p>{formatUsd(selectedScale.traderPayoutCash)} trader payout cash<br />less {formatUsd(selectedScale.portfolioCosts)} in account costs</p></div><div><span>RETAINED ACROSS {inputs.accountCount} ACCOUNTS</span><strong>{formatUsd(value.retainedProfit)}</strong><p>Retained trading profit.<br />Not payout cash or personal equity.</p></div></div>
+        <details><summary>View every account-count scenario</summary><div className="table-scroll"><table><caption>Same performance with {formatUsd(inputs.accountCost)} per account in the selected {inputs.period}</caption><thead><tr><th scope="col">Accounts</th><th scope="col">Trader payout cash</th><th scope="col">Account costs</th><th scope="col">Cash after costs</th></tr></thead><tbody>{value.scaling.map(row => <tr key={row.accountCount}><th scope="row">{row.accountCount}</th><td>{formatUsd(row.traderPayoutCash)}</td><td>{formatUsd(row.portfolioCosts)}</td><td>{formatUsd(row.cashAfterCosts)}</td></tr>)}</tbody></table></div></details>
       </> : <p className="unavailable">Scaling comparison available after correcting performance assumptions.</p>}
-      <p className="firm-scaling-note">Copied exposure is correlated. The scenario does not check Lucid’s account-count limits or increase fees automatically with account count. Edit portfolio costs to reflect your setup.</p>
+      <p className="firm-scaling-note">Copied exposure is correlated. The scenario does not check Lucid’s account-count limits. Each count includes the same expected cost per account for the selected period; purchases are not automatically repeated.</p>
     </section>
-    <aside className="firm-assumptions" aria-labelledby="firm-scope-title"><h3 id="firm-scope-title">What this scenario assumes</h3><ul><li>Fresh funded LucidFlex $50k accounts, starting at zero profit with no previous payouts. Evaluation and existing-account state are excluded.</li><li>Constant, loss-free daily net trading P&amp;L. Losses, rule breaches, drawdown paths and account survival are not modeled.</li><li>Requests occur as soon as modeled rules permit, with immediate approval and gross deduction before the next active day.</li><li>Lucid lists disbursement within two business days after approval. Processing delays and calendar payment dates are not modeled; this is not actual received cash.</li><li>Modeling stops after the fifth funded payout. Annual selection reports only this remaining funded phase; it does not repeat accounts or estimate live-stage income.</li><li>All accounts follow the same schedule. Fees are your explicit portfolio cash costs; permitted account-count limits are not checked.</li></ul></aside>
+    <aside className="firm-assumptions" aria-labelledby="firm-scope-title"><h3 id="firm-scope-title">What this scenario assumes</h3><ul><li>Fresh funded LucidFlex $50k accounts, starting at zero profit with no previous payouts. Evaluation and existing-account state are excluded.</li><li>Constant, loss-free daily net trading P&amp;L. Losses, rule breaches, drawdown paths and account survival are not modeled.</li><li>Requests occur as soon as modeled rules permit, with immediate approval and gross deduction before the next active day.</li><li>Lucid lists disbursement within two business days after approval. Processing delays and calendar payment dates are not modeled; this is not actual received cash.</li><li>Modeling stops after the fifth funded payout. Annual selection reports only this remaining funded phase; it does not repeat accounts or estimate live-stage income.</li><li>All accounts follow the same schedule. Costs are your selected-period expected cost per account, multiplied by the modeled count. Already-deducted trading costs are excluded; permitted account-count limits are not checked.</li></ul></aside>
   </>;
 }

@@ -6,8 +6,8 @@ import {
   type LucidFlexInput, type LucidFlexGoalInput,
 } from '../src/index.ts';
 
-const base: LucidFlexInput = { dailyNetProfit: '200', period: 'month', activeDays: '25', accountCount: '1', cashCosts: '0' };
-const goalBase: LucidFlexGoalInput = { goalAmount: '500', period: 'month', activeDays: '25', accountCount: '1', cashCosts: '0' };
+const base: LucidFlexInput = { dailyNetProfit: '200', period: 'month', activeDays: '25', accountCount: '1', accountCost: '0' };
+const goalBase: LucidFlexGoalInput = { goalAmount: '500', period: 'month', activeDays: '25', accountCount: '1', accountCost: '0' };
 function forward(values: Partial<LucidFlexInput> = {}) {
   const result = simulateLucidFlex({ ...base, ...values });
   assert.equal(result.ok, true);
@@ -82,25 +82,27 @@ test('cap and five-payout transition stop funded trading and annual extrapolatio
   assert.equal(forward({ dailyNetProfit: '1000000000000', period: 'year', activeDays: '366' }).grossRequests, '10000');
 });
 
-test('portfolio scaling counts each request once, holds fees fixed and keeps retained profit distinct', () => {
-  const actual = forward({ dailyNetProfit: '800', activeDays: '5', accountCount: '3', cashCosts: '300' });
+test('portfolio scaling counts each request once, scales account costs and keeps retained profit distinct', () => {
+  const actual = forward({ dailyNetProfit: '800', activeDays: '5', accountCount: '3', accountCost: '100' });
   assert.equal(actual.grossRequests, '6000');
   assert.equal(actual.traderPayoutCash, '5400');
   assert.equal(actual.cashAfterCosts, '5100');
   assert.equal(actual.retainedProfit, '6000');
   assert.equal(actual.perAccount.cashAfterCosts, '1700');
-  assert.deepEqual(actual.scaling.map(row => row.cashAfterCosts), ['1500', '3300', '5100']);
+  assert.deepEqual(actual.scaling.map(row => row.cashAfterCosts), ['1700', '3400', '5100']);
+  assert.equal(actual.portfolioCosts, '300');
+  assert.deepEqual(actual.scaling.map(row => row.portfolioCosts), ['100', '200', '300']);
   assert.equal(actual.schedule[0].portfolioGrossRequest, '6000');
   assert.equal(actual.completedPayouts, 1);
   assert.equal(JSON.parse(JSON.stringify(actual)).cashAfterCosts, '5100');
 });
 
 test('zero-profit scenario has zero requests and negative costs; zero goal with zero costs solves to zero', () => {
-  const actual = forward({ dailyNetProfit: '0', cashCosts: '50' });
+  const actual = forward({ dailyNetProfit: '0', accountCost: '50' });
   assert.equal(actual.cashAfterCosts, '-50');
   assert.equal(actual.modeledDays, 25);
   assert.equal(actual.transitionDay, null);
-  const solved = solve({ goalAmount: '0', cashCosts: '0', activeDays: '1' });
+  const solved = solve({ goalAmount: '0', accountCost: '0', activeDays: '1' });
   assert.equal(solved.feasible, true);
   if (solved.feasible) assert.equal(solved.minimumDailyProfit, '0');
 });
@@ -109,15 +111,15 @@ test('theoretical capacity includes days, account count, fees and the fifth-payo
   const short = solve({ activeDays: '4', goalAmount: '0.01' });
   assert.equal(short.feasible, false);
   assert.equal(short.maximumTraderCash, '0');
-  const maximum = solve({ goalAmount: '26700', period: 'year', activeDays: '366', accountCount: '3', cashCosts: '300' });
+  const maximum = solve({ goalAmount: '26700', period: 'year', activeDays: '366', accountCount: '3', accountCost: '100' });
   assert.equal(maximum.feasible, true);
   assert.equal(maximum.maximumTraderCash, '27000');
   assert.equal(maximum.maximumCashAfterCosts, '26700');
   if (maximum.feasible) assert.equal(maximum.minimumDailyProfit, '800');
-  const exceeded = solve({ goalAmount: '26700.00000001', period: 'year', activeDays: '366', accountCount: '3', cashCosts: '300' });
+  const exceeded = solve({ goalAmount: '26700.00000001', period: 'year', activeDays: '366', accountCount: '3', accountCost: '100' });
   assert.equal(exceeded.feasible, false);
   if (!exceeded.feasible) assert.match(exceeded.reason, /five payouts/);
-  assert.equal(solve({ goalAmount: '0', activeDays: '5', cashCosts: '1800.01' }).feasible, false);
+  assert.equal(solve({ goalAmount: '0', activeDays: '5', accountCost: '1800.01' }).feasible, false);
 });
 
 test('minimum requests can overshoot small goals; solver keeps costs before trader share', () => {
@@ -127,7 +129,7 @@ test('minimum requests can overshoot small goals; solver keeps costs before trad
     assert.equal(small.minimumDailyProfit, '200');
     assert.equal(small.schedule.cashAfterCosts, '450');
   }
-  const fee = solve({ goalAmount: '100', cashCosts: '500', activeDays: '5' });
+  const fee = solve({ goalAmount: '100', accountCost: '500', activeDays: '5' });
   assert.equal(fee.feasible, true);
   if (fee.feasible) {
     assert.equal(fee.minimumDailyProfit, '266.67');
@@ -157,7 +159,7 @@ test('solved goals meet the exact target and one cent less fails across horizons
     { activeDays: '7', goalAmount: '535' },
     { activeDays: '10', goalAmount: '1000' },
     { activeDays: '12', goalAmount: '1200' },
-    { activeDays: '17', goalAmount: '2000', cashCosts: '250', accountCount: '3' },
+    { activeDays: '17', goalAmount: '2000', accountCost: '250', accountCount: '3' },
     { activeDays: '27', goalAmount: '6000' },
     { activeDays: '366', period: 'year' as const, goalAmount: '8500' },
   ]) {
@@ -174,7 +176,7 @@ test('forward and goal validation reject incomplete/invalid values without stale
   for (const values of [
     { dailyNetProfit: '-1' }, { dailyNetProfit: 'NaN' }, { dailyNetProfit: '' },
     { dailyNetProfit: '1.000000001' }, { dailyNetProfit: '1000000000000.01' },
-    { cashCosts: '-0.01' }, { activeDays: '0' }, { accountCount: '101' },
+    { accountCost: '-0.01' }, { activeDays: '0' }, { accountCount: '101' },
     { accountCount: '1.5' }, { period: 'week' as const, activeDays: '8' },
     { period: 'invalid' as LucidFlexInput['period'] },
   ]) {
@@ -182,9 +184,9 @@ test('forward and goal validation reject incomplete/invalid values without stale
     assert.equal(result.ok, false);
     assert.equal('value' in result, false);
   }
-  const invalid = solveLucidFlexGoal({ ...goalBase, goalAmount: 'Infinity', cashCosts: '-1', accountCount: '0' });
+  const invalid = solveLucidFlexGoal({ ...goalBase, goalAmount: 'Infinity', accountCost: '-1', accountCount: '0' });
   assert.equal(invalid.ok, false);
-  if (!invalid.ok) assert.deepEqual(Object.keys(invalid.errors).sort(), ['accountCount', 'cashCosts', 'goalAmount']);
+  if (!invalid.ok) assert.deepEqual(Object.keys(invalid.errors).sort(), ['accountCost', 'accountCount', 'goalAmount']);
 });
 
 test('inverse global minimum matches exhaustive exact integer-cent oracle, including timing cliffs', () => {
@@ -219,10 +221,10 @@ test('inverse global minimum matches exhaustive exact integer-cent oracle, inclu
       }
       // gross cents × 90% ÷ 100 = dollars; multiply by 1000
       // to compare integer milli-dollars without float share arithmetic.
-      if (grossCents * 9 * accounts >= (target + costs) * 1000) { minimum = cents; break; }
+      if (grossCents * 9 * accounts >= (target + costs * accounts) * 1000) { minimum = cents; break; }
     }
     assert.notEqual(minimum, 0);
-    const actual = solve({ period: days > 31 ? 'year' : 'month', activeDays: String(days), goalAmount: String(target), accountCount: String(accounts), cashCosts: String(costs) });
+    const actual = solve({ period: days > 31 ? 'year' : 'month', activeDays: String(days), goalAmount: String(target), accountCount: String(accounts), accountCost: String(costs) });
     assert.equal(actual.feasible, true);
     if (actual.feasible) assert.equal(new Decimal(actual.minimumDailyProfit).times(100).toNumber(), minimum);
   }

@@ -53,14 +53,14 @@ export interface LucidFlexInput {
   period: Period;
   activeDays: string;
   accountCount: string;
-  cashCosts: string;
+  accountCost: string;
 }
 export interface LucidFlexGoalInput {
   goalAmount: string;
   period: Period;
   activeDays: string;
   accountCount: string;
-  cashCosts: string;
+  accountCost: string;
 }
 export interface LucidFlexPayout {
   payoutNumber: number;
@@ -78,6 +78,7 @@ export interface LucidFlexResult {
   grossRequests: string;
   traderPayoutCash: string;
   cashAfterCosts: string;
+  portfolioCosts: string;
   perAccount: {
     fundedTradingPnl: string;
     retainedProfit: string;
@@ -89,7 +90,7 @@ export interface LucidFlexResult {
   modeledDays: number;
   transitionDay: number | null;
   schedule: LucidFlexPayout[];
-  scaling: Array<{ accountCount: number; traderPayoutCash: string; cashAfterCosts: string }>;
+  scaling: Array<{ accountCount: number; traderPayoutCash: string; cashAfterCosts: string; portfolioCosts: string }>;
   constraints: string[];
   assumptions: string[];
 }
@@ -98,11 +99,13 @@ export type LucidFlexGoalResult = {
   minimumDailyProfit: string;
   maximumTraderCash: string;
   maximumCashAfterCosts: string;
+  portfolioCosts: string;
   schedule: LucidFlexResult;
 } | {
   feasible: false;
   maximumTraderCash: string;
   maximumCashAfterCosts: string;
+  portfolioCosts: string;
   reason: string;
 };
 
@@ -123,10 +126,10 @@ function validateCommon<T extends LucidFlexInput | LucidFlexGoalInput>(input: T,
   if (!['week', 'month', 'year'].includes(input.period)) errors.period = 'Select week, month or year.';
   const days = wholeInput(input.activeDays, input.period === 'week' ? 7 : input.period === 'month' ? 31 : 366);
   const accounts = wholeInput(input.accountCount, 100);
-  const costs = moneyInput(input.cashCosts);
+  const costs = moneyInput(input.accountCost);
   if (typeof days === 'string') errors.activeDays = days;
   if (typeof accounts === 'string') errors.accountCount = accounts;
-  if (typeof costs === 'string') errors.cashCosts = costs;
+  if (typeof costs === 'string') errors.accountCost = costs;
   return { days, accounts, costs };
 }
 
@@ -176,16 +179,18 @@ function simulate(daily: Decimal, days: number, accounts: number, costs: Decimal
   return {
     fundedTradingPnl: traded.times(accounts).toFixed(), retainedProfit: retained.times(accounts).toFixed(),
     grossRequests: grossTotal.times(accounts).toFixed(), traderPayoutCash: cashTotal.times(accounts).toFixed(),
-    cashAfterCosts: cashTotal.times(accounts).minus(costs).toFixed(),
+    cashAfterCosts: cashTotal.minus(costs).times(accounts).toFixed(),
+    portfolioCosts: costs.times(accounts).toFixed(),
     perAccount: {
       fundedTradingPnl: traded.toFixed(), retainedProfit: retained.toFixed(), grossRequests: grossTotal.toFixed(),
-      traderPayoutCash: cashTotal.toFixed(), cashAfterCosts: cashTotal.minus(costs.div(accounts)).toFixed(),
+      traderPayoutCash: cashTotal.toFixed(), cashAfterCosts: cashTotal.minus(costs).toFixed(),
     },
     completedPayouts: schedule.length, modeledDays, transitionDay, schedule,
     scaling: Array.from({ length: accounts }, (_, index) => ({
       accountCount: index + 1,
       traderPayoutCash: cashTotal.times(index + 1).toFixed(),
-      cashAfterCosts: cashTotal.times(index + 1).minus(costs).toFixed(),
+      cashAfterCosts: cashTotal.minus(costs).times(index + 1).toFixed(),
+      portfolioCosts: costs.times(index + 1).toFixed(),
     })),
     constraints,
     assumptions: [
@@ -194,7 +199,7 @@ function simulate(daily: Decimal, days: number, accounts: number, costs: Decimal
       'Requests are approved and gross requests deducted immediately; qualifying days reset after each approval.',
       'Trader payout cash is projected from requests, not actual received cash by a calendar deadline. Two-business-day disbursement after approval is not modeled.',
       'Gross request amounts round down to cents. The 90% share is calculated exactly; display rounding is not an asserted payment-rounding policy.',
-      'Portfolio cash costs stay fixed across scaling comparisons; per-account cash after costs allocates portfolio costs equally.',
+      'The entered account cost is for the selected period and applies to each modeled account. Portfolio costs scale with account count; costs are not automatically converted between periods or treated as recurring subscriptions.',
       'Modeled account counts are scenario inputs; firm account-count limits are not checked. Copied accounts have correlated exposure.',
       'Only the funded phase is modeled, stopping at the fifth payout; annual selection never extrapolates live-stage or replacement-account income.',
     ],
@@ -219,9 +224,10 @@ export function solveLucidFlexGoal(input: LucidFlexGoalInput): CalculationResult
   const rules = LUCID_FLEX_50K_PROFILE.rules;
   const cycles = Math.min(Math.floor(days / rules.qualifyingDays), rules.maxPayouts);
   const maximumTraderCash = new Money(rules.maximumGrossRequest).times(rules.traderSharePercent).div(100).times(cycles).times(accounts);
-  const maximumCashAfterCosts = maximumTraderCash.minus(costs);
-  const capacity = { maximumTraderCash: maximumTraderCash.toFixed(), maximumCashAfterCosts: maximumCashAfterCosts.toFixed() };
-  if (goal.plus(costs).gt(maximumTraderCash)) {
+  const portfolioCosts = costs.times(accounts);
+  const maximumCashAfterCosts = maximumTraderCash.minus(portfolioCosts);
+  const capacity = { maximumTraderCash: maximumTraderCash.toFixed(), maximumCashAfterCosts: maximumCashAfterCosts.toFixed(), portfolioCosts: portfolioCosts.toFixed() };
+  if (goal.plus(portfolioCosts).gt(maximumTraderCash)) {
     return { ok: true, value: {
       feasible: false, ...capacity,
       reason: cycles === 0 ? 'Fewer than five active days cannot support a payout request.' : `The ${cycles} funded payout cycle${cycles === 1 ? '' : 's'} available allow at most $2,000 gross each, with a 90% trader share across ${accounts} account${accounts === 1 ? '' : 's'}, before portfolio costs. The funded phase ends after five payouts.`,
