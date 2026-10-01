@@ -110,7 +110,7 @@ def fetch(base, path):
 
 def verify_http(base):
     planner_assets = []
-    for path, expected in [("/", "Make your goal tangible"), ("/imports", "Review before you import")]:
+    for path, expected in [("/", "Turn your goal into a daily plan"), ("/imports", "Review before you import")]:
         payload, content_type = fetch(base, path)
         if "text/html" not in content_type:
             raise SmokeFailure(f"{path} did not return an HTML page.")

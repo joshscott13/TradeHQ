@@ -2,13 +2,13 @@
 
 Status reviewed: 2026-10-01 (America/Chicago).
 
-M0 bootstrap and the MIT-licensed generic income planner are published on main. M1-06 merged a sourced LucidFlex funded $50k payout scenario under accepted ADR 0006. M1-09 merged a local canonical CSV preview with synthetic Tradovate/Rithmic examples. M1-10/M1-11 added Tradeify Select Flex and per-account selected-period costs; M1-12 added stateless Docker self-hosting. Journal contracts, native export adapters, user validation and pricing remain open.
+M0 bootstrap and the MIT-licensed generic income planner are published on main. M1-06 merged a sourced LucidFlex funded $50k payout scenario under accepted ADR 0006. M1-09 merged a local canonical CSV preview with synthetic Tradovate/Rithmic examples. M1-10/M1-11 added Tradeify Select Flex and per-account selected-period costs; M1-12 added stateless Docker self-hosting. M1-15 added the scoped Tradeify Select Daily planner. Journal contracts, native export adapters, user validation and pricing remain open.
 
 ## Next actions
 
 | Order | Action | Completion evidence |
 | --- | --- | --- |
-| 1 | Add scoped Tradeify Select Daily funded 50k planning | M1-15 implemented under ADR 0011; independent domain/browser evidence recorded, PR review and merge pending |
+| 1 | Simplify income planner language | M1-16 implemented under ADR 0012; independent meaning/UX review and browser evidence recorded, PR review and merge pending |
 | 2 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
 | 3 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
 | 4 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
@@ -31,4 +31,4 @@ M0 research/bootstrap → M1 decisions, samples and prototype validation → M2 
 
 ## Main reconciliation
 
-Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; M1-10 merged in PR #6 at `bb04134`; M1-11 merged in PR #7 at `8c41ca0`; M1-12 merged in PR #8 at `1d10f83`; M1-13 merged in PR #9 at `8baaa33`; M1-14 merged in PR #10 at `0d4ce75`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.
+Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; M1-10 merged in PR #6 at `bb04134`; M1-11 merged in PR #7 at `8c41ca0`; M1-12 merged in PR #8 at `1d10f83`; M1-13 merged in PR #9 at `8baaa33`; M1-14 merged in PR #10 at `0d4ce75`; M1-15 merged in PR #11 at `1673799`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.

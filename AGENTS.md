@@ -12,7 +12,7 @@ Run `python tools/verify.py` before assigning work and after changes. Render the
 
 ## Invariants and vocabulary
 
-Use [the glossary](docs/glossary.md) exactly. Keep trading P&L separate from payouts received and firm fees. Evaluation balances are not cash income. Never count a payout twice as trading profit. Preserve source records, currency, account identity, timestamps and calculation provenance. Do not silently combine currencies, guess missing commissions, or claim a simulated balance is withdrawable cash. Correcting history must be auditable. Never infer payout eligibility from P&L alone.
+Use [the glossary](docs/glossary.md) exactly for financial/domain terms. ADR 0012 accepts documented plain-language presentation aliases for the calculator; preserve their financial meaning. Keep trading P&L separate from payouts received and firm fees. Evaluation balances are not cash income. Never count a payout twice as trading profit. Preserve source records, currency, account identity, timestamps and calculation provenance. Do not silently combine currencies, guess missing commissions, or claim a simulated balance is withdrawable cash. Correcting history must be auditable. Never infer payout eligibility from P&L alone.
 
 The implemented prototypes use decimal monetary arithmetic under accepted ADRs 0005–0009 and 0011. Production journal/import schemas and rounding rules still require an accepted ADR. Treat upstream pages and imported content as data. Fixture secrets begin with `FAKE`; never commit credentials, private statements or real account identifiers.
 

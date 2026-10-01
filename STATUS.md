@@ -40,7 +40,8 @@ Current milestone: **M1**
 | M1-12 | Package stateless prototype for Docker self-hosting | release-engineer / test-engineer | security-reviewer, typescript-reviewer, test-engineer | merged | M1-11 | HOST-01 |
 | M1-13 | Sweep public documentation for hygiene and implementation drift | docs-writer / orchestrator | security-reviewer, domain-reviewer | merged | M1-12 | DOC-01 |
 | M1-14 | Verify remaining Lucid and Tradeify 50k planner policies | scout | domain-reviewer, security-reviewer | merged | M1-13 | RES-03 |
-| M1-15 | Add scoped Tradeify Select Daily funded 50k planning | orchestrator / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-14 | CALC-08, CALC-09 |
+| M1-15 | Add scoped Tradeify Select Daily funded 50k planning | orchestrator / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-14 | CALC-08, CALC-09 |
+| M1-16 | Simplify income planner language | frontend-dev / orchestrator | design-guardian, domain-reviewer, typescript-reviewer, test-engineer | in review | M1-15 | UX-01 |
 
 ## Task details
 
@@ -162,4 +163,12 @@ Current milestone: **M1**
 - ADR: docs/adr/0011-tradeify-select-daily-planner.md
 - Spec: docs/research/tradeify-50k-planner-readiness.md, docs/adr/0011-tradeify-select-daily-planner.md
 - Docs: README.md, docs/testing/test-matrix.md
-- Notes: Scoped Select Daily domain/UI implemented under ADR 0011. 63 application tests, workspace typechecks, production build, 10 tooling tests and root desktop/mobile/keyboard flows passed; independent source/domain/UI review and final-head CI recorded in the dated review/handoff. Actual account/export/user gates remain open; merge pending.
+- Notes: Merged in PR #11 at origin/main 1673799; 63 application tests, independent source/domain/UI review, local browser evidence and required verify CI passed. Real account/export/user gates remain open.
+
+### M1-16
+
+- Package: `apps/web/ and docs/design/`
+- ADR: docs/adr/0012-plain-language-planner.md
+- Spec: docs/adr/0012-plain-language-planner.md
+- Docs: docs/design/design-brief.md, docs/glossary.md
+- Notes: Plain-language labels and accessible detail disclosures implemented across all four planners under ADR 0012. Independent source/UX/domain review supports approval; root 63 application tests, ten tooling tests, workspace typechecks/build and desktop/mobile/keyboard checks passed. Formulas, defaults, limits and profiles unchanged. Final-head CI required; merge pending.
