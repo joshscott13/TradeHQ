@@ -42,3 +42,9 @@ Orchestrator execution assessed, not reviewer-executed: clean installation, 63 a
 Local-only, uncommitted evidence: `tradehq-copy-source-review.cjs`, `tradehq-copy-messages.mts`, `tradehq-plain-language-desktop.png`, `tradehq-plain-language-mobile.png` and `tradehq-plain-language-preview.png`. Public readers cannot reproduce the pixel review from these basenames alone.
 
 This approval does not establish participant comprehension, full accessibility conformance, real statement reconciliation, payout approval or received cash. No fresh policy research was performed. The orchestrator must record actual final-head CI before ready/merge claims; only the test engineer assigns validated states.
+
+## CI follow-up
+
+The first remote CI head `00113e5` failed its Docker HTTP smoke check because the root-page marker still expected the previous headline. The orchestrator reported that the container had already passed health and non-root UID 1001 checks. This failed run does not count as final integration approval.
+
+Independently reviewed the corrective `tools/docker/smoke.py` diff: exactly one expected root-page headline changes to `Turn your goal into a daily plan`. Import-page content/title, HTML content type, static asset content, healthy Compose startup, non-root UID, isolated loopback project and scoped cleanup checks remain intact. The smoke command's help invocation passes. No additional application recalculation was needed for this expectation update. Approve this narrow correction; an actual successful run on the corrected final head is still required and must be linked by the orchestrator.

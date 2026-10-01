@@ -38,3 +38,7 @@ None. Native disclosures, explicit message presentation and wording implement ac
 ## Questions for the receiver
 
 None.
+
+## CI smoke marker repair
+
+The Docker smoke run reached a healthy non-root UID 1001 before failing its old homepage-heading assertion. Updated only the current homepage marker in tools/docker/smoke.py to Turn your goal into a daily plan; title, imports, static-asset, health and non-root checks remain intact. Search of current tools, workflows and application files found no other stale automation marker. Python compile and all 10 tooling tests passed; actual container smoke awaits CI.
