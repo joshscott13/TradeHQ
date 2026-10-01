@@ -2,18 +2,17 @@
 
 Status reviewed: 2026-09-30 (America/Chicago).
 
-M0 bootstrap and the MIT-licensed generic income planner are published on main. M1-06 merged a sourced LucidFlex funded $50k payout scenario under accepted ADR 0006. Journal contracts, export adapters, user validation and pricing remain open.
+M0 bootstrap and the MIT-licensed generic income planner are published on main. M1-06 merged a sourced LucidFlex funded $50k payout scenario under accepted ADR 0006. M1-09 merged a local canonical CSV preview with synthetic Tradovate/Rithmic examples. Journal contracts, native export adapters, user validation and pricing remain open.
 
 ## Next actions
 
 | Order | Action | Completion evidence |
 | --- | --- | --- |
-| 1 | Build local CSV import preview with synthetic Tradovate/Rithmic examples | M1-09 accepted ADR 0007, exact sample totals, parser/security review and browser flows |
-| 2 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
-| 3 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
-| 4 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
-| 5 | Build M2 reconciled financial domain and import adapters | Idempotent import and per-account statement totals against actual exports |
-| 6 | Build M3 polished private MVP, then M4 private release | End-to-end journal/import flows, access isolation and user feedback |
+| 1 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
+| 2 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
+| 3 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
+| 4 | Build M2 reconciled financial domain and import adapters | Idempotent import and per-account statement totals against actual exports |
+| 5 | Build M3 polished private MVP, then M4 private release | End-to-end journal/import flows, access isolation and user feedback |
 
 ## Dependency map
 
@@ -31,4 +30,4 @@ M0 research/bootstrap → M1 decisions, samples and prototype validation → M2 
 
 ## Main reconciliation
 
-Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 runs on `feat/example-import-preview`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.
+Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.

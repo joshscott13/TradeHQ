@@ -12,3 +12,5 @@ Changes are recorded at merge time using Keep a Changelog conventions.
 - Sourced LucidFlex funded $50k payout planner with exact schedules, goal feasibility, account scaling and five-payout cutoff, merged in PR #2 at `0ad6c8d`.
 
 - Focused Lucid/Tradeify program/export research and planner usability preparation, merged in PR #3 at `9cacfef`.
+
+- Local canonical CSV import preview with synthetic Tradovate/Lucid and Rithmic/Tradeify examples, exact per-account P&L, duplicate handling and strict record validation, merged in PR #4 at `220b530`.
