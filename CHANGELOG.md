@@ -27,4 +27,6 @@ Changes are recorded at merge time using Keep a Changelog conventions.
 
 ### Changed
 
+- Plain-language calculator labels, shorter explanations and accessible rule disclosures across four planners, merged in PR #12 at `650b980`; financial calculations and policy meaning preserved.
+
 - Public documentation reconciled to implemented scope, contributor instructions corrected and workstation references removed from forward docs while preserving historical evidence, merged in PR #9 at `8baaa33`.

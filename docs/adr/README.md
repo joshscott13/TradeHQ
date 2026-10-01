@@ -14,6 +14,6 @@
 | [0010 Docker self-hosting](0010-docker-self-hosting.md) | accepted | Stateless production container merged in PR #8 at 1d10f83; actual local container smoke and independent review recorded |
 | [0011 Tradeify Select Daily](0011-tradeify-select-daily-planner.md) | accepted | Scoped fresh funded $50k planner merged in PR #11 at 1673799 |
 
-| [0012 Plain-language planner](0012-plain-language-planner.md) | accepted | Presentation aliases and disclosure hierarchy under M1-16 |
+| [0012 Plain-language planner](0012-plain-language-planner.md) | accepted | Presentation aliases and disclosure hierarchy merged in PR #12 at 650b980 |
 
 Use [the MADR template](0000-template.md). Record Josh's answers before setting accepted. An accepted design is not a shipped feature.
