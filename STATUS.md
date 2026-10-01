@@ -19,7 +19,7 @@ Current milestone: **M1**
 
 ## Blockers
 
-- Actual platform/export samples and exact policy purchase cohorts pending
+- Actual native export fields, reconciliation records and exact policy purchase cohorts pending; synthetic preview authorized
 - Actual target-user sessions pending
 
 ## Tasks
@@ -32,8 +32,9 @@ Current milestone: **M1**
 | M1-04 | Confirm Lucid/Tradeify 50k cohorts and obtain redacted real export samples | scout | security-reviewer, test-engineer | blocked | None | FUT-01 |
 | M1-05 | Validate calculator and journal workflow with target users | scout | design-guardian | blocked | None | DES-01 |
 | M1-06 | Model LucidFlex funded 50k payout cash and income targets | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-02, M1-03 | CALC-04, CALC-05 |
-| M1-07 | Prepare sourced program and export evidence inventory | scout | domain-reviewer, design-guardian, test-engineer | in review | None | RES-02 |
-| M1-08 | Prepare planner usability tasks and session evidence template | scout | domain-reviewer, design-guardian, test-engineer | in review | None | DES-02 |
+| M1-07 | Prepare sourced program and export evidence inventory | scout | domain-reviewer, design-guardian, test-engineer | merged | None | RES-02 |
+| M1-08 | Prepare planner usability tasks and session evidence template | scout | domain-reviewer, design-guardian, test-engineer | merged | None | DES-02 |
+| M1-09 | Build local import preview with synthetic Tradovate/Rithmic examples | import-dev / frontend-dev | security-reviewer, domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-07, M1-08 | IMP-01, IMP-02 |
 
 ## Task details
 
@@ -67,7 +68,7 @@ Current milestone: **M1**
 - ADR: None required
 - Spec: docs/PRD.md
 - Docs: docs/research/market-research.md
-- Notes: Josh selected Lucid and Tradeify 50k variants excluding direct funded, with Apex deferred. M1-07 documents official candidate policies/export workflows; actual platform, purchase cohorts and redacted records still required. No import support claimed.
+- Notes: Josh selected Tradovate and Rithmic as examples and has no statements. Synthetic examples authorized under ADR 0007; actual native schema/statement reconciliation remains pending. Lucid/Tradeify 50k variants excluding direct funded; Apex deferred.
 
 ### M1-05
 
@@ -91,7 +92,7 @@ Current milestone: **M1**
 - ADR: None required
 - Spec: docs/PLAN.md, docs/PRD.md
 - Docs: docs/research/program-export-inventory.md
-- Notes: Preparation artifacts complete on docs/m1-discovery-readiness. Independent review approved in docs/reviews/2026-09-30-discovery-readiness.md; primary-source facts and moderator references checked. Docs/status/whitespace and 10 tooling tests passed. Real export reconciliation and actual user sessions remain outstanding; not merged.
+- Notes: Merged in PR #3 at origin/main 9cacfef; independent preparation review and required verify CI passed. Actual records and sessions remain pending.
 
 ### M1-08
 
@@ -99,4 +100,12 @@ Current milestone: **M1**
 - ADR: None required
 - Spec: docs/PLAN.md, docs/PRD.md
 - Docs: docs/research/usability-test-kit.md
-- Notes: Preparation artifacts complete on docs/m1-discovery-readiness. Independent review approved in docs/reviews/2026-09-30-discovery-readiness.md; primary-source facts and moderator references checked. Docs/status/whitespace and 10 tooling tests passed. Real export reconciliation and actual user sessions remain outstanding; not merged.
+- Notes: Merged in PR #3 at origin/main 9cacfef; independent preparation review and required verify CI passed. Actual records and sessions remain pending.
+
+### M1-09
+
+- Package: `packages/imports/ and apps/web/`
+- ADR: docs/adr/0007-example-import-preview.md
+- Spec: docs/adr/0007-example-import-preview.md
+- Docs: README.md, docs/testing/test-matrix.md
+- Notes: Independent review approved (docs/reviews/2026-09-30-example-import.md). Clean npm ci, 29 application tests, typecheck/build, 10 tooling tests and desktop/mobile browser checks passed. Synthetic canonical CSV preview only; no native adapter or real-record validation claim. PR pending maintainer review.

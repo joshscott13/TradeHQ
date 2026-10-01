@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { NumberControl } from "../components/number-control";
 import { LucidFlexPlanner } from "../components/lucidflex-planner";
 import { calculateTargets, projectAnnualIncome, formatUsd } from "@tradehq/domain";
@@ -30,8 +31,9 @@ export default function CalculatorPage() {
       <a className="brand" href="#main"><span className="brand-mark">T<span>H</span></span>TradeHQ<span className="brand-dot">.</span></a>
       <div className="workspace-label">TRADING WORKSPACE</div>
       <div className="nav-current"><span className="nav-glyph" aria-hidden="true">▦</span>Income planner<span className="nav-current-dot" /></div>
+      <Link className="nav-link" href="/imports">Imports <span aria-hidden="true">↗</span></Link>
       <div className="future-label">ON THE ROADMAP</div>
-      <div className="future-nav"><span>Trade journal</span><span>Accounts</span><span>Cash ledger</span><span>Imports</span></div>
+      <div className="future-nav"><span>Trade journal</span><span>Accounts</span><span>Cash ledger</span></div>
       <div className="sidebar-bottom"><span className="prototype-dot" />Calculator prototype<p>Your next move,<br />with the numbers in view.</p><div className="sidebar-meta">USD · INCOME SCENARIOS</div></div>
     </aside>
     <div className="workspace">

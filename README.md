@@ -4,7 +4,7 @@ A planned trading journal and financial overview for traders operating across mu
 
 Know how you traded, what each account earned, and what actually reached your pocket. The design direction is a polished, modern fintech workspace for savvy traders aged 25–50.
 
-**Stage:** M1 income/scaling calculator prototype with generic planning and a sourced LucidFlex funded $50k scenario. Journal, imports, broader firm profiles and hosted service remain planned.
+**Stage:** M1 income/scaling calculator prototype with generic planning, a sourced LucidFlex funded $50k scenario and local TradeHQ-format CSV preview. Journal, native export adapters, broader firm profiles and hosted service remain planned.
 
 - [Product requirements](docs/PRD.md)
 - [Research](docs/research/market-research.md)
@@ -33,6 +33,12 @@ The LucidFlex planner models fresh funded accounts with constant, loss-free dail
 Generic cash mode remains a simplified full-distribution scenario; it does not apply firm-specific eligibility or payout timing. Reset restores the editable example assumptions, which are scenario inputs rather than trading records.
 
 Run `npm test`, `npm run typecheck` and `npm run build` for application checks. Repository checks and actual user/integration validation remain distinct.
+
+## Review example trades
+
+Choose **Imports** or open `/imports` to preview synthetic Lucid/Tradovate and Tradeify/Rithmic closed-trade summaries. Both examples use the same [TradeHQ CSV contract](docs/adr/0007-example-import-preview.md), not native vendor export headers. You can also choose a UTF-8 CSV file or edit the CSV text, then select **Preview records**. Inputs changing clears the prior result.
+
+Preview shows gross trading P&L, commissions, other trading fees, net trading P&L, per-account totals, unique records and exact repeats skipped. Invalid rows or conflicting duplicate identities prevent totals. Files are limited to 250 KiB and 2,000 records. Data stays in the browser tab; there is no upload, save or persistent ledger. Native Tradovate/Rithmic compatibility and reconciliation against real statements remain pending.
 
 ## License
 

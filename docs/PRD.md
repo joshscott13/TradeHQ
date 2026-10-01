@@ -1,12 +1,12 @@
 # TradeHQ product requirements
 
-Status: broader product scope proposed; generic USD calculator merged in PR #1 at `bc04e4b` under [ADR 0005](adr/0005-calculator-prototype.md), and LucidFlex funded $50k planner merged in PR #2 under [ADR 0006](adr/0006-lucidflex-planner.md). Production journal/import and broader program contracts remain proposed. Updated: 2026-09-30. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
+Status: broader product scope proposed; generic USD calculator merged in PR #1 at `bc04e4b` under [ADR 0005](adr/0005-calculator-prototype.md), and LucidFlex funded $50k planner merged in PR #2 under [ADR 0006](adr/0006-lucidflex-planner.md). [ADR 0007](adr/0007-example-import-preview.md) accepts a local synthetic CSV preview prototype. Production journal/import and broader program contracts remain proposed. Updated: 2026-09-30. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
 
 ## Product outcome
 
 Help a day trader review decisions across multiple prop-firm accounts and explain both trading performance and actual cash outcome. A displayed total must be traceable to its records, date basis, included accounts and currencies.
 
-The intended users are financially and technically savvy traders aged roughly 25–50. The age range and visual direction are supplied by the maintainer; user research remains planned. Initial discovery focuses on Lucid and Tradeify $50k programs, all variants except direct funded; Josh deferred Apex. Exact platforms and purchase cohorts remain unconfirmed. Only generic planning and LucidFlex funded $50k are implemented. The maintainer authorized choosing a modern stack; the orchestrator records the TypeScript/React/Next.js App Router/Tailwind and PostgreSQL direction in ADR 0001. Deployment, authentication and commercial boundaries remain open decisions.
+The intended users are financially and technically savvy traders aged roughly 25–50. The age range and visual direction are supplied by the maintainer; user research remains planned. Initial discovery focuses on Lucid and Tradeify $50k programs, all variants except direct funded; Josh deferred Apex. Josh selected Tradovate and Rithmic as example platforms without statements. Actual native schemas and purchase cohorts remain unconfirmed. Generic planning and LucidFlex funded $50k are implemented; M1-09 develops an explicitly synthetic canonical CSV preview, without native adapter or received-cash claims. The maintainer authorized choosing a modern stack; the orchestrator records the TypeScript/React/Next.js App Router/Tailwind and PostgreSQL direction in ADR 0001. Deployment, authentication and commercial boundaries remain open decisions.
 
 ## Core jobs
 
