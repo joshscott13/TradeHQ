@@ -36,7 +36,8 @@ Current milestone: **M1**
 | M1-08 | Prepare planner usability tasks and session evidence template | scout | domain-reviewer, design-guardian, test-engineer | merged | None | DES-02 |
 | M1-09 | Build local import preview with synthetic Tradovate/Rithmic examples | import-dev / frontend-dev | security-reviewer, domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-07, M1-08 | IMP-01, IMP-02 |
 | M1-10 | Add sourced Tradeify Select Flex funded 50k income planning | scout / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-06 | CALC-06, CALC-07 |
-| M1-11 | Model account costs per period across planners | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-10 | COST-01, COST-02 |
+| M1-11 | Model account costs per period across planners | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-10 | COST-01, COST-02 |
+| M1-12 | Package stateless prototype for Docker self-hosting | release-engineer / test-engineer | security-reviewer, typescript-reviewer, test-engineer | in review | M1-11 | HOST-01 |
 
 ## Task details
 
@@ -126,4 +127,12 @@ Current milestone: **M1**
 - ADR: docs/adr/0009-per-account-planning-costs.md
 - Spec: docs/adr/0009-per-account-planning-costs.md
 - Docs: README.md, docs/testing/test-matrix.md
-- Notes: Per-account selected-period costs implemented across all three planners. Independent review approved with 1895 reference checks; 50 application tests, 10 tooling tests, clean install/typecheck/build and desktop/mobile/keyboard browser checks passed. User $100 times 3 = $300 example verified; no automatic price/recurrence/conversion assumption.
+- Notes: Merged in PR #7 at origin/main 8c41ca0; independent review, 50 application tests, 10 tooling tests, typecheck/build and required verify CI passed. Per-account selected-period costs replace fixed portfolio inputs.
+
+### M1-12
+
+- Package: `Dockerfile, compose.yaml, apps/web config, tools/docker/ and CI`
+- ADR: docs/adr/0010-docker-self-hosting.md
+- Spec: docs/adr/0010-docker-self-hosting.md
+- Docs: README.md, docs/self-hosting.md, docs/testing/test-matrix.md
+- Notes: Standalone Docker/Compose implemented and independent source/local integration review approved. Real isolated Docker build healthy at UID1001; planner/imports and copied CSS served, own project cleaned. Clean npm install, 50 app tests, typecheck/build, 10 tooling tests and docs gates passed. Required verify CI repeats container smoke before merge. Stateless only.

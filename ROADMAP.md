@@ -1,6 +1,6 @@
 # TradeHQ roadmap
 
-Status reviewed: 2026-09-30 (America/Chicago).
+Status reviewed: 2026-10-01 (America/Chicago).
 
 M0 bootstrap and the MIT-licensed generic income planner are published on main. M1-06 merged a sourced LucidFlex funded $50k payout scenario under accepted ADR 0006. M1-09 merged a local canonical CSV preview with synthetic Tradovate/Rithmic examples. Journal contracts, native export adapters, user validation and pricing remain open.
 
@@ -8,7 +8,7 @@ M0 bootstrap and the MIT-licensed generic income planner are published on main. 
 
 | Order | Action | Completion evidence |
 | --- | --- | --- |
-| 1 | Make planner costs account-based | M1-11 accepted ADR 0009, exact $100×3=$300 totals, scaling/solver checks and browser flows |
+| 1 | Package prototype for Docker self-hosting | M1-12 accepted ADR 0010, real image health/non-root/routes smoke check and instructions |
 | 2 | Confirm Lucid/Tradeify $50k purchase cohorts, platforms and redacted exports | Export inventory with dates, schemas and user permission |
 | 3 | Validate the workflow with Josh and representative traders | Interview notes separating observations from hypotheses |
 | 4 | Complete M1 production contracts and sample discovery | Approved contracts and real-record reconciliation |
@@ -31,4 +31,4 @@ M0 research/bootstrap → M1 decisions, samples and prototype validation → M2 
 
 ## Main reconciliation
 
-Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; M1-10 merged in PR #6 at `bb04134`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.
+Bootstrap commit `f168dce` and generic calculator squash commit `bc04e4b` (PR #1) are on origin/main. M1-01 through M1-03 are merged. M1-06 merged in PR #2 at `0ad6c8d`. Discovery preparation M1-07/M1-08 merged in PR #3 at `9cacfef`. M1-09 merged in PR #4 at `220b530`; M1-10 merged in PR #6 at `bb04134`; M1-11 merged in PR #7 at `8c41ca0`; real native exports and user sessions remain outstanding. Main requires PRs, passing up-to-date verify checks, resolved conversations and squash-only merges, including for admins.

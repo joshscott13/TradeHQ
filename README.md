@@ -23,10 +23,10 @@ Use Node.js 24 and npm. From the repository root:
 
 ```text
 npm ci
-npm run dev
+npm run dev --workspace=@tradehq/web -- --port 3001
 ```
 
-Open http://localhost:3000. Choose **LucidFlex** or **Tradeify Select Flex** for their separately scoped funded $50k rule models, or **Generic planning** for unconstrained targets and annual net-P&L scenarios. All use USD, editable active trading days, precise decimal calculations and explicit equal-account assumptions. No account credentials or private statements are required.
+Open http://localhost:3001. Choose **LucidFlex** or **Tradeify Select Flex** for their separately scoped funded $50k rule models, or **Generic planning** for unconstrained targets and annual net-P&L scenarios. All use USD, editable active trading days, precise decimal calculations and explicit equal-account assumptions. No account credentials or private statements are required.
 
 The LucidFlex planner models fresh funded accounts with constant, loss-free daily net trading P&L. It shows the five-payout funded lifecycle, modeled trader request cash, retained trading profit, portfolio costs, an inverse daily-profit target and account scaling. Rules and official source links are visible in the app, verified on 2026-09-30 under [ADR 0006](docs/adr/0006-lucidflex-planner.md). Requests assume immediate approval and deduction; processing delays, losses, drawdown paths, permitted account-count limits, existing accounts and live-stage income are excluded. Annual selection stops at the fifth funded payout rather than repeating accounts. Modeled request cash is not actual cash received or confirmed eligibility.
 
@@ -45,6 +45,19 @@ Run `npm test`, `npm run typecheck` and `npm run build` for application checks. 
 Choose **Imports** or open `/imports` to preview synthetic Lucid/Tradovate and Tradeify/Rithmic closed-trade summaries. Both examples use the same [TradeHQ CSV contract](docs/adr/0007-example-import-preview.md), not native vendor export headers. You can also choose a UTF-8 CSV file or edit the CSV text, then select **Preview records**. Inputs changing clears the prior result.
 
 Preview shows gross trading P&L, commissions, other trading fees, net trading P&L, per-account totals, unique records and exact repeats skipped. Invalid rows or conflicting duplicate identities prevent totals. Files are limited to 250 KiB and 2,000 records. Data stays in the browser tab; there is no upload, save or persistent ledger. Native Tradovate/Rithmic compatibility and reconciliation against real statements remain pending.
+
+## Self-host with Docker
+
+With a running Docker Linux engine and Compose v2 or newer, run from the repository root:
+
+```text
+docker compose build --pull web
+docker compose up -d --wait web
+```
+
+Open [TradeHQ](http://127.0.0.1:3000). The production container binds to host loopback by default, runs without root privileges and uses an HTTP health check. Stop it with `docker compose down`. After updating your checkout, run the build command again followed by `docker compose up -d --wait --force-recreate web`.
+
+For PowerShell port configuration, use `$env:TRADEHQ_PORT = '8080'`; on Linux/macOS use `export TRADEHQ_PORT=8080`, then start the service. `TRADEHQ_BIND_ADDRESS` defaults to `127.0.0.1`; see the [self-hosting guide](docs/self-hosting.md) for explicit LAN binding, reverse proxy notes, troubleshooting and both shell examples. This serves the current stateless prototype; it adds no saved journal or uploaded CSV records.
 
 ## License
 
