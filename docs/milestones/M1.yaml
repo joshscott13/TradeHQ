@@ -343,7 +343,7 @@
         "security-reviewer",
         "domain-reviewer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [
         "M1-12"
       ],
@@ -362,7 +362,65 @@
         "docs/PRD.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Current product and contribution docs reconciled to merged main 1d10f83; workstation references replaced with local-only artifact names while historical results preserved. Independent review and documentation gates required; no application changes or history rewrite."
+      "notes": "Merged in PR #9 at origin/main 8baaa33; independent privacy/claims review, documentation gates, 50 application tests, 10 tooling tests and required CI passed. Forward docs cleanup; no history rewrite."
+    },
+    {
+      "id": "M1-14",
+      "title": "Verify remaining Lucid and Tradeify 50k planner policies",
+      "package": "docs/research/",
+      "owner": "scout",
+      "reviewers": [
+        "domain-reviewer",
+        "security-reviewer"
+      ],
+      "state": "in review",
+      "blocked_by": [
+        "M1-13"
+      ],
+      "adr": null,
+      "matrix": [
+        "RES-03"
+      ],
+      "spec": [
+        "docs/PLAN.md",
+        "docs/PRD.md",
+        "docs/research/program-export-inventory.md"
+      ],
+      "docs": [
+        "docs/research/lucid-50k-planner-readiness.md",
+        "docs/research/tradeify-50k-planner-readiness.md",
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Official-source research for remaining Lucid/Tradeify 50k variants, cohort/phase conflicts and synthetic worked examples recorded. Independent source/arithmetic review required; no new planner or actual-record validation. M1-15 queues a separate scoped Select Daily contract/implementation."
+    },
+    {
+      "id": "M1-15",
+      "title": "Add scoped Tradeify Select Daily funded 50k planning",
+      "package": "docs/adr/, packages/domain/ and apps/web/",
+      "owner": "orchestrator / domain-dev / frontend-dev",
+      "reviewers": [
+        "domain-reviewer",
+        "typescript-reviewer",
+        "design-guardian",
+        "test-engineer"
+      ],
+      "state": "open",
+      "blocked_by": [
+        "M1-14"
+      ],
+      "adr": null,
+      "matrix": [
+        "CALC-08",
+        "CALC-09"
+      ],
+      "spec": [
+        "docs/research/tradeify-50k-planner-readiness.md"
+      ],
+      "docs": [
+        "README.md",
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Planned follow-up only. Requires a new accepted ADR before implementation, explicitly selecting hypothetical purchase cohort, fresh-account scope, request/cycle semantics, model timing, per-account costs and conservative live-review boundary. Existing production contracts remain proposed."
     }
   ]
 }
