@@ -26,11 +26,12 @@ Current milestone: **M1**
 
 | ID | Task | Owner | Reviewers | State | Dependencies | Matrix |
 | --- | --- | --- | --- | --- | --- | --- |
-| M1-01 | Adopt MIT and accept generic calculator prototype scope | orchestrator | docs-writer | in review | None | BOOT-01 |
-| M1-02 | Implement precise generic income target calculations | domain-dev | domain-reviewer, typescript-reviewer | in review | None | CALC-02 |
-| M1-03 | Build polished responsive dynamic calculator | frontend-dev | design-guardian, typescript-reviewer, test-engineer | in review | None | CALC-03 |
+| M1-01 | Adopt MIT and accept generic calculator prototype scope | orchestrator | docs-writer | merged | None | BOOT-01 |
+| M1-02 | Implement precise generic income target calculations | domain-dev | domain-reviewer, typescript-reviewer | merged | None | CALC-02 |
+| M1-03 | Build polished responsive dynamic calculator | frontend-dev | design-guardian, typescript-reviewer, test-engineer | merged | None | CALC-03 |
 | M1-04 | Identify exact prop programs and obtain redacted real export samples | scout | security-reviewer, test-engineer | blocked | None | FUT-01 |
 | M1-05 | Validate calculator and journal workflow with target users | scout | design-guardian | open | None | DES-01 |
+| M1-06 | Model LucidFlex funded 50k payout cash and income targets | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-02, M1-03 | CALC-04, CALC-05 |
 
 ## Task details
 
@@ -40,7 +41,7 @@ Current milestone: **M1**
 - ADR: docs/adr/0005-calculator-prototype.md
 - Spec: docs/adr/0005-calculator-prototype.md
 - Docs: README.md, ROADMAP.md
-- Notes: Josh explicitly chose MIT and approved USD/trading-day/P&L/simplified-cash defaults. Branch feat/mit-and-calculator-foundation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge.
+- Notes: Merged in PR #1 at origin/main bc04e4b; independent review and verify CI passed.
 
 ### M1-02
 
@@ -48,7 +49,7 @@ Current milestone: **M1**
 - ADR: docs/adr/0005-calculator-prototype.md
 - Spec: docs/adr/0005-calculator-prototype.md, docs/research/accounting-examples.md
 - Docs: docs/testing/test-matrix.md
-- Notes: Accepted generic prototype only, co-reviewed with UI in one PR. No firm eligibility or import logic. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge.
+- Notes: Merged in PR #1 at origin/main bc04e4b; independent review and verify CI passed.
 
 ### M1-03
 
@@ -56,7 +57,7 @@ Current milestone: **M1**
 - ADR: docs/adr/0005-calculator-prototype.md
 - Spec: docs/adr/0005-calculator-prototype.md, docs/design/design-brief.md
 - Docs: README.md, docs/testing/test-matrix.md
-- Notes: Integrate domain API and independently review browser flows; not market/user validation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge.
+- Notes: Merged in PR #1 at origin/main bc04e4b; independent review and verify CI passed.
 
 ### M1-04
 
@@ -73,3 +74,11 @@ Current milestone: **M1**
 - Spec: docs/PLAN.md, docs/PRD.md
 - Docs: docs/research/market-research.md
 - Notes: Planned actual user sessions; current implementation/review does not satisfy user testing. No external invitations authorized.
+
+### M1-06
+
+- Package: `packages/domain/ and apps/web/`
+- ADR: docs/adr/0006-lucidflex-planner.md
+- Spec: docs/adr/0006-lucidflex-planner.md
+- Docs: README.md, docs/testing/test-matrix.md
+- Notes: Implemented on feat/lucidflex-income-model. Independent review approved: docs/reviews/2026-09-30-lucidflex.md. 21 domain tests, 10 tooling tests, typecheck, production build and root desktop/mobile browser flows passed. Reviewer independently checked official sources, screenshots and 129 exact oracle cases. Funded 50k scope only, no live income or actual approval claim. Ready for PR; not merged.

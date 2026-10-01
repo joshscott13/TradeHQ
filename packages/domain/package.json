@@ -7,7 +7,7 @@
   "exports": {".": "./src/index.ts"},
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test test/calculator.test.ts"
+    "test": "tsx --test test/calculator.test.ts test/lucidflex.test.ts"
   },
   "dependencies": {"decimal.js": "10.6.0"},
   "devDependencies": {"tsx": "4.23.15", "typescript": "7.0.2"}

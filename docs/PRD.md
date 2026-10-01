@@ -1,6 +1,6 @@
 # TradeHQ product requirements
 
-Status: proposed product scope; no application is implemented. Updated: 2026-09-30. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
+Status: broader product scope proposed; generic USD calculator merged in PR #1 at `bc04e4b` under [ADR 0005](adr/0005-calculator-prototype.md). The LucidFlex funded $50k planner is scoped by accepted [ADR 0006](adr/0006-lucidflex-planner.md); production journal/import and broader program contracts remain proposed. Updated: 2026-09-30. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
 
 ## Product outcome
 

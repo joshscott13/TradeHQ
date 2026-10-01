@@ -25,7 +25,7 @@
       "reviewers": [
         "docs-writer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": "docs/adr/0005-calculator-prototype.md",
       "matrix": [
@@ -38,7 +38,7 @@
         "README.md",
         "ROADMAP.md"
       ],
-      "notes": "Josh explicitly chose MIT and approved USD/trading-day/P&L/simplified-cash defaults. Branch feat/mit-and-calculator-foundation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge."
+      "notes": "Merged in PR #1 at origin/main bc04e4b; independent review and verify CI passed."
     },
     {
       "id": "M1-02",
@@ -49,7 +49,7 @@
         "domain-reviewer",
         "typescript-reviewer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": "docs/adr/0005-calculator-prototype.md",
       "matrix": [
@@ -62,7 +62,7 @@
       "docs": [
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Accepted generic prototype only, co-reviewed with UI in one PR. No firm eligibility or import logic. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge."
+      "notes": "Merged in PR #1 at origin/main bc04e4b; independent review and verify CI passed."
     },
     {
       "id": "M1-03",
@@ -74,7 +74,7 @@
         "typescript-reviewer",
         "test-engineer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [],
       "adr": "docs/adr/0005-calculator-prototype.md",
       "matrix": [
@@ -88,7 +88,7 @@
         "README.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Integrate domain API and independently review browser flows; not market/user validation. Implemented on feature branch; local domain tests (8), tooling tests (10), typecheck and production build passed. Independent review evidence in docs/reviews/2026-09-30-calculator.md; Independent review approved. PR https://github.com/joshscott13/TradeHQ/pull/1 is ready for review; GitHub verify CI must pass before merge."
+      "notes": "Merged in PR #1 at origin/main bc04e4b; independent review and verify CI passed."
     },
     {
       "id": "M1-04",
@@ -135,6 +135,36 @@
         "docs/research/market-research.md"
       ],
       "notes": "Planned actual user sessions; current implementation/review does not satisfy user testing. No external invitations authorized."
+    },
+    {
+      "id": "M1-06",
+      "title": "Model LucidFlex funded 50k payout cash and income targets",
+      "package": "packages/domain/ and apps/web/",
+      "owner": "domain-dev / frontend-dev",
+      "reviewers": [
+        "domain-reviewer",
+        "typescript-reviewer",
+        "design-guardian",
+        "test-engineer"
+      ],
+      "state": "in review",
+      "blocked_by": [
+        "M1-02",
+        "M1-03"
+      ],
+      "adr": "docs/adr/0006-lucidflex-planner.md",
+      "matrix": [
+        "CALC-04",
+        "CALC-05"
+      ],
+      "spec": [
+        "docs/adr/0006-lucidflex-planner.md"
+      ],
+      "docs": [
+        "README.md",
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Implemented on feat/lucidflex-income-model. Independent review approved: docs/reviews/2026-09-30-lucidflex.md. 21 domain tests, 10 tooling tests, typecheck, production build and root desktop/mobile browser flows passed. Reviewer independently checked official sources, screenshots and 129 exact oracle cases. Funded 50k scope only, no live income or actual approval claim. Ready for PR; not merged."
     }
   ]
 }
