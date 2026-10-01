@@ -1,8 +1,8 @@
 # TradeHQ design brief
 
-Status: broader design direction proposed. Updated: 2026-10-01 against `main` at `0d4ce75`. Generic, LucidFlex and hypothetical Tradeify Select Flex funded $50k planners, per-account costs and the synthetic local import preview are implemented with scoped lab reviews. Actual target-user validation, full accessibility conformance and persistent journal/import flows remain planned.
+Status: broader design direction proposed. Updated: 2026-10-01 against `main` at `1673799`. Generic, LucidFlex and hypothetical Tradeify Select Flex funded $50k planners, per-account costs and the synthetic local import preview are implemented with scoped lab reviews. Actual target-user validation, full accessibility conformance and persistent journal/import flows remain planned.
 
-M1-15 adds the fourth hypothetical Tradeify Select Daily $50k planner in the current implementation, with independent review recorded and merge pending, under [ADR 0011](../adr/0011-tradeify-select-daily-planner.md). The cohort and exact-buffer model convention are prominent. Its ledger table separates cycle profit before approval, gross deduction, trader request cash and retained profit after deduction. Daily eligibility never implies daily receipt; responsive controls, reset, invalid clearing and keyboard focus follow the existing experience.
+M1-15 merged the fourth hypothetical Tradeify Select Daily $50k planner in PR #11 under [ADR 0011](../adr/0011-tradeify-select-daily-planner.md). Current M1-16 presentation follows accepted [ADR 0012](../adr/0012-plain-language-planner.md), with review and merge pending. The cohort and exact-buffer model convention are prominent. Its ledger table separates cycle profit before approval, gross deduction, trader request cash and retained profit after deduction. Daily eligibility never implies daily receipt; responsive controls, reset, invalid clearing and keyboard focus follow the existing experience.
 
 ## Experience contract
 
@@ -64,3 +64,9 @@ Any sample dataset must have a persistent sample label. Do not fabricate success
 - A reviewed desktop and mobile core journey shows consistent spacing, typography, hierarchy and all required states.
 
 These are broader planned acceptance criteria. Existing source, desktop/mobile and keyboard reviews are scoped prototype evidence in the [test matrix](../testing/test-matrix.md), not full accessibility certification or completed target-user sessions.
+
+## Plain-language planner presentation
+
+Under accepted [ADR 0012](../adr/0012-plain-language-planner.md), primary labels use daily profit per account, number of accounts, total account costs and profit left in accounts. Profit helpers explicitly include commissions and trading fees. Estimated payouts identify the user share before account costs; the headline separately shows after-cost estimates. Full payout requests still leave the account, and tables distinguish the request from the user share. Generic trading-profit estimates remain separate from firm payout estimates.
+
+Keep estimate-only, new funded/no previous payouts, purchase-date limits, same daily profit/no losing days, selected-period costs and stopping points visible. Select Daily keeps the exact-$2,100 convention and daily eligibility-versus-payment distinction visible. Put detailed rules, dated source versions, assumptions and definitions in keyboard-operable disclosures. Error, limit and unavailable-state language follows the same plain style. This is a copy change, not target-user validation or a calculation change.

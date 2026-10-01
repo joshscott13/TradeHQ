@@ -23,6 +23,8 @@ Changes are recorded at merge time using Keep a Changelog conventions.
 
 - Remaining Lucid/Tradeify $50k policy-readiness research, cohort conflicts and synthetic reference calculations, merged in PR #10 at `0d4ce75`.
 
+- Hypothetical Tradeify Select Daily funded $50k planner with retained/cycle ledger, global daily targets and explicit buffer/approval conventions, merged in PR #11 at `1673799`.
+
 ### Changed
 
 - Public documentation reconciled to implemented scope, contributor instructions corrected and workstation references removed from forward docs while preserving historical evidence, merged in PR #9 at `8baaa33`.

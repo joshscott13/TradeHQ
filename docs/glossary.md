@@ -31,3 +31,20 @@ Status: proposed product vocabulary, 2026-09-30. Interface definitions require a
 | Program size | Firm's nominal account-size label, such as `$50k`; not user cash equity |
 
 Avoid the unqualified labels “total profit,” “balance,” “net profit” and “ROI.” Qualify scope, basis and currency. Do not call simulated buying power deposited cash or investment capital. Final strategy-statistics definitions, including win/loss classification for copied decisions, remain a financial-model ADR decision.
+
+## Calculator presentation aliases
+
+Accepted [ADR 0012](adr/0012-plain-language-planner.md) allows the following labels in calculator UI. Canonical meanings and domain types above are unchanged; these aliases do not redefine recorded financial events.
+
+| Canonical concept | Calculator wording | Required distinction |
+| --- | --- | --- |
+| Net trading P&L | Trading profit; daily profit per account | After commissions and trading fees; not a received payout |
+| Modeled active accounts | Number of accounts | Scenario count, not verified actual accounts or firm permission |
+| Retained profit | Profit left in accounts | Still inside the accounts; not paid out or personal equity |
+| Derived portfolio costs | Total account costs | Entered per-account cost times the modeled count for the selected period |
+| Trader request cash | Estimated payout: your share before account costs | Potential requested payouts under assumptions; not actual receipt |
+| Cash after costs in a scenario | Estimated payout after account costs | Scenario estimate, not canonical received cash outcome |
+| Gross payout request | Request before the firm’s share | Full amount deducted from account profit; distinct from user share |
+| Modeled pause for live consideration | Estimate stops before possible live review | Modeling boundary, not guaranteed transition or official payout cap |
+
+Detailed calculator disclosures retain approved policy assumptions and ledger definitions. They do not establish actual eligibility, source reconciliation or user validation.

@@ -404,7 +404,7 @@
         "design-guardian",
         "test-engineer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [
         "M1-14"
       ],
@@ -421,7 +421,35 @@
         "README.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Scoped Select Daily domain/UI implemented under ADR 0011. 63 application tests, workspace typechecks, production build, 10 tooling tests and root desktop/mobile/keyboard flows passed; independent source/domain/UI review and final-head CI recorded in the dated review/handoff. Actual account/export/user gates remain open; merge pending."
+      "notes": "Merged in PR #11 at origin/main 1673799; 63 application tests, independent source/domain/UI review, local browser evidence and required verify CI passed. Real account/export/user gates remain open."
+    },
+    {
+      "id": "M1-16",
+      "title": "Simplify income planner language",
+      "package": "apps/web/ and docs/design/",
+      "owner": "frontend-dev / orchestrator",
+      "reviewers": [
+        "design-guardian",
+        "domain-reviewer",
+        "typescript-reviewer",
+        "test-engineer"
+      ],
+      "state": "in review",
+      "blocked_by": [
+        "M1-15"
+      ],
+      "adr": "docs/adr/0012-plain-language-planner.md",
+      "matrix": [
+        "UX-01"
+      ],
+      "spec": [
+        "docs/adr/0012-plain-language-planner.md"
+      ],
+      "docs": [
+        "docs/design/design-brief.md",
+        "docs/glossary.md"
+      ],
+      "notes": "Plain-language labels and accessible detail disclosures implemented across all four planners under ADR 0012. Independent source/UX/domain review supports approval; root 63 application tests, ten tooling tests, workspace typechecks/build and desktop/mobile/keyboard checks passed. Formulas, defaults, limits and profiles unchanged. Final-head CI required; merge pending."
     }
   ]
 }
