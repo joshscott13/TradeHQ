@@ -19,8 +19,8 @@ Current milestone: **M1**
 
 ## Blockers
 
-- Exact account programs/cohorts and real export samples pending
-- Actual user validation remains planned
+- Actual platform/export samples and exact policy purchase cohorts pending
+- Actual target-user sessions pending
 
 ## Tasks
 
@@ -29,9 +29,11 @@ Current milestone: **M1**
 | M1-01 | Adopt MIT and accept generic calculator prototype scope | orchestrator | docs-writer | merged | None | BOOT-01 |
 | M1-02 | Implement precise generic income target calculations | domain-dev | domain-reviewer, typescript-reviewer | merged | None | CALC-02 |
 | M1-03 | Build polished responsive dynamic calculator | frontend-dev | design-guardian, typescript-reviewer, test-engineer | merged | None | CALC-03 |
-| M1-04 | Identify exact prop programs and obtain redacted real export samples | scout | security-reviewer, test-engineer | blocked | None | FUT-01 |
-| M1-05 | Validate calculator and journal workflow with target users | scout | design-guardian | open | None | DES-01 |
-| M1-06 | Model LucidFlex funded 50k payout cash and income targets | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | in review | M1-02, M1-03 | CALC-04, CALC-05 |
+| M1-04 | Confirm Lucid/Tradeify 50k cohorts and obtain redacted real export samples | scout | security-reviewer, test-engineer | blocked | None | FUT-01 |
+| M1-05 | Validate calculator and journal workflow with target users | scout | design-guardian | blocked | None | DES-01 |
+| M1-06 | Model LucidFlex funded 50k payout cash and income targets | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-02, M1-03 | CALC-04, CALC-05 |
+| M1-07 | Prepare sourced program and export evidence inventory | scout | domain-reviewer, design-guardian, test-engineer | in review | None | RES-02 |
+| M1-08 | Prepare planner usability tasks and session evidence template | scout | domain-reviewer, design-guardian, test-engineer | in review | None | DES-02 |
 
 ## Task details
 
@@ -65,7 +67,7 @@ Current milestone: **M1**
 - ADR: None required
 - Spec: docs/PRD.md
 - Docs: docs/research/market-research.md
-- Notes: Requires Josh exact Lucid/Apex/Tradeify program cohorts/platforms and real redacted files. Do not invent records or claim import support.
+- Notes: Josh selected Lucid and Tradeify 50k variants excluding direct funded, with Apex deferred. M1-07 documents official candidate policies/export workflows; actual platform, purchase cohorts and redacted records still required. No import support claimed.
 
 ### M1-05
 
@@ -73,7 +75,7 @@ Current milestone: **M1**
 - ADR: None required
 - Spec: docs/PLAN.md, docs/PRD.md
 - Docs: docs/research/market-research.md
-- Notes: Planned actual user sessions; current implementation/review does not satisfy user testing. No external invitations authorized.
+- Notes: Actual target-user sessions required. No participants or external invitations authorized. M1-08 prepares a runnable test kit; it does not replace user evidence.
 
 ### M1-06
 
@@ -81,4 +83,20 @@ Current milestone: **M1**
 - ADR: docs/adr/0006-lucidflex-planner.md
 - Spec: docs/adr/0006-lucidflex-planner.md
 - Docs: README.md, docs/testing/test-matrix.md
-- Notes: Implemented on feat/lucidflex-income-model. Independent review approved: docs/reviews/2026-09-30-lucidflex.md. 21 domain tests, 10 tooling tests, typecheck, production build and root desktop/mobile browser flows passed. Reviewer independently checked official sources, screenshots and 129 exact oracle cases. Funded 50k scope only, no live income or actual approval claim. Ready for PR; not merged.
+- Notes: Merged in PR #2 at origin/main 0ad6c8d. Independent review approved; 21 domain tests, 10 tooling tests, build/typecheck and required verify CI passed. Scoped fresh funded LucidFlex 50k planner only.
+
+### M1-07
+
+- Package: `docs/research/`
+- ADR: None required
+- Spec: docs/PLAN.md, docs/PRD.md
+- Docs: docs/research/program-export-inventory.md
+- Notes: Preparation artifacts complete on docs/m1-discovery-readiness. Independent review approved in docs/reviews/2026-09-30-discovery-readiness.md; primary-source facts and moderator references checked. Docs/status/whitespace and 10 tooling tests passed. Real export reconciliation and actual user sessions remain outstanding; not merged.
+
+### M1-08
+
+- Package: `docs/research/`
+- ADR: None required
+- Spec: docs/PLAN.md, docs/PRD.md
+- Docs: docs/research/usability-test-kit.md
+- Notes: Preparation artifacts complete on docs/m1-discovery-readiness. Independent review approved in docs/reviews/2026-09-30-discovery-readiness.md; primary-source facts and moderator references checked. Docs/status/whitespace and 10 tooling tests passed. Real export reconciliation and actual user sessions remain outstanding; not merged.

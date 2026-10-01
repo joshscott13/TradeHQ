@@ -1,12 +1,12 @@
 # TradeHQ product requirements
 
-Status: broader product scope proposed; generic USD calculator merged in PR #1 at `bc04e4b` under [ADR 0005](adr/0005-calculator-prototype.md). The LucidFlex funded $50k planner is scoped by accepted [ADR 0006](adr/0006-lucidflex-planner.md); production journal/import and broader program contracts remain proposed. Updated: 2026-09-30. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
+Status: broader product scope proposed; generic USD calculator merged in PR #1 at `bc04e4b` under [ADR 0005](adr/0005-calculator-prototype.md), and LucidFlex funded $50k planner merged in PR #2 under [ADR 0006](adr/0006-lucidflex-planner.md). Production journal/import and broader program contracts remain proposed. Updated: 2026-09-30. Read with [research](research/market-research.md), [plan](PLAN.md), [glossary](glossary.md) and [design brief](design/design-brief.md).
 
 ## Product outcome
 
 Help a day trader review decisions across multiple prop-firm accounts and explain both trading performance and actual cash outcome. A displayed total must be traceable to its records, date basis, included accounts and currencies.
 
-The intended users are financially and technically savvy traders aged roughly 25–50. The age range and visual direction are supplied by the maintainer; user research remains planned. Primary firms are Lucid, Apex and Tradeify. The maintainer authorized choosing a modern stack; the orchestrator records the TypeScript/React/Next.js App Router/Tailwind and PostgreSQL direction in ADR 0001. Deployment, authentication and commercial boundaries remain open decisions.
+The intended users are financially and technically savvy traders aged roughly 25–50. The age range and visual direction are supplied by the maintainer; user research remains planned. Initial discovery focuses on Lucid and Tradeify $50k programs, all variants except direct funded; Josh deferred Apex. Exact platforms and purchase cohorts remain unconfirmed. Only generic planning and LucidFlex funded $50k are implemented. The maintainer authorized choosing a modern stack; the orchestrator records the TypeScript/React/Next.js App Router/Tailwind and PostgreSQL direction in ADR 0001. Deployment, authentication and commercial boundaries remain open decisions.
 
 ## Core jobs
 
@@ -68,9 +68,11 @@ The interface should support keyboard use, zoom, meaningful chart descriptions a
 
 Planned discovery: 5–8 target-user interviews, including traders who copy across firms. Planned usability: 3 users completing account setup, import review, journaling and a monthly reconciliation. These are targets, not completed validation. Revisit scope if users consistently need direct sync to use the product at all. The user's real platform exports and statement totals are required before asserting import support.
 
+The implemented planner can be tested now using [the usability kit](research/usability-test-kit.md) and [session template](research/usability-session-template.md), prepared under M1-08. Three planned planner sessions assess goals, active days, scaling, cash interpretation and funded-phase limits. They do not establish completed journal/import journeys, actual cash receipt, market demand or full accessibility conformance; M1-05 remains open until real evidence is collected.
+
 ## Decisions before implementation
 
-Confirm exact Lucid/Apex/Tradeify programs and actual platforms; approve gross/net and cash definitions; confirm persistence/hosting details; determine personal-only vs multi-user product; approve matching, cost allocation, currency and calculator policies; decide what data can be retained for testing. Record accepted decisions in ADRs before creating production interfaces.
+Confirm exact Lucid/Tradeify $50k variants, cohorts and actual platforms within the selected scope; approve gross/net and cash definitions; confirm persistence/hosting details; determine personal-only vs multi-user product; approve matching, cost allocation, currency and calculator policies; decide what data can be retained for testing. Apex and direct-funded discovery are deferred. Record accepted decisions in ADRs before creating production interfaces.
 
 ## Scenario calculator requirements
 

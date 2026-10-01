@@ -27,4 +27,4 @@ User, prop firm, account lifecycle, instrument specification, execution, closed 
 
 ## Open questions
 
-Josh names Lucid, Apex and Tradeify as first firms. Which account products, platform export formats and asset classes should be first? Is this a personal tool first or a paid multi-user service? What reporting currency and trading-day boundary should be default? Resolve these before schema implementation. Security testing and actual statement reconciliation are milestone gates, not claims about this bootstrap.
+Josh prioritizes Lucid and Tradeify $50k variants excluding direct funded; Apex is deferred. Exact purchase cohorts and platform export formats still require confirmation. Is this a personal tool first or a paid multi-user service? What reporting currency and trading-day boundary should be default? Resolve these before schema implementation. Security testing and actual statement reconciliation are milestone gates, not claims about this bootstrap.

@@ -1,6 +1,6 @@
 # TradeHQ agent instructions
 
-TradeHQ is a planned trade journal and multi-prop-firm financial overview for technically and financially savvy traders aged 25–50. M1 implements a generic USD calculator prototype and scoped LucidFlex funded  scenario under ADR 0006. Journal, imports, actual firm eligibility approval, user accounts and hosted services remain planned. Do not invent passing application or integration tests.
+TradeHQ is a planned trade journal and multi-prop-firm financial overview for technically and financially savvy traders aged 25–50. M1 implements a generic USD calculator prototype and scoped LucidFlex funded $50k scenario under ADR 0006. Journal, imports, actual firm eligibility approval, user accounts and hosted services remain planned. Do not invent passing application or integration tests.
 
 ## Read order
 

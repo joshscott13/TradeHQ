@@ -49,17 +49,17 @@ The first prototype can run generic performance and fully declared simple cash s
 
 ## Open questions
 
-- Confirm preferred default: trading P&L goal or net cash side-income goal?
-- Which Lucid, Apex and Tradeify account products/purchase cohorts should seed presets?
-- Confirm USD and editable trading-day defaults; fees, retention and payout timing assumptions?
+- Broader history-aware and live-stage scenario behavior remains open; generic defaults are accepted in ADR 0005.
+- Lucid and Tradeify $50k variants excluding direct funded are prioritized; Apex is deferred. Exact purchase cohorts remain required.
+- Processing/calendar timing and loss-day assumptions for additional firm profiles remain open.
 
 ## Decisions on the open questions
 
-Josh approved calculator priorities; detailed mathematical/policy defaults remain proposed. Examples are specifications, not executable financial validation.
+Josh approved USD, editable active trading days, default net trading P&L and simplified cash defaults under accepted ADR 0005. ADR 0006 separately accepts the implemented fresh funded LucidFlex $50k model. This broader proposal remains unaccepted; it does not authorize full policy simulation or journal-derived forecasting.
 
 ## Amendments
 
-None.
+2026-09-30: Josh narrowed the initial program research to Lucid/Tradeify $50k variants excluding direct funded, with Apex deferred. Reconciled this broader proposal with the separately accepted and merged prototype decisions [0005](0005-calculator-prototype.md) and [0006](0006-lucidflex-planner.md).
 
 ## References
 
