@@ -1,6 +1,6 @@
 # TradeHQ plan
 
-Updated: 2026-09-30. Stage: repository bootstrap and discovery. All application milestones are planned. The [PRD](PRD.md) describes proposed scope, and [research](research/market-research.md) separates evidence from hypotheses.
+Updated: 2026-09-30. Stage: M1 prototype and discovery. The generic USD calculator merged in PR #1 at `bc04e4b` under [ADR 0005](adr/0005-calculator-prototype.md). The LucidFlex funded $50k extension is scoped by accepted [ADR 0006](adr/0006-lucidflex-planner.md). The remaining application milestones are planned. The [PRD](PRD.md) describes proposed broader scope, and [research](research/market-research.md) separates evidence from hypotheses.
 
 ## Product direction
 
@@ -20,7 +20,7 @@ Counts above are proposed validation targets, not evidence already collected. A 
 
 ## Dependency sequence
 
-M0 repository bootstrap → M1 maintainer decisions and real evidence → M2 reconciled domain and import behavior → M3 product flows and visual polish → M4 private release. Design exploration can run alongside M1; production interfaces wait for accepted ADRs. A rule engine, automatic connectors, commercial pricing and AI assistance require separate milestones after evidence justifies them.
+M0 repository bootstrap → M1 maintainer decisions and real evidence → M2 reconciled domain and import behavior → M3 product flows and visual polish → M4 private release. Design exploration can run alongside M1; production interfaces wait for accepted ADRs. The scoped LucidFlex scenario uses ADR 0006; a broader rule engine, automatic connectors, commercial pricing and AI assistance require separate milestones after evidence justifies them.
 
 ## Bootstrap assumptions
 

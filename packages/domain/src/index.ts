@@ -1,4 +1,5 @@
 import Decimal from 'decimal.js';
+export * from './lucidflex';
 
 // A private constructor prevents global Decimal settings from changing money math.
 // Repeating quotients retain 100 significant digits; rounding is display-only.

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { NumberControl } from "../components/number-control";
+import { LucidFlexPlanner } from "../components/lucidflex-planner";
 import { calculateTargets, projectAnnualIncome, formatUsd } from "@tradehq/domain";
 
 type Period = "week" | "month" | "year";
@@ -9,17 +11,10 @@ const defaults = { goalAmount: "5000", period: "month" as Period, activeDays: "2
 const periodNames = { week: "week", month: "month", year: "year" };
 const defaultDays = { week: "5", month: "20", year: "240" };
 
-function NumberControl({ label, value, onChange, min = 0, max, step = 1, prefix, suffix, error, hint, id }: { label: string; value: string; onChange: (value: string) => void; min?: number; max: number; step?: number; prefix?: string; suffix?: string; error?: string; hint?: string; id: string }) {
-  const n = Number(value);
-  return <div className="field">
-    <div className="field-top"><label htmlFor={id}>{label}</label><div className={`number-box ${error ? "invalid" : ""}`}><span>{prefix}</span><input id={id} type="number" inputMode="decimal" min={prefix === "$" && min < 0 ? -1000000000000 : min} max={prefix === "$" ? 1000000000000 : max} step={step} value={value} onChange={e => onChange(e.target.value)} aria-invalid={!!error} aria-describedby={error ? `${id}-error` : hint ? `${id}-hint` : undefined} /><span>{suffix}</span></div></div>
-    <input className="slider" type="range" aria-label={`${label} slider`} min={min} max={max} step={step} value={Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : min} onChange={e => onChange(e.target.value)} />
-    {error ? <p className="field-error" id={`${id}-error`}>{error}</p> : hint ? <p className="field-hint" id={`${id}-hint`}>{hint}</p> : null}
-  </div>;
-}
-
 export default function CalculatorPage() {
   const [inputs, setInputs] = useState(defaults);
+  const [planner, setPlanner] = useState<"generic" | "lucidflex">("lucidflex");
+  const [resetVersion, setResetVersion] = useState(0);
   const set = (key: keyof typeof defaults, value: string) => setInputs(old => ({ ...old, [key]: value }));
   const result = calculateTargets(inputs);
   const projection = projectAnnualIncome(inputs);
@@ -37,13 +32,14 @@ export default function CalculatorPage() {
       <div className="nav-current"><span className="nav-glyph" aria-hidden="true">▦</span>Income planner<span className="nav-current-dot" /></div>
       <div className="future-label">ON THE ROADMAP</div>
       <div className="future-nav"><span>Trade journal</span><span>Accounts</span><span>Cash ledger</span><span>Imports</span></div>
-      <div className="sidebar-bottom"><span className="prototype-dot" />Calculator prototype<p>Your next move,<br />with the numbers in view.</p><div className="sidebar-meta">USD · GENERIC SCENARIOS</div></div>
+      <div className="sidebar-bottom"><span className="prototype-dot" />Calculator prototype<p>Your next move,<br />with the numbers in view.</p><div className="sidebar-meta">USD · INCOME SCENARIOS</div></div>
     </aside>
     <div className="workspace">
       <header className="topbar"><span>Workspace <span className="breadcrumb-separator">/</span> <strong>Income planner</strong></span><span className="topbar-tag">SCENARIO MODE</span></header>
       <main id="main">
-        <div className="page-heading"><div><p className="eyebrow">PLAN WITH INTENTION</p><h1>Make your goal tangible<span>.</span></h1><p className="intro">An income goal. A daily target. A clearer picture of scale.</p></div><button className="reset-button" onClick={() => setInputs({ ...defaults })}>Reset assumptions <span aria-hidden="true">↺</span></button></div>
-        <div className="planner-layout">
+        <div className="page-heading"><div><p className="eyebrow">PLAN WITH INTENTION</p><h1>Make your goal tangible<span>.</span></h1><p className="intro">An income goal. A daily target. A clearer picture of scale.</p></div><button className="reset-button" onClick={() => { setInputs({ ...defaults }); setResetVersion(value => value + 1); }}>Reset assumptions <span aria-hidden="true">↺</span></button></div>
+        <div className="planner-mode-selector" role="group" aria-label="Planning model"><button aria-pressed={planner === "lucidflex"} onClick={() => setPlanner("lucidflex")}><span>LucidFlex</span><small>Funded $50k · sourced payout rules</small></button><button aria-pressed={planner === "generic"} onClick={() => setPlanner("generic")}><span>Generic planning</span><small>Unconstrained targets &amp; scaling</small></button></div>
+        {planner === "lucidflex" ? <LucidFlexPlanner key={resetVersion} /> : <><div className="planner-layout">
           <section className="assumptions-panel" aria-labelledby="assumptions-title">
             <div className="section-heading"><span className="section-number">01</span><h2 id="assumptions-title">Set your target</h2><span className="currency-tag">USD</span></div>
             <div className="goal-controls"><label htmlFor="goal">I want to make</label><div className={`goal-input ${errors.goalAmount ? "invalid" : ""}`}><span>$</span><input id="goal" type="number" inputMode="decimal" min="0" max="1000000000000" step="0.01" value={inputs.goalAmount} onChange={e => set("goalAmount", e.target.value)} aria-invalid={!!errors.goalAmount} aria-describedby={errors.goalAmount ? "goal-error" : undefined} /></div>{errors.goalAmount && <p className="field-error" id="goal-error">{errors.goalAmount}</p>}<input className="slider" type="range" aria-label="Goal amount slider" min="0" max="100000" step="100" value={Math.min(100000, Number(inputs.goalAmount) || 0)} onChange={e => set("goalAmount", e.target.value)} /><div className="segmented period-selector" role="group" aria-label="Goal period">{(["week", "month", "year"] as Period[]).map(period => <button key={period} aria-pressed={inputs.period === period} onClick={() => choosePeriod(period)}>Per {period}</button>)}</div></div>
@@ -61,7 +57,8 @@ export default function CalculatorPage() {
           </div>
         </div>
         <section className="annual-panel" aria-labelledby="annual-title"><div className="annual-intro"><div className="section-heading"><span className="section-number">03</span><h2 id="annual-title">The annual perspective</h2></div><p className="section-description">Explore a side-income scenario from an independent daily-performance assumption.</p><div className="annual-controls"><NumberControl id="average" label="Average daily net P&L / account" value={inputs.dailyPerAccountAverage} onChange={value => set("dailyPerAccountAverage", value)} min={-1000} max={1000} step={0.01} prefix="$" error={annualErrors.dailyPerAccountAverage} hint="Average across winning and losing active days; skipped days are excluded." /><NumberControl id="annual-days" label="Annual active trading days" value={inputs.annualTradingDays} onChange={value => set("annualTradingDays", value)} min={1} max={366} error={annualErrors.annualTradingDays} /></div></div><div className="annual-results">{projection.ok ? <><span className="annual-result-label">MODELED ANNUAL NET TRADING P&amp;L</span><div className={`annual-amount ${Number(projection.value.annualTradingPnl) < 0 ? "negative" : ""}`}>{formatUsd(projection.value.annualTradingPnl)}</div><p>{inputs.accountCount} accounts · {inputs.annualTradingDays} active days · {formatUsd(inputs.dailyPerAccountAverage)} average / account / day</p><div className="scaling-chart" role="img" aria-label="Annual trading P&L by account count. Exact values appear in the table below.">{chartRows.map(row => <div className="chart-row" key={row.accountCount}><span>{row.accountCount} {row.accountCount === 1 ? "account" : "accounts"}</span><div className="chart-track"><div className={`chart-bar ${Number(row.annualTradingPnl) < 0 ? "loss" : ""}`} style={{ width: `${Math.abs(Number(row.annualTradingPnl)) / chartMax * 100}%` }} /></div><strong>{formatUsd(row.annualTradingPnl)}</strong></div>)}</div><details><summary>View every account-count scenario</summary><div className="table-scroll"><table><caption>Annual scenario with the same average daily P&amp;L and active days</caption><thead><tr><th scope="col">Accounts</th><th scope="col">Annual net trading P&amp;L</th></tr></thead><tbody>{rows.map(row => <tr key={row.accountCount}><th scope="row">{row.accountCount}</th><td>{formatUsd(row.annualTradingPnl)}</td></tr>)}</tbody></table></div></details></> : <div className="annual-error" role="status"><h3>Annual scenario unavailable</h3><ul>{Object.values(annualErrors).map((error, i) => <li key={i}>{error}</li>)}</ul></div>}</div></section>
-        <footer className="calculation-footer"><div><strong>Clear assumptions. Clear numbers.</strong><p>USD only. Decimal arithmetic; amounts rounded to two decimals for display. Targets and modeled results are scenarios, not actual cash received. Annual results use your explicit annual days and daily average, independently of the selected goal period.</p></div><span className="footer-wordmark">TradeHQ<span>.</span></span></footer>
+        </>}
+        <footer className="calculation-footer"><div><strong>Clear assumptions. Clear numbers.</strong><p>USD only. Decimal arithmetic; amounts rounded to two decimals for display. Targets and modeled results are scenarios, not actual cash received. Generic annual results use explicit annual days and daily average. LucidFlex stops at its fifth funded payout; live-stage income is not modeled.</p></div><span className="footer-wordmark">TradeHQ<span>.</span></span></footer>
       </main>
     </div>
   </div>;

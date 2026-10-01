@@ -1,6 +1,6 @@
 # TradeHQ architecture
 
-This is a pre-code product architecture. Josh delegated modern stack selection on 2026-09-30; ADR 0001 selects TypeScript, React, Next.js App Router and Tailwind CSS. No application dependencies are installed yet.
+The generic income planner is implemented in TypeScript, React, Next.js App Router and Tailwind CSS under ADR 0001/0005. The domain package uses decimal arithmetic. ADR 0006 accepts a scoped LucidFlex funded-account payout scenario; persistence, journal and imports remain planned.
 
 ## Recommended shape
 
