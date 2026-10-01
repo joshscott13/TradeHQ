@@ -4,7 +4,7 @@ A planned trading journal and financial overview for traders operating across mu
 
 Know how you traded, what each account earned, and what actually reached your pocket. The design direction is a polished, modern fintech workspace for savvy traders aged 25–50.
 
-**Stage:** M1 income/scaling calculator prototype with generic planning, sourced LucidFlex and hypothetical Tradeify Select Flex funded $50k scenarios, and local TradeHQ-format CSV preview. Journal, native export adapters, broader firm profiles and hosted service remain planned.
+**Stage:** M1 income/scaling calculator prototype with generic planning, sourced LucidFlex and hypothetical Tradeify Select Flex funded $50k scenarios, per-account planning costs, local TradeHQ-format CSV preview and stateless Docker self-hosting. Journal, saved records, native export adapters, broader firm profiles and a hosted multi-user service remain planned. Current scope is documented against merged PR #8 at `1d10f83`.
 
 - [Product requirements](docs/PRD.md)
 - [Research](docs/research/market-research.md)

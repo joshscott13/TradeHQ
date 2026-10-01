@@ -2,18 +2,19 @@
 
 The generic income planner is implemented in TypeScript, React, Next.js App Router and Tailwind CSS under ADR 0001/0005. The domain package uses decimal arithmetic. ADR 0006 accepts a scoped LucidFlex funded-account payout scenario; ADR 0007 scopes a canonical synthetic CSV preview. ADR 0008 scopes a separate Tradeify Select Flex funded $50k scenario. ADR 0009 derives portfolio costs from per-account selected-period expenses. ADR 0010 adds stateless Docker self-hosting with a non-root Next.js standalone runtime. Persistence, journal and native export adapters remain planned.
 
-## Recommended shape
+## Implemented modules and planned extensions
 
 A TypeScript web application using React and Next.js App Router, Tailwind CSS for the visual system, separately testable financial/scenario calculations, import adapters and journal UI. PostgreSQL is the persistence direction for the eventual hosted service. Authentication provider, ORM and deployment vendor remain deferred; choose them through follow-up ADRs before installation. See [ADR 0001](docs/adr/0001-platform.md).
 
-Proposed modules:
+Current implementation and remaining scope:
 
-| Module | Responsibility | Boundary |
+| Module | Implemented responsibility | Planned extension / boundary |
 | --- | --- | --- |
-| apps/web | Overview, journal, accounts, cash ledger, import review | Displays explicit metric definitions and data freshness |
-| packages/domain | Account lifecycle, trade grouping, financial and scenario calculations | No UI, broker credentials or binary floating-point money |
-| packages/imports | Parse and normalize approved export formats | Preserve provenance; preview before committing; idempotent reimports |
-| persistence service | User-scoped records, attachments, audit history | Authorize every object operation; transactional import commits |
+| apps/web | Generic/LucidFlex/Tradeify planners and browser-only synthetic CSV preview | Journal, account records, overview and cash ledger remain planned; no sign-in or saved records |
+| packages/domain | Precise generic and scoped firm scenarios, inverse targets and per-account costs | Ledger, account lifecycle and copied-decision calculations await production contracts; no UI or broker credentials |
+| packages/imports | Canonical TradeHQ CSV parsing, diagnostics, scoped duplicate handling and preview totals | Native adapters and persistent import commits require real exports and accepted contracts |
+| Docker packaging | Stateless standalone Next.js server under ADR 0010 | No database, volumes, TLS provisioning or public deployment |
+| persistence service | Not implemented | User-scoped records, attachments, transactional commits, audit history and authorization remain planned |
 
 ## Financial boundaries
 
@@ -27,4 +28,4 @@ User, prop firm, account lifecycle, instrument specification, execution, closed 
 
 ## Open questions
 
-Josh prioritizes Lucid and Tradeify $50k variants excluding direct funded; Apex is deferred. Josh selected Tradovate and Rithmic as example platforms without statements. Exact purchase cohorts and native export fields still require verification. Is this a personal tool first or a paid multi-user service? What reporting currency and trading-day boundary should be default? Resolve these before schema implementation. Security testing and actual statement reconciliation are milestone gates, not claims about this bootstrap.
+Josh prioritizes Lucid and Tradeify $50k variants excluding direct funded; Apex is deferred. Josh selected Tradovate and Rithmic as example platforms without statements. The maintainer's purchase cohorts and native export fields still require verification; hypothetical scoped planner cohorts do not resolve them. Is this a personal tool first or a paid multi-user service? What reporting currency and trading-day boundary should the future ledger use? Current calculators use USD. Resolve the remaining ledger questions before schema implementation. Scoped parser and container checks do not establish production privacy, full financial correctness or actual statement reconciliation.

@@ -8,7 +8,7 @@ Deciders: Josh delegated stack selection; Codex architect selected the core stac
 
 ## Context
 
-Josh requested a polished modern fintech app and asked Codex to choose a modern stack. Initial firms are Lucid, Apex and Tradeify. Bootstrap remains documentation only; no application dependencies are installed.
+At this decision's initial bootstrap stage, Josh requested a polished modern fintech app and asked Codex to choose a modern stack. Initial firms were Lucid, Apex and Tradeify, with documentation-only scope and no installed application dependencies at that time. Current implementation is summarized in the [ADR index](README.md).
 
 ## Decision drivers
 
@@ -28,7 +28,7 @@ Authentication vendor, ORM, chart library, decimal library, hosting and billing 
 
 ## Consequences
 
-The app can support polished browser interactions and clear server/client boundaries. Hosted multi-user features require explicit object authorization, tested isolation and restoration. This decision does not approve the financial contract or firm-rule implementation. No actual app exists yet.
+The app can support polished browser interactions and clear server/client boundaries. Hosted multi-user features require explicit object authorization, tested isolation and restoration. This decision does not approve the financial contract or firm-rule implementation. No actual app existed at initial bootstrap; later implementation is scoped through separate accepted ADRs.
 
 ## Open questions
 
@@ -43,6 +43,8 @@ Josh: use whichever stack is most modern; firms Lucid, Apex, Tradeify; prioritiz
 ## Amendments
 
 2026-09-30: Replaced initial proposed TypeScript recommendation with delegated core stack selection after Josh's answer.
+
+2026-10-01: Documentation reconciliation against main `1d10f83`. The app stack and decimal arithmetic are implemented through ADR 0005 and subsequent scoped planner/import ADRs. MIT licensing is implemented. ADR 0010 accepts stateless Docker packaging; authentication, database access and hosted-service/business choices remain deferred. The bootstrap context above describes its historical decision stage.
 
 ## References
 

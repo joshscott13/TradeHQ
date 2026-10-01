@@ -1,6 +1,6 @@
 # TradeHQ app and market research
 
-Research date: 2026-09-30. Stage: desk research for a planned product. No interviews, authenticated competitor walkthroughs, market-size study, willingness-to-pay test, or production connector tests have been completed.
+Research date: 2026-09-30. Stage: desk research for the broader planned journal. Generic/scoped firm calculators, a synthetic CSV preview and Docker packaging are now implemented; the [plan](../PLAN.md) and [ADR index](../adr/README.md) track that scope. This documentation update does not refresh the research date or firm policies. No interviews, authenticated competitor walkthroughs, market-size study, willingness-to-pay test, or production connector tests have been completed.
 
 ## Decision this research supports
 

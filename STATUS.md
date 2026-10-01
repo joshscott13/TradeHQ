@@ -37,7 +37,8 @@ Current milestone: **M1**
 | M1-09 | Build local import preview with synthetic Tradovate/Rithmic examples | import-dev / frontend-dev | security-reviewer, domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-07, M1-08 | IMP-01, IMP-02 |
 | M1-10 | Add sourced Tradeify Select Flex funded 50k income planning | scout / domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-06 | CALC-06, CALC-07 |
 | M1-11 | Model account costs per period across planners | domain-dev / frontend-dev | domain-reviewer, typescript-reviewer, design-guardian, test-engineer | merged | M1-10 | COST-01, COST-02 |
-| M1-12 | Package stateless prototype for Docker self-hosting | release-engineer / test-engineer | security-reviewer, typescript-reviewer, test-engineer | in review | M1-11 | HOST-01 |
+| M1-12 | Package stateless prototype for Docker self-hosting | release-engineer / test-engineer | security-reviewer, typescript-reviewer, test-engineer | merged | M1-11 | HOST-01 |
+| M1-13 | Sweep public documentation for hygiene and implementation drift | docs-writer / orchestrator | security-reviewer, domain-reviewer | in review | M1-12 | DOC-01 |
 
 ## Task details
 
@@ -135,4 +136,12 @@ Current milestone: **M1**
 - ADR: docs/adr/0010-docker-self-hosting.md
 - Spec: docs/adr/0010-docker-self-hosting.md
 - Docs: README.md, docs/self-hosting.md, docs/testing/test-matrix.md
-- Notes: Standalone Docker/Compose implemented and independent source/local integration review approved. Real isolated Docker build healthy at UID1001; planner/imports and copied CSS served, own project cleaned. Clean npm install, 50 app tests, typecheck/build, 10 tooling tests and docs gates passed. Required verify CI repeats container smoke before merge. Stateless only.
+- Notes: Merged in PR #8 at origin/main 1d10f83; independent review, real local and CI Docker smoke, 50 application tests and repository checks passed. Stateless prototype only.
+
+### M1-13
+
+- Package: `Public Markdown documentation`
+- ADR: None required
+- Spec: docs/PLAN.md, docs/PRD.md, AGENTS.md
+- Docs: README.md, docs/PLAN.md, docs/PRD.md, docs/testing/test-matrix.md
+- Notes: Current product and contribution docs reconciled to merged main 1d10f83; workstation references replaced with local-only artifact names while historical results preserved. Independent review and documentation gates required; no application changes or history rewrite.

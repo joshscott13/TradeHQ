@@ -1,5 +1,7 @@
 # Calculator prototype independent review
 
+Historical artifact note: named temporary scripts and screenshots were local-only, uncommitted review aids and are not publicly reproducible from this checkout. Original dates, test counts, actor attribution and dispositions are preserved; artifact basenames below are identifiers, not repository links.
+
 Date: 2026-09-30. Scope: accepted ADR 0005 generic USD prototype and MIT licensing. Reviewer: independent Codex domain, security and design reviewer. This report does not validate firm eligibility, demand, real statements or production readiness.
 
 ## Disposition
@@ -17,7 +19,7 @@ Approve the scoped generic calculator prototype after correction and verificatio
 - MIT notice contains the standard permission, attribution and warranty clauses with copyright 2026 Josh Scott; root package manifest declares MIT.
 - Source inspection found no external requests, scenario persistence, authentication, raw HTML insertion or credential strings in the application/domain files. Inputs remain in component memory. There is no tenant/storage security boundary to certify yet.
 
-Screenshots and the temporary browser script reside outside the repository at `C:/Users/joshs/AppData/Local/Temp/tradehq-review-runtime/`. They are session review artifacts, not committed user-validation evidence. Root independently performs production build/type checks; those are not claimed as reviewer-run commands here.
+Screenshots and the temporary browser script were external local-only review artifacts; their basenames were not recorded in this report. They are session review artifacts, not committed user-validation evidence. Root independently performs production build/type checks; those are not claimed as reviewer-run commands here.
 
 ## Finding
 

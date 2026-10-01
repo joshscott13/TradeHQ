@@ -1,5 +1,7 @@
 # 2026-09-30: Tradeify Select Flex independent review
 
+Historical artifact note: named temporary scripts and screenshots were local-only, uncommitted review aids and are not publicly reproducible from this checkout. Original dates, test counts, actor attribution and dispositions are preserved; artifact basenames below are identifiers, not repository links.
+
 Decision: **approve** the scoped M1-10 hypothetical planner under accepted [ADR 0008](../adr/0008-tradeify-select-flex-planner.md). This approves the implementation and its declared model, not actual account eligibility, received income or real-statement validation.
 
 ## Scope and primary evidence
@@ -41,7 +43,7 @@ Reviewed all 13 new domain tests. Root reports clean install, 42 total domain/im
 
 Root executed browser interactions; reviewer inspected source and supplied desktop/mobile screenshots independently. Root observed default $3,968.75 after costs, $186.67 solved target and keyboard Enter apply yielding $5,000.06; the manually reconciled $200 scenarios; account-six validation clearing results; four-day no-request/infeasible goal; $23,000 exceeding the selected five-account model's $22,500 ceiling; annual pause; reset; generic and Lucid preservation (Lucid $8,103.13). Mobile viewport 390×844 reported document/scroll widths 375 with no outer overflow. Wide tables scroll within their containers. Labels, keyboard controls and visible established focus styling were source-reviewed; no full assistive-technology or WCAG certification is claimed.
 
-Screenshots inspected: `tradehq-tradeify-planner.png` and `tradehq-tradeify-mobile.png` in `C:/Users/joshs/.codex/visualizations/2026/10/01/01a0f4e1-6db8-7243-bb61-5631aab44480/`. Cohort notice, cash-versus-retained distinction, review pause, dated primary links and count-specific scaling are visible. This reviewer did not execute browser interactions.
+Screenshots inspected: `tradehq-tradeify-planner.png` and `tradehq-tradeify-mobile.png`. Cohort notice, cash-versus-retained distinction, review pause, dated primary links and count-specific scaling are visible. This reviewer did not execute browser interactions.
 
 ## Remaining gates
 

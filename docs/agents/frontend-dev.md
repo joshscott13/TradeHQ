@@ -4,7 +4,7 @@
 
 Codex specialist role for TradeHQ. Required capabilities: repository reading and editing, relevant domain expertise, verification tools; scout additionally needs primary-source browsing. The orchestrator uses collaboration tools. This profile does not register an agent type.
 
-Owned paths: future apps/web/, docs/design/. A task assignment narrows this ownership.
+Owned paths: apps/web/, docs/design/. A task assignment narrows this ownership.
 
 ## Core mission
 

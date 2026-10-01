@@ -316,7 +316,7 @@
         "typescript-reviewer",
         "test-engineer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [
         "M1-11"
       ],
@@ -332,7 +332,37 @@
         "docs/self-hosting.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Standalone Docker/Compose implemented and independent source/local integration review approved. Real isolated Docker build healthy at UID1001; planner/imports and copied CSS served, own project cleaned. Clean npm install, 50 app tests, typecheck/build, 10 tooling tests and docs gates passed. Required verify CI repeats container smoke before merge. Stateless only."
+      "notes": "Merged in PR #8 at origin/main 1d10f83; independent review, real local and CI Docker smoke, 50 application tests and repository checks passed. Stateless prototype only."
+    },
+    {
+      "id": "M1-13",
+      "title": "Sweep public documentation for hygiene and implementation drift",
+      "package": "Public Markdown documentation",
+      "owner": "docs-writer / orchestrator",
+      "reviewers": [
+        "security-reviewer",
+        "domain-reviewer"
+      ],
+      "state": "in review",
+      "blocked_by": [
+        "M1-12"
+      ],
+      "adr": null,
+      "matrix": [
+        "DOC-01"
+      ],
+      "spec": [
+        "docs/PLAN.md",
+        "docs/PRD.md",
+        "AGENTS.md"
+      ],
+      "docs": [
+        "README.md",
+        "docs/PLAN.md",
+        "docs/PRD.md",
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Current product and contribution docs reconciled to merged main 1d10f83; workstation references replaced with local-only artifact names while historical results preserved. Independent review and documentation gates required; no application changes or history rewrite."
     }
   ]
 }

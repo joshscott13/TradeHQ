@@ -6,6 +6,8 @@ Task: M1-07, preparing the evidence required by M1-04. Access date: 2026-09-30 (
 
 Josh selected Lucid and Tradeify `$50k` evaluation-to-funded variants, excluding direct-funded products; Apex is deferred. Josh subsequently selected Tradovate and Rithmic as example platforms and says statements are unavailable. [ADR 0007](../adr/0007-example-import-preview.md) accepts synthetic TradeHQ-format CSV examples and a local preview; this does not establish native export compatibility. LucidFlex funded `$50k` already has the scoped prototype in [ADR 0006](../adr/0006-lucidflex-planner.md). Selecting families and example platforms does not identify the purchase/reset cohort, checkout options, report-producing application/version, current phase or existing payout history. Those remain unknown. No real export or independent statement has been supplied.
 
+Tradeify Select Flex subsequently gained a separately scoped hypothetical prototype under [ADR 0008](../adr/0008-tradeify-select-flex-planner.md); that does not identify the maintainer's actual cohort or validate a native export. This inventory retains its 2026-09-30 source access date.
+
 **Fact** means an observation from the linked official page on the access date. **Inference** means a proposed discovery action. None of the following candidate rows selects a policy for an actual account or approves implementation under proposed ADR 0002/0003.
 
 ## Candidate program inventory

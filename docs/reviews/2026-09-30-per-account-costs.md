@@ -1,5 +1,7 @@
 # 2026-09-30: Per-account planning costs independent review
 
+Historical artifact note: named temporary scripts and screenshots were local-only, uncommitted review aids and are not publicly reproducible from this checkout. Original dates, test counts, actor attribution and dispositions are preserved; artifact basenames below are identifiers, not repository links.
+
 Decision: **approve** M1-11 under accepted [ADR 0009](../adr/0009-per-account-planning-costs.md), replacing entered portfolio costs with selected-period account costs across all three planners. This is hypothetical expense modeling, not actual invoices or a firm-price verification. No remaining blocking findings.
 
 ## Contract and findings
@@ -35,6 +37,6 @@ Domain worker reports 42 domain tests and typecheck passing; eight new tests cov
 
 Root executed all browser interactions; reviewer independently assessed source and three supplied screenshots. Root observed Lucid $100 × 3 = $300; $100.125 × 3 displays $300.38 while preserving the raw input in the equation; zero costs; negative costs clearing results; year label retaining entered $100/$300 total without conversion; keyboard Enter goal apply at $158.63 yielding $5,000.21. Tradeify's three-account $100 costs gave $300 total, with each scaling row showing $100/$200/$300/$400/$500 and goal apply yielding $5,000.29. Generic weekly $1,800 goal, two accounts, $100 each and 80% share gave $200 costs, $250/account/day and $475/day for one account. Negative input hid results; reset restored $50 and $250 defaults.
 
-Screenshots inspected: `tradehq-account-costs.png` (full desktop), `tradehq-account-costs-detail.png` (focused user case) and `tradehq-account-costs-mobile.png` in `C:/Users/joshs/.codex/visualizations/2026/10/01/01a0f4e1-6db8-7243-bb61-5631aab44480/`. The account-cost label, multiplication, separate derived total, row costs and selected-period note are visible. Focus is visible on the cost input. Root's mobile 390×844 viewport reported document/scroll widths 375, with tables scrolling inside containers and no outer overflow. These interactions were not reviewer-executed; no full accessibility certification is claimed.
+Screenshots inspected: `tradehq-account-costs.png` (full desktop), `tradehq-account-costs-detail.png` (focused user case) and `tradehq-account-costs-mobile.png`. The account-cost label, multiplication, separate derived total, row costs and selected-period note are visible. Focus is visible on the cost input. Root's mobile 390×844 viewport reported document/scroll widths 375, with tables scrolling inside containers and no outer overflow. These interactions were not reviewer-executed; no full accessibility certification is claimed.
 
 Actual fees, statement reconciliation, user sessions, account eligibility, payout receipt and full accessibility validation remain pending. This review does not mark M1-11 validated against real records or complete M1.

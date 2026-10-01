@@ -1,6 +1,6 @@
 # TradeHQ design brief
 
-Status: broader design direction proposed. Updated: 2026-09-30. Generic and LucidFlex funded $50k planners are implemented and lab-reviewed; actual target-user validation and broader journal/import flows remain planned.
+Status: broader design direction proposed. Updated: 2026-10-01 against `main` at `1d10f83`. Generic, LucidFlex and hypothetical Tradeify Select Flex funded $50k planners, per-account costs and the synthetic local import preview are implemented with scoped lab reviews. Actual target-user validation, full accessibility conformance and persistent journal/import flows remain planned.
 
 ## Experience contract
 
@@ -18,11 +18,11 @@ The distinguishing interaction is the bridge between trading results and cash re
 | `#22c55e` | Positive result accent, paired with sign and label | Use darker/lightened contextual variants for text; never use color alone |
 | `#64748b` | Muted labels and neutral comparisons | Test against actual surfaces, especially dark mode and disabled states |
 
-Add a separate loss/warning/error semantic family rather than turning blue into a loss signal. Derive accessible variants; supplied colors are inspiration, not immutable foreground tokens. Prefer one primary surface mode first; the choice of dark-first versus light-first is pending prototype review. Do not spend time implementing two themes before the core flows work.
+Add a separate loss/warning/error semantic family rather than turning blue into a loss signal. Derive accessible variants; supplied colors are inspiration, not immutable foreground tokens. The implemented prototype uses a dark navigation shell with light content surfaces and has scoped desktop/mobile reviews. Additional themes remain deferred; do not implement two themes before the broader core flows work.
 
 ## Layout and hierarchy
 
-Desktop: stable narrow navigation, compact workspace header, account/date/currency scope above metrics. Main navigation: Overview, Journal, Accounts, Cash ledger, Calculator, Imports. Settings belongs in the utility area. A predictable layout is more useful than movable dashboard tiles in MVP.
+Current prototype navigation exposes planners and Imports. The following overview/journal/cash layouts describe the proposed broader MVP, not current screens. Desktop: stable narrow navigation, compact workspace header, account/date/currency scope above metrics. Proposed main navigation: Overview, Journal, Accounts, Cash ledger, Calculator, Imports. Settings belongs in the utility area. A predictable layout is more useful than movable dashboard tiles in MVP.
 
 Overview leads with two clearly distinct figures: Net trading P&L and Cash outcome. Show currency, period and data completeness beside them. A restrained trend chart follows, then accounts with status and net results, then recent decisions requiring review. Avoid a wall of equal-sized KPI cards. Cash outcome opens its gross-to-net and fee ledger; trading results open included account trades.
 
@@ -34,7 +34,7 @@ Mobile: single-column overview, visible filter scope, cards preserving numeric h
 
 ## Dynamic calculator experience
 
-Make the calculator feel like an instrument the user can work with: goal and week/month/year selector beside an editable active-day calendar, account-count stepper and program selectors for Lucid, Apex and Tradeify. Show one `$50k` program account versus the selected number of accounts side by side, with the same assumptions visible. Account labels must not imply personal cash equity.
+Current planners offer generic, LucidFlex and hypothetical Tradeify Select Flex scenarios, editable active-day counts, account counts and week/month/year periods. They do not provide an active-day calendar, losing-day distribution or broader firm selector. Those remain proposed extensions, with Apex deferred. Make the broader calculator feel like an instrument the user can work with: precise inputs, clearly scoped program choices and one `$50k` program account versus scaling with the same assumptions visible. Account labels must not imply personal cash equity.
 
 Update per-account daily target, aggregate daily target and modeled period result as inputs change. Give every slider a precise numeric input and keyboard controls. Keep currency and goal basis visible. Show fees and splits as a compact cash bridge; caps and qualifying-day restrictions have a separate effect, not an invisible haircut. Distinguish a simple trading-result scenario from a rule-constrained cash scenario. Unknown policy inputs show unresolved output, not invented precise cash.
 
@@ -61,4 +61,4 @@ Any sample dataset must have a persistent sample label. Do not fabricate success
 - Import review is understandable, duplicates require appropriate review and corrections have an undo/trace path.
 - A reviewed desktop and mobile core journey shows consistent spacing, typography, hierarchy and all required states.
 
-These are planned acceptance criteria, not a claim that an accessibility or usability audit has passed.
+These are broader planned acceptance criteria. Existing source, desktop/mobile and keyboard reviews are scoped prototype evidence in the [test matrix](../testing/test-matrix.md), not full accessibility certification or completed target-user sessions.

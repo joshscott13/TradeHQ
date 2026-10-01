@@ -61,6 +61,8 @@ Josh approved USD, editable active trading days, default net trading P&L and sim
 
 2026-09-30: Josh narrowed the initial program research to Lucid/Tradeify $50k variants excluding direct funded, with Apex deferred. Reconciled this broader proposal with the separately accepted and merged prototype decisions [0005](0005-calculator-prototype.md) and [0006](0006-lucidflex-planner.md).
 
+2026-10-01: Reconciled current scope against main `1d10f83`: [ADR 0008](0008-tradeify-select-flex-planner.md) separately accepts the hypothetical Tradeify Select Flex funded $50k planner, and [ADR 0009](0009-per-account-planning-costs.md) applies per-account costs across the implemented planners. This broader scenario proposal remains unaccepted; those scoped implementations do not accept saved scenarios, loss-day distributions, history-aware or live-stage forecasting.
+
 ## References
 
 - [Financial contract](0002-financial-contract.md)
