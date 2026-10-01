@@ -47,3 +47,7 @@ Josh authorized Tradeify/Lucid $50k variants and resumed board work. Architect c
 - [Select payout policies](https://help.tradeify.co/en/articles/12853966-select-flex-and-select-daily-payout-policies)
 - [Research record](../research/tradeify-select-flex-policy.md)
 - [Existing LucidFlex scope](0006-lucidflex-planner.md)
+
+## 2026-09-30 cost amendment
+
+[ADR 0009](0009-per-account-planning-costs.md) supersedes this record's fixed portfolio cost input with a per-account cost for the selected period. Each scaling count derives its own total costs. Original fixed-cost descriptions above document the prior implementation; other payout and lifecycle rules remain unchanged.

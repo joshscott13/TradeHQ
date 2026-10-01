@@ -14,3 +14,5 @@ Changes are recorded at merge time using Keep a Changelog conventions.
 - Focused Lucid/Tradeify program/export research and planner usability preparation, merged in PR #3 at `9cacfef`.
 
 - Local canonical CSV import preview with synthetic Tradovate/Lucid and Rithmic/Tradeify examples, exact per-account P&L, duplicate handling and strict record validation, merged in PR #4 at `220b530`.
+
+- Sourced Tradeify Select Flex funded $50k income planner with explicit purchase cohort, conservative live-review model pause and count-specific scaling, merged in PR #6 at `bb04134`.

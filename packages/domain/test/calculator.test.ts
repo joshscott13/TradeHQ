@@ -4,7 +4,7 @@ import { calculateTargets, projectAnnualIncome, formatUsd, type TargetInput } fr
 
 const base: TargetInput = {
   goalAmount: '48000', period: 'year', activeDays: '192', accountCount: '5',
-  mode: 'trading', payoutSharePercent: '90', cashCosts: '2400',
+  mode: 'trading', payoutSharePercent: '90', accountCost: '480',
 };
 function result(overrides: Partial<TargetInput> = {}) {
   const calculated = calculateTargets({ ...base, ...overrides });
@@ -33,15 +33,15 @@ test('CALC-02 cash-goal bridge retains repeating precision until display', () =>
   assert.match(actual.dailyPerAccountTarget, /^58\.333333333333333333333333/);
   assert.equal(formatUsd(actual.dailyPortfolioTarget), '$291.67');
   assert.equal(formatUsd(actual.dailyPerAccountTarget), '$58.33');
-  assert.equal(formatUsd(result({ mode: 'cash', accountCount: '3' }).dailyPerAccountTarget), '$97.22');
+  assert.equal(formatUsd(result({ mode: 'cash', accountCount: '3' }).dailyPerAccountTarget), '$95.37');
   assert.ok(actual.assumptions.some(note => note.includes('eligibility restrictions')));
   assert.equal(JSON.parse(JSON.stringify(actual)).tradingTarget, '56000');
 });
 
 test('zero goal, cash costs and share return zero; positive cash requirement at zero share is infeasible', () => {
   assert.equal(result({ goalAmount: '0' }).dailyPerAccountTarget, '0');
-  assert.equal(result({ mode: 'cash', goalAmount: '0', cashCosts: '0', payoutSharePercent: '0' }).tradingTarget, '0');
-  for (const amounts of [{ goalAmount: '1', cashCosts: '0' }, { goalAmount: '0', cashCosts: '1' }]) {
+  assert.equal(result({ mode: 'cash', goalAmount: '0', accountCost: '0', payoutSharePercent: '0' }).tradingTarget, '0');
+  for (const amounts of [{ goalAmount: '1', accountCost: '0' }, { goalAmount: '0', accountCost: '1' }]) {
     const actual = calculateTargets({ ...base, ...amounts, mode: 'cash', payoutSharePercent: '0' });
     assert.equal(actual.ok, false);
     if (!actual.ok) assert.match(actual.errors.payoutSharePercent!, /infeasible/);
@@ -49,7 +49,7 @@ test('zero goal, cash costs and share return zero; positive cash requirement at 
 });
 
 test('exact decimal money avoids binary floating point errors and display uses half-up rounding', () => {
-  assert.equal(result({ mode: 'cash', goalAmount: '0.1', cashCosts: '0.2', payoutSharePercent: '100' }).tradingTarget, '0.3');
+  assert.equal(result({ mode: 'cash', goalAmount: '0.1', accountCost: '0.2', payoutSharePercent: '100', accountCount: '1' }).tradingTarget, '0.3');
   assert.equal(result({ goalAmount: '0.00000001', activeDays: '1', accountCount: '1' }).tradingTarget, '0.00000001');
   assert.equal(formatUsd('1.005'), '$1.01');
   assert.equal(formatUsd('-1.005'), '-$1.01');
@@ -80,13 +80,13 @@ test('period bounds, invalid selectors and cash-specific fields validate without
     { mode: 'invalid' as TargetInput['mode'] },
     { mode: 'cash' as const, payoutSharePercent: '101' },
     { mode: 'cash' as const, payoutSharePercent: '-1' },
-    { mode: 'cash' as const, cashCosts: '-1' },
+    { mode: 'cash' as const, accountCost: '-1' },
   ]) {
     const actual = calculateTargets({ ...base, ...override });
     assert.equal(actual.ok, false);
     assert.equal('value' in actual, false);
   }
-  assert.equal(result({ payoutSharePercent: '', cashCosts: '' }).tradingTarget, '48000');
+  assert.equal(result({ payoutSharePercent: '', accountCost: '' }).tradingTarget, '48000');
 });
 
 test('CALC-04 annual scaling uses signed net average and explicit annual days', () => {

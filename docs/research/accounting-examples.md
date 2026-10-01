@@ -1,6 +1,6 @@
 # Accounting and calculator examples
 
-Date: 2026-09-30. Status: proposed financial/calculator contract. These are manually reconciled synthetic examples, not implemented or passing tests, actual private records, payout predictions or firm presets. Accept the contract ADR before implementation.
+Date: 2026-09-30. FIN examples remain proposed ledger contracts. Calculator reference examples follow accepted ADR 0005 and the [ADR 0009 per-account cost amendment](../adr/0009-per-account-planning-costs.md). These are manually reconciled synthetic examples, not actual private records or payout predictions; implementation evidence belongs in the test matrix and dated reviews.
 
 ## FIN-01 — Trading results and cash outcome
 
@@ -41,9 +41,11 @@ With `5` equal active accounts, per-account daily target = `48,000 / (192 × 5) 
 
 ## CALC-02 — Cash target under simplified assumptions
 
-Desired received cash outcome `$48,000` in a year, paid external costs `$2,400`, trader share `90%`, `192` active days, `5` accounts. If every modeled payout-eligible result is actually paid that year and there are no buffers/caps/delays, required eligible result = `(48,000 + 2,400) / 0.90 = $56,000`. Aggregate/day = `$291.666…`; per-account/day = `$58.333…`. Round display values only; retain calculation precision. This is an unconstrained scenario, not a Lucid/Apex/Tradeify payout forecast.
+Desired modeled cash outcome `$48,000` in a year, account cost `$480` per account for that year, trader share `90%`, `192` active days, `5` accounts. Portfolio costs = `480 × 5 = $2,400`. If every modeled payout-eligible result is actually paid that year and there are no buffers/caps/delays, required eligible result = `(48,000 + 2,400) / 0.90 = $56,000`. Aggregate/day = `$291.666…`; per-account/day = `$58.333…`. Round display values only; retain calculation precision. This is an unconstrained scenario, not a firm payout forecast.
 
-If only 3 accounts remain active, the same cash assumptions require `56,000 / (192 × 3) = $97.222…` per account/day. Costs must also be reconsidered rather than automatically kept proportional. If trader share is zero, the positive cash target is infeasible; zero days/accounts is invalid.
+With 3 active accounts and the same `$480` per-account cost, portfolio costs become `$1,440`. Required trading result = `(48,000 + 1,440) / 0.90 = $54,933.333…`; per-account/day = `$95.370370…`. Each scaling count recomputes costs. Enter the expected costs for the selected period: period changes do not prorate costs, repeat a one-time purchase or infer a subscription. If trader share is zero, the positive cash target is infeasible; zero days/accounts is invalid.
+
+User-requested account-cost example: `$100` per account × `3` accounts = `$300` portfolio costs in the selected month. These are hypothetical expenses, not current firm prices. For LucidFlex at `$200` daily net profit over five active days, three accounts request `$1,500` gross, model `$1,350` trader cash, then `$1,050` after costs; retained trading profit remains `$1,500`. Per-account cash after costs is `$450 − $100 = $350`. A fractional `$100.125` per account gives exact `$300.375` total, displayed `$300.38`; preserve exact costs before subtracting or solving a goal. Zero account cost leaves request cash unchanged.
 
 ## CALC-03 — Caps and eligibility
 

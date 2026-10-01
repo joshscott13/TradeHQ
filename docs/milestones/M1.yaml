@@ -258,7 +258,7 @@
         "design-guardian",
         "test-engineer"
       ],
-      "state": "in review",
+      "state": "merged",
       "blocked_by": [
         "M1-06"
       ],
@@ -275,7 +275,36 @@
         "docs/research/tradeify-select-flex-policy.md",
         "docs/testing/test-matrix.md"
       ],
-      "notes": "Scoped ADR0008 implemented. Independent source/code/reference/screenshot review approved; 1525 separate oracle checks, 42 application tests, 10 tooling tests, clean install/typecheck/build and root desktop/mobile/keyboard flows passed. Strict post-Sept1 hypothetical cohort and conservative discretionary-review pause; no real-account/native-export/user validation claim."
+      "notes": "Merged in PR #6 at origin/main bb04134; independent review, 42 application tests, 10 tooling tests, build/typecheck and required verify CI passed. Scoped hypothetical Select Flex scenario; real-export and user gates remain pending."
+    },
+    {
+      "id": "M1-11",
+      "title": "Model account costs per period across planners",
+      "package": "packages/domain/ and apps/web/",
+      "owner": "domain-dev / frontend-dev",
+      "reviewers": [
+        "domain-reviewer",
+        "typescript-reviewer",
+        "design-guardian",
+        "test-engineer"
+      ],
+      "state": "in review",
+      "blocked_by": [
+        "M1-10"
+      ],
+      "adr": "docs/adr/0009-per-account-planning-costs.md",
+      "matrix": [
+        "COST-01",
+        "COST-02"
+      ],
+      "spec": [
+        "docs/adr/0009-per-account-planning-costs.md"
+      ],
+      "docs": [
+        "README.md",
+        "docs/testing/test-matrix.md"
+      ],
+      "notes": "Per-account selected-period costs implemented across all three planners. Independent review approved with 1895 reference checks; 50 application tests, 10 tooling tests, clean install/typecheck/build and desktop/mobile/keyboard browser checks passed. User $100 times 3 = $300 example verified; no automatic price/recurrence/conversion assumption."
     }
   ]
 }
